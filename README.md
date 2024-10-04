@@ -1,4 +1,4 @@
-# Project-Web-Phase2
+# 🌸Project-Web-Phase2🌸
 ตอนนี้ยังไม่ได้เชื่อมต่อ web server (node.js หรือ ทำ data base MySQL)
 
 ## Project Structure
@@ -11,10 +11,11 @@
    - stylesheet สำหรับ Homepage saved as `style.css`.
    - stylesheet page อื่นๆตั้งชื่อให้สอดคล้องกับแต่ละ page หรือ เรียกใช้ selector ใน css ให้เหมาะสม (ใช้ class, id)
 
-icon จาก (https://icons.getbootstrap.com/) **ใช้ตัวอื่นได้
-## Nav Bar
-html file 
-อย่าลืม embed css file 
+## 💻 How to Use
+- icon จาก (https://icons.getbootstrap.com/) **ใช้ตัวอื่นได้
+- ไฟล์ css download ได้ที่ (https://github.com/thitiP11222/Project-Web-Phase2/blob/main/nav-style.css)
+- **อย่าลืม embed css file**
+## Nav Bar HTML Part 🧩
 ```html
 <head>
     <link rel="stylesheet" href="nav-style.css">
