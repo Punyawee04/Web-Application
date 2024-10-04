@@ -3,15 +3,15 @@
 
 ## Project Structure
 1. **HTML File**
-   - navigation bar.
+   - navigation bar ใช้ icon
    - footer
    
 2. **CSS File**
-   - stylesheet สำหรับ navigation bar, saved as `nav-style.css`. (หากแก้ไขต้องcommit fileใหม่และบอกเพื่อนด้วย)
+   - stylesheet สำหรับ navigation bar, saved as `nav-style.css`. (อย่าเปลี่ยนแปลง หากแก้ไขต้องcommit fileใหม่และบอกเพื่อนด้วยงับ)
    - stylesheet สำหรับ Homepage saved as `style.css`.
    - stylesheet page อื่นๆตั้งชื่อให้สอดคล้องกับแต่ละ page หรือ เรียกใช้ selector ใน css ให้เหมาะสม (ใช้ class, id)
 
-
+icon จาก (https://icons.getbootstrap.com/) **ใช้ตัวอื่นได้
 ## Nav Bar
 html file 
 อย่าลืม embed css file 
