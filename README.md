@@ -3,8 +3,8 @@
 
 ## Project Structure
 1. **HTML File**
-   - navigation bar ใช้ icon
-   - footer
+   - navigation bar
+   - footer (ถ้าเสร็จจาอัปให้น้า)
    
 2. **CSS File**
    - stylesheet สำหรับ navigation bar, saved as `nav-style.css`. (อย่าเปลี่ยนแปลง หากแก้ไขต้องcommit fileใหม่และบอกเพื่อนด้วยงับ)
