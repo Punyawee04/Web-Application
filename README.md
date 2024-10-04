@@ -1,5 +1,5 @@
 # Project-Web-Phase2
-ส่วน Frontend ยังไม่มีการเชื่อมต่อกับ node.js หรือ ทำ data base (MySQL)
+ส่วน Frontend ยังไม่ได้เชื่อมต่อ web server (node.js หรือ ทำ data base MySQL)
 
 ## Project Structure
 1. **HTML File**
