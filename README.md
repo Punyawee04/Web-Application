@@ -1,7 +1,6 @@
 # 🌸Project-Web-Phase2🌸
 ตอนนี้ยังไม่ได้เชื่อมต่อ web server (node.js หรือ ทำ data base MySQL)
 <br> **ลองดู Demo Landing page** `Code` > `Codespaces` > `create Codespaces`
-![image](https://github.com/user-attachments/assets/1ff7f7dd-b99d-44e2-966b-a42dcaec8bef)
 
 ## 💻 How to Use 
 - ใช้โค้ด HTML CSS ที่แปะให้
