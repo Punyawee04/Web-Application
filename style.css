@@ -1,10 +1,11 @@
 * {
     margin: 0;
     padding: 0;
+    
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: #FBF8F4;
 }
 
@@ -127,6 +128,8 @@ button {
 .content-4{
     margin-top: 10%;
     background-color: #EC297B;
+    padding-left: 10rem;
+    padding-right: 10rem;
 }
 
 .align-section {
@@ -163,52 +166,28 @@ button {
 
 .card-container {
     display: flex;
-    flex-wrap: wrap; /* Allow cards to wrap to the next line on smaller screens */
-    justify-content: space-between; /* Space between cards */
+    flex-direction: row;
+    justify-content: space-between; 
     padding: 20px;
-    max-width: 1200px; /* Optional: limit max width */
-    margin: 0 auto; /* Center container horizontally */
+    
+}
+.flash-sale-card{
+width: 18%;
 }
 
-.card {
-    flex: 1 1 calc(20% - 20px); /* Adjust width of each card to fit 5 in a row with spacing */
-    margin: 10px; /* Space around each card */
-    background-color: #fff; /* Card background color */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
-    overflow: hidden; /* Hide overflow for rounded corners */
-    text-align: center; /* Center text inside the card */
-    padding: 20px;
-    box-sizing: border-box; /* Include padding in the width calculation */
-}
-
-.card img {
-    width: 60%; /* Make image fill the card */
-    height: auto; /* Maintain aspect ratio */
-    border-bottom: 1px solid #ddd; /* Border below image */
-}
-
-.card h3 {
-    margin: 15px 0 10px; /* Space above and below the heading */
-}
-
-.card p {
-    color: #666; /* Description text color */
-    margin: 0;
-}
 
 
 .shop-by {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    margin-top: 8rem;
+    margin-bottom: 8rem;
     padding-left: 10rem;
     padding-right: 10rem;
-    align-items: center; /* Vertically centers the images */
-    gap: 10px; /* Optional: Add space between cards */
+    align-items: center;
 }
-
 .shopby-card {
-    flex: 1; /* Ensures all cards take equal width */
+    flex: 1; 
     max-width: 20%; /* Ensure the cards don't exceed 25% of the row width */
     text-align: center; /* Center the image inside the card */
 }
