@@ -17,12 +17,13 @@
 - icon จาก (https://icons.getbootstrap.com/) **ใช้ตัวอื่นได้
 - ไฟล์ css download ได้ที่ (https://github.com/thitiP11222/Project-Web-Phase2/blob/main/nav-style.css)
 - **อย่าลืม embed css file**
-## Nav Bar HTML Part 🧩
-```html
+  ```html
 <head>
     <link rel="stylesheet" href="nav-style.css">
 </head>
 ```
+## Nav Bar HTML Part 🧩
+
 
 ```html
    <!-- Nav -->
