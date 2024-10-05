@@ -1,11 +1,12 @@
 # 🌸Project-Web-Phase2🌸
 ตอนนี้ยังไม่ได้เชื่อมต่อ web server (node.js หรือ ทำ data base MySQL)
-<br> **ลองดู Demo Landing page**
-![image](https://github.com/user-attachments/assets/14a46f78-c60a-4ef6-9894-a3091bb5b02d)
+<br> **ลองดู Demo Landing page** `Code` > `Codespaces` > `create Codespaces`
+![image](https://github.com/user-attachments/assets/1ff7f7dd-b99d-44e2-966b-a42dcaec8bef)
 
 ## 💻 How to Use 
 - ใช้โค้ด HTML CSS ที่แปะให้
 - icon จาก (https://icons.getbootstrap.com/) **ใช้ตัวอื่นได้
+- สร้างไฟล์ใหม่ทำใน vs ลงเครื่องแล้วค่อย commit ไฟล์เพิ่ม
 - **อย่าลืม embed css file**
 
 ## Project Template (ที่ต้องใช้)
