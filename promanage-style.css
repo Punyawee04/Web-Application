@@ -1,0 +1,213 @@
+/* Reset and basic styling */ 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f7f5f4;
+}
+
+/* Container for full-page adjustments */
+.main-container {
+    width: 1440px;
+    height: 1024px;
+    position: absolute; /* ใช้ absolute เพื่อให้ top, left ทำงานได้ */
+    top: -380px;
+    left: 8938px;
+    gap: 0px;
+    opacity: 0; /* ตั้งค่าความโปร่งใสเป็น 0 */
+}
+
+/* Header styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #EC297B;
+    color: #fff;
+}
+
+/* .navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 1rem;
+}
+
+.navbar nav a.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.user-icons {
+    display: flex;
+    gap: 1rem;
+} */
+
+.navbar2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #F3F0EF;
+    color: #fff;
+}
+
+.navbar2 .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar2 nav a {
+    color: #EC297B;
+    text-decoration: none;
+    margin: 0 1rem;
+}
+
+.navbar2 nav a.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.user-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Main content styling */
+.products-section {
+    padding: 2rem;
+}
+
+.products-section h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.product-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.product-nav span {
+    color: #333;
+    font-weight: 600;
+}
+
+.search-bar {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-product-btn {
+    padding: 0.5rem 1rem;
+    background-color: #ff4b84;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-product-btn:hover {
+    background-color: #ff6fa8;
+}
+
+/* Product table styling */
+.products-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    overflow: hidden;
+    border: 2px solid #F3F0EF; /* กำหนดขอบและสีที่นี่ */
+    margin: 0 auto; /* จัดกึ่งกลางในแนวนอน */
+    background-color: #fff; /* สีพื้นหลัง */
+    box-shadow: 0px 4px 1px rgba(0, 0, 0, 0.1); /* เงาเบลอขนาดเล็ก */
+}
+
+.products-table th,
+.products-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.products-table th {
+    background-color: #f0f0f0;
+    color: #666;
+    font-weight: bold;
+}
+
+.products-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.product-image {
+    background-color: #ff4b84;
+    color: #fff;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* Status badges */
+.status {
+    padding: 0.3rem 0.5rem;
+    border-radius: 12px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.status.active {
+    background-color: #4caf50;
+}
+
+.status.draft {
+    background-color: #b0b0b0;
+}
+
+/* Edit button styling */
+.edit-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #ff4b84;
+    font-size: 1.2rem;
+}
+
+.edit-btn:hover {
+    color: #ff6fa8;
+}
+
+/* Pagination styling (optional) */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.pagination button {
+    padding: 0.5rem;
+    border: none;
+    background-color: #ff4b84;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #ff6fa8;
+}
