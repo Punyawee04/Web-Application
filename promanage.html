@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="promanage-style.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">Bloom</div>
+            <nav>
+                <a href="#account">Account</a>
+                <a href="#product-management" class="active">Product Management</a>
+                <a href="#support">Support</a>
+            </nav>
+            <div class="user-icons">
+                <span class="notification-icon">🔔</span>
+                <span class="user-profile">👤</span>
+                <span class="logout-icon">↩️</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="products-section">
+            <h1>Products</h1>
+            <div class="product-nav">
+                <span>All (50)</span> | 
+                <span>Published (40)</span>
+                <input type="text" placeholder="searching" class="search-bar">
+                <button class="add-product-btn">Add Product</button>
+            </div>
+
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Vendor</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"><span class="product-image">📷</span></td>
+                        <td>ID-101</td>
+                        <td>Product Name</td>
+                        <td>Vendor</td>
+                        <td>Category</td>
+                        <td>0 in stock</td>
+                        <td>000.00</td>
+                        <td><span class="status active">Active</span></td>
+                        <td><button class="edit-btn">✏️</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"><span class="product-image">📷</span></td>
+                        <td>ID-102</td>
+                        <td>Product Name</td>
+                        <td>Vendor</td>
+                        <td>Category</td>
+                        <td>0 in stock</td>
+                        <td>000.00</td>
+                        <td><span class="status draft">Draft</span></td>
+                        <td><button class="edit-btn">✏️</button></td>
+                    </tr>
+                    <!-- Repeat <tr> for additional products as needed -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>
