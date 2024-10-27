@@ -27,11 +27,11 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: #ff4b84;
+    background-color: #EC297B;
     color: #fff;
 }
 
-.navbar .logo {
+/* .navbar .logo {
     font-size: 1.5rem;
     font-weight: bold;
 }
@@ -43,6 +43,36 @@ body {
 }
 
 .navbar nav a.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.user-icons {
+    display: flex;
+    gap: 1rem;
+} */
+
+.navbar2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #F3F0EF;
+    color: #fff;
+}
+
+.navbar2 .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar2 nav a {
+    color: #EC297B;
+    text-decoration: none;
+    margin: 0 1rem;
+}
+
+.navbar2 nav a.active {
     font-weight: bold;
     text-decoration: underline;
 }
