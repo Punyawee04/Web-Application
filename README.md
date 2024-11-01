@@ -1,7 +1,9 @@
 # 🌸Project-Web-Phase2🌸
 ตอนนี้ยังไม่ได้เชื่อมต่อ web server (node.js หรือ ทำ data base MySQL)
-<br> **ลองดู Demo Landing page** `Code` > `Codespaces` > `create Codespaces`
-
+<br> **Command Commit File (Terminal)**
+`git add .`
+`git commit -m "Fix bug in user authentication"`
+`git push origin main`
 ## 💻 How to Use 
 - ใช้โค้ดเทมเพลต nav&footer HTML CSS ที่แปะให้ (พยายามอย่าแก้ไขนะ แต่ถ้าแก้ไขบอกเพื่อนด้วยงับ)
 - icon จาก (https://icons.getbootstrap.com/) **ใช้ตัวอื่นได้
