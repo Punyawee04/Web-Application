@@ -1,5 +1,5 @@
 # 🌸Project-Web-Phase2🌸
-ตอนนี้ยังไม่ได้เชื่อมต่อ web server (node.js หรือ ทำ data base MySQL)
+เริ่มสร้าง web server แล้วแต่ยังไม่ได้กำหนด port + routing
 <br> **Command Commit File (Terminal)** <br>
 `git add .` <br>
 `git commit -m "Fix bug in user authentication"` <br>
