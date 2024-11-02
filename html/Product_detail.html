@@ -1,11 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/nav-style.css">
+    <link rel="stylesheet" href="/footer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <title>Document</title>
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        #announcement {
+            background-color: #EC297B;
+            text-align: center;
+            padding: 10px;
+            color: white;
+
+        }
+
+        .Top-Container {
+            display: flex;
+            margin: 3rem 15rem;
+            gap: 3rem;
+        }
+
+        .product-image {
+            border: 1px solid black;
+            border-radius: 10px;
+
+        }
+
+        .product-image img {
+            width:30rem;
+        }
+
+        .product-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .rating-section {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stars {
+            display: inline-block;
+            font-size: 1.5rem;
+            color: #FFD700;
+            /* Gold color for stars */
+        }
+
+        .rating-count {
+            font-size: 1rem;
+            color: #666;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>555</h1>
+    <!-- Announcement Banner -->
+    <div class="announcement" id="announcement">
+        Free shipping on orders over 499 THB!
+    </div>
+
+    <!-- Nav -->
+    <nav>
+        <!-- Logo -->
+        <div class="logo">
+            <a href="#"><img src="/src/bloom logo.png " alt="Logo"></a>
+        </div>
+
+        <!-- Menu -->
+        <ul class="menu">
+            <li><a href="/html/index.html">Home Page</a></li>
+            <li><a href="#cate-box">Best Sellers</a></li>
+            <li><a href="#cate-box">Categories</a></li>
+            <li><a href="/html/Team.html">Contact Us</a></li>
+        </ul>
+
+
+        <!-- action -->
+        <div class="user-cart">
+            <a href="/html/search.html"><i class="bi bi-search"></i></a>
+            <a href="/html/login.html"><i class="bi bi-person" style="font-size: 25px;"></i></a>
+            <a href="/html/page not found.html"><i class="bi bi-cart3" style="font-size: 22px;"></i></a>
+        </div>
+    </nav>
+
+    <!-- Section-1 -->
+    <div class="Top-Container">
+        <div class="product-image"><img src="/src/product image/example-product.png" alt=""></div>
+        <div class="product-info">
+            <div id="preview-detail">
+                <h2> Rojukiss White Poreless Hydrogel
+                    Mineral Mask 7 25ml </h2>
+                    
+                    <h1>฿ <span id="price"> 35</span></h1>
+                    <div class="rating-section">
+                        <div class="stars" data-rating="4.5"></div>
+                        <p class="rating-count">(123 Reviews)</p>
+                    </div>
+            </div>
+            
+            <div id="action">
+                <button class="add-to-cart-btn">ADD TO CART</button>
+                <button class="buy-now-btn">BUY NOW</button>
+            </div>
+            <p>Free shipping on orders over 499 THB!</p>
+        </div>
+
+
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__addr">
+            <img src="\src\bloom logo.png" alt="bloom logo">
+
+            <h2>Location</h2>
+
+            <address>
+                Bangkok, Thailand<br>
+            </address>
+        </div>
+
+        <ul class="footer__nav">
+            <li class="nav__item">
+                <h2 class="nav__title">BLOOM</h2>
+
+                <ul class="nav__ul">
+                    <li>
+                        <a href="#">Brand Story</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Contact Us</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Track Order</a>
+                    </li>
+                    <li>
+                        <a href="#">Return / Refund</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav__item nav__item--extra">
+                <h2 class="nav__title">CATEGORY</h2>
+
+                <ul class="nav__ul nav__ul--extra">
+                    <li>
+                        <a href="#">Body</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Mask</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Face Care</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Sunscreen</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Cleanser</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Acne Prevention</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav__item">
+                <h2 class="nav__title">Stay In Touch. </h2>
+                <div class="email-container">
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                    <span class="next-icon">&#10095;</span> <!-- Next arrow icon -->
+                </div>
+                <p style="font-size: 14px;">Please refer to our Privacy Policy and Terms of Use for more details
+                    or Contact Us</p>
+
+                <ul class="nav__ul">
+                    <i class="bi bi-facebook"></i>
+                    <i class="bi bi-instagram"></i>
+                    <i class="bi bi-tiktok"></i>
+
+                </ul>
+            </li>
+        </ul>
+
+        <div class="legal">
+            <p>&copy; Bloom Inc. 2024. All rights reserved.</p>
+
+            <div class="legal__links">
+                <span>Terms & Conditions </span>
+                <span>Privacy Policy </span>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Rate -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const starsContainer = document.querySelector(".stars");
+            const rating = parseFloat(starsContainer.getAttribute("data-rating"));
+            const fullStars = Math.floor(rating);
+            const halfStar = rating % 1 >= 0.5;
+
+            // Generate stars
+            let starsHTML = "";
+            for (let i = 0; i < fullStars; i++) {
+                starsHTML += "★"; // Full star
+            }
+            if (halfStar) {
+                starsHTML += "☆"; // Half star
+            }
+            starsContainer.innerHTML = starsHTML;
+        });
+
+    </script>
 </body>
+
 </html>
