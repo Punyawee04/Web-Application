@@ -1,0 +1,150 @@
+* {
+    font-family: 'Poppins', 'Kanit', sans-serif;
+}
+
+#announcement {
+    background-color: #EC297B;
+    text-align: center;
+    padding: 10px;
+    color: white;
+
+}
+
+.Top-Container {
+    display: flex;
+    gap: 3rem;
+    margin: 3rem 15rem;
+
+}
+
+.product-image {
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-image img {
+    width: 30rem;
+}
+
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.rating-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stars {
+    display: inline-block;
+    font-size: 1.5rem;
+    color: #FFD700;
+    /* Gold color for stars */
+}
+
+.rating-count {
+    font-size: 1rem;
+    color: #666;
+}
+
+button {
+    border: 0;
+    padding: 10px 50px;
+    margin-top: 0.3rem;
+    font-weight: 500;
+}
+
+.buy-now-btn {
+    color: black;
+    background-color: #FE8EB2;
+}
+
+.add-to-cart-btn {
+    color: black;
+    background-color: #FEEBEE;
+}
+hr {
+    border: none;
+    border-top: 1px solid #ccc; /* Color of the line */
+    margin: 1.5rem 0;           /* Space around the line */
+    width: 100%;                /* Full width */
+}
+#product-description{
+    background-color: #FEEBEE;
+    display: flex;
+    margin-top: 3rem;
+    padding: 50px;
+    
+}
+
+#inside-des{
+    margin: 0 15rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem; 
+
+    
+}
+#img-des img{
+    width: 20rem;
+}
+
+.shipping-container {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.shipping-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 200px;
+}
+
+.icon-circle {
+    background-color: #fce4ec;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+}
+
+.shipping-text {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4;
+}
+
+/* Icons */
+.truck-icon {
+    font-size: 34px;
+}
+
+.lightning-icon::before {
+    font-size: 34px;
+}
+
+.arrows-icon::before {
+    font-size: 34px;
+}
+
+
