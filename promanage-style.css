@@ -1,4 +1,4 @@
-/* Reset and basic styling */ 
+/* Reset and basic styling */
 * {
     margin: 0;
     padding: 0;
@@ -14,11 +14,13 @@ body {
 .main-container {
     width: 1440px;
     height: 1024px;
-    position: absolute; /* ใช้ absolute เพื่อให้ top, left ทำงานได้ */
+    position: absolute;
+    /* ใช้ absolute เพื่อให้ top, left ทำงานได้ */
     top: -380px;
     left: 8938px;
     gap: 0px;
-    opacity: 0; /* ตั้งค่าความโปร่งใสเป็น 0 */
+    opacity: 0;
+    /* ตั้งค่าความโปร่งใสเป็น 0 */
 }
 
 /* Header styling */
@@ -31,26 +33,17 @@ body {
     color: #fff;
 }
 
-/* .navbar .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+.navbar {
+    width: auto;
+    height: 65px;
 }
 
-.navbar nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 1rem;
+.logo img {
+    width: auto;
+    /* กำหนดให้กว้างอัตโนมัติตามสัดส่วน */
+    height: 50px;
+    /* กำหนดความสูงที่ต้องการ เช่น 50px */
 }
-
-.navbar nav a.active {
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-.user-icons {
-    display: flex;
-    gap: 1rem;
-} */
 
 .navbar2 {
     display: flex;
@@ -61,21 +54,44 @@ body {
     color: #fff;
 }
 
-.navbar2 .logo {
+/* .navbar2 .logo {
     font-size: 1.5rem;
     font-weight: bold;
-}
+} */
 
-.navbar2 nav a {
+/* .navbar2 nav a {
     color: #EC297B;
     text-decoration: none;
     margin: 0 1rem;
-}
+} */
 
-.navbar2 nav a.active {
+/* .navbar2 nav a.active {
     font-weight: bold;
     text-decoration: underline;
+} */
+.nav-links {
+
+    display: flex;
+    gap: 180px;
+    /* Adjust this value for more or less spacing */
+    align-items: center;
 }
+
+.nav-links span {
+    text-decoration: underline;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Space between icon and text */
+}
+
+.nav-links a {
+    text-decoration-color: #F3F0EF;
+    color: #333
+        /* Keeps the text color as defined by the parent or another style */
+}
+
+
 
 .user-icons {
     display: flex;
@@ -85,13 +101,22 @@ body {
 /* Main content styling */
 .products-section {
     padding: 2rem;
+
 }
 
-.products-section h1 {
+.products-section1 {
+    display: flex;
+    /* ใช้ Flexbox */
+    justify-content: space-between;
+    /* จัดระเบียบให้ห่างกัน */
+    align-items: center;
+    /* จัดแนวให้แนวนอนอยู่ในกลาง */
     font-size: 1.8rem;
     color: #333;
     margin-bottom: 1rem;
+    font-weight: bold;
 }
+
 
 .product-nav {
     display: flex;
@@ -105,69 +130,190 @@ body {
     font-weight: 600;
 }
 
-.search-bar {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.add-product-btn {
-    padding: 0.5rem 1rem;
-    background-color: #ff4b84;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.add-product-btn:hover {
-    background-color: #ff6fa8;
-}
-
-/* Product table styling */
-.products-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-    overflow: hidden;
-    border: 2px solid #F3F0EF; /* กำหนดขอบและสีที่นี่ */
-    margin: 0 auto; /* จัดกึ่งกลางในแนวนอน */
-    background-color: #fff; /* สีพื้นหลัง */
-    box-shadow: 0px 4px 1px rgba(0, 0, 0, 0.1); /* เงาเบลอขนาดเล็ก */
-}
-
-.products-table th,
-.products-table td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.products-table th {
-    background-color: #f0f0f0;
-    color: #666;
+.products-section1 {
+    display: flex;
+    /* ใช้ Flexbox สำหรับจัดระเบียบ */
+    justify-content: space-between;
+    /* จัดระเบียบให้ห่างกัน */
+    align-items: center;
+    /* จัดแนวให้แนวนอนอยู่ในกลาง */
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1rem;
     font-weight: bold;
 }
 
-.products-table tbody tr:hover {
-    background-color: #f9f9f9;
+.search-container {
+    position: relative;
+    /* เพื่อให้ไอคอนแว่นขยายอยู่ภายในช่องค้นหา */
 }
 
-.product-image {
+.search-bar {
+    padding: 0.5rem 2rem 0.5rem 0.5rem;
+    /* เพิ่ม padding ด้านข้างเพื่อให้มีที่ว่างสำหรับไอคอน */
+    border: 1px solid #ccc;
+    /* กำหนดกรอบให้กับช่องค้นหา */
+    border-radius: 4px;
+    /* ทำให้มุมกรอบนุ่มนวล */
+    margin-left: auto;
+    /* ทำให้กล่องค้นหาชิดขวา */
+    width: 380px;
+    /* กำหนดความกว้างของช่องค้นหา */
+    height: 38px;
+    /* กำหนดความสูงของช่องค้นหา */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* เพิ่มเงาให้กับกล่องค้นหา */
+    transition: border-color 0.3s;
+    /* เพิ่มการเปลี่ยนแปลงของสีกรอบ */
+}
+
+.search-bar:focus {
+    border-color: #007BFF;
+    /* เปลี่ยนสีกรอบเมื่อช่องค้นหาอยู่ในสถานะโฟกัส */
+    outline: none;
+    /* ลบเอาท์ไลน์ออก */
+}
+
+.search-icon {
+    position: absolute;
+    /* วางไอคอนภายในช่องค้นหา */
+    right: 0.5rem;
+    /* ระยะห่างจากขอบขวา */
+    top: 50%;
+    /* จัดให้อยู่กลางในแนวตั้ง */
+    transform: translateY(-50%);
+    /* ปรับตำแหน่งไอคอนให้อยู่กลางแนวตั้ง */
+    pointer-events: none;
+    /* ไม่ให้ไอคอนแว่นขยายรับการคลิก */
+}
+
+/* Container and Header */
+.container {
+    margin: auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.add-button {
     background-color: #ff4b84;
     color: #fff;
-    padding: 0.3rem 0.5rem;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+}
+
+.delete-button {
+    background-color: #fff;
+    color: #e20909;
+    padding: 8px 16px;
+    border: none;
+
+}
+
+.pagination {
+    display: flex;
+    margin-left: auto;
+    font-size: 12px;
+    color: #333;
+    margin-left: auto;
+}
+
+.pagination-arrow {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 5px;
+    outline: none;
+}
+
+.pagination-number {
+    display: inline-block;
+    padding: 3px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0 5px;
+    font-size: 12px;
+    text-align: center;
+    min-width: 20px;
+}
+
+.pagination span {
+    font-size: 14px;
+    margin-left: 5px;
+    color: #333333;
+}
+
+
+
+.add-button-btn:hover {
+    background-color: #ff6fa8;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+table th.actions,
+table td.actions {
+    text-align: center;
+}
+
+
+table th {
+    background-color: #f2f2f2;
+    color: #555;
+}
+
+/* Image and Checkbox Styles */
+.checkbox {
+    display: flex;
+    justify-content: center;
+}
+
+.image-placeholder {
+    width: 30px;
+    height: 30px;
+    background-color: #d8d8d8;
     border-radius: 4px;
     display: inline-block;
 }
 
-/* Status badges */
+/* Status Tags */
 .status {
-    padding: 0.3rem 0.5rem;
-    border-radius: 12px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
     color: #fff;
-    font-weight: bold;
-    font-size: 0.8rem;
+    text-align: center;
 }
 
 .status.active {
@@ -175,39 +321,38 @@ body {
 }
 
 .status.draft {
-    background-color: #b0b0b0;
+    background-color: #d8d8d8;
+    color: #777;
 }
 
-/* Edit button styling */
-.edit-btn {
-    background-color: transparent;
-    border: none;
+/* Actions Column */
+.actions {
+    text-align: center;
+}
+
+.actions .edit-icon {
     cursor: pointer;
-    color: #ff4b84;
-    font-size: 1.2rem;
+    font-size: 16px;
+    color: #333;
 }
 
-.edit-btn:hover {
-    color: #ff6fa8;
-}
-
-/* Pagination styling (optional) */
+/* Pagination */
 .pagination {
     display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.pagination span {
+    font-size: 14px;
+    margin: 0 8px;
 }
 
 .pagination button {
-    padding: 0.5rem;
+    background: none;
     border: none;
-    background-color: #ff4b84;
-    color: #fff;
-    border-radius: 4px;
     cursor: pointer;
-}
-
-.pagination button:hover {
-    background-color: #ff6fa8;
+    font-size: 18px;
+    color: #555;
 }
