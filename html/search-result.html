@@ -1,12 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bloom - Search Results</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="\nav-style.css">
+    <style>
+        * {
+            font-family: 'Poppins';
+            margin: 0;
+        }
+
+        body {
+            background-color: #F3F0EF;
+        }
+
+        #header-search {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .breadcrumbs {
+            padding: 10px 10px;
+            background-color: #ffffff;
+        }
+
+        .search-header {
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .search-container {
+            margin-top: 20px;
+        }
+
+        .container {
+            padding: 20px;
+            margin-left: 10rem;
+            margin-right: 10rem;
+        }
+
+        .filter {
+            width: 20%;
+            position: sticky;
+            top: 20px;
+            position: sticky;
+
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #000000;
+        }
+
+        .filter h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .results {
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;
+            
+        }
+
+        #section-2 {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .product {
+            width: 25%;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .product img {
+            max-width: 100%;
+        }
+
+        .product p {
+            margin: 5px 0;
+        }
+    </style>
 </head>
+
 <body>
     <nav>
         <!-- Logo -->
@@ -31,35 +115,97 @@
         </div>
     </nav>
 
-    <!-- Search Bar -->
-    <div class="search-container">
-        <input type="text" class="search-bar" placeholder="Search for products...">
-        <button class="search-button">Search</button>
-    </div>
 
-    <!-- Search Results -->
-    <div class="results-container">
-        <!-- Example Result Item -->
-        <div class="result-item">
-            <img src="https://via.placeholder.com/100" alt="Product Image">
-            <div class="result-info">
-                <h3 class="result-title">Product Title 1</h3>
-                <p class="result-description">This is a brief description of the product. It provides key information that might interest the customer.</p>
-                <a href="#" class="result-link">View Product</a>
+
+
+
+    <div class="container">
+        <!-- Search Bar -->
+        <div id="header-search">
+            <div style="margin-bottom: 10px;">
+                <p>Search results for</p>
+                <h2>Search Input</h2>
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search for products...">
+                <button class="search-button">Search</button>
             </div>
         </div>
+        <!-- Filters -->
+        <div id="section-2">
+            <aside class="filter">
+                <h3>Brand</h3>
+                <div id="brand" style="border-bottom:1px solid black ; padding-bottom:10px;">
+                    <input type="checkbox" id="brand1">
+                    <label for="brand1">Body</label><br>
+                    <input type="checkbox" id="brand2">
+                    <label for="brand2">Mask</label><br>
+                    <input type="checkbox" id="brand3">
+                    <label for="brand3">Face Care</label>
+                </div>
 
-        <div class="result-item">
-            <img src="https://via.placeholder.com/100" alt="Product Image">
-            <div class="result-info">
-                <h3 class="result-title">Product Title 2</h3>
-                <p class="result-description">This is a brief description of the product. It provides key information that might interest the customer.</p>
-                <a href="#" class="result-link">View Product</a>
-            </div>
+                <h3 style="padding-top:10px;">Category</h3>
+                <div id="category" style="border-bottom:1px solid black ; padding-bottom:10px;">
+                    <input type="checkbox" id="body">
+                    <label for="body">Body</label><br>
+                    <input type="checkbox" id="mask">
+                    <label for="mask">Mask</label><br>
+                    <input type="checkbox" id="face-care">
+                    <label for="face care">Face Care</label><br>
+                    <input type="checkbox" id="sunscreen">
+                    <label for="sunscreen">Sunscreen</label><br>
+                    <input type="checkbox" id="cleanser">
+                    <label for="cleanser">Cleanser</label><br>
+                    <input type="checkbox" id="acne-prevention">
+                    <label for="acne-prevention">Acne Prevention</label><br>
+                </div >
+
+                <h3 style="padding-top:10px;">Availability</h3>
+                <div id="stock">
+                    <input type="checkbox" id="in-stock">
+                    <label for="in-stock">In Stock</label><br>
+                    <input type="checkbox" id="out-stock">
+                    <label for="out-stock">Out of Stock</label><br>
+                </div>
+
+            </aside>
+            <!-- Search Results -->
+            <section class="results">
+                <div class="product">
+                    <img src="product1.jpg" alt="Product Image">
+                    <p>Rojukiss White Poreless Hydrogel Mineral Mask 7.25ml</p>
+                    <p>฿85 <span>฿95</span> <span>⭐ 4.9</span></p>
+                </div>
+                <div class="product">
+                    <img src="product1.jpg" alt="Product Image">
+                    <p>Rojukiss White Poreless Hydrogel Mineral Mask 7.25ml</p>
+                    <p>฿85 <span>฿95</span> <span>⭐ 4.9</span></p>
+                </div>
+                <div class="product">
+                    <img src="product1.jpg" alt="Product Image">
+                    <p>Rojukiss White Poreless Hydrogel Mineral Mask 7.25ml</p>
+                    <p>฿85 <span>฿95</span> <span>⭐ 4.9</span></p>
+                </div>
+                <div class="product">
+                    <img src="product2.jpg" alt="Product Image">
+                    <p>Rojukiss Acne Poreless Hydrogel Mineral Mask 7.25ml</p>
+                    <p>฿85 <span>฿95</span> <span>⭐ 4.9</span></p>
+                </div>
+                <!-- More products here -->
+            </section>
+
+
         </div>
-        
-        <!-- Add more result items as needed -->
+
     </div>
+    </main>
+
+    <!-- Add more result items as needed -->
+    </div>
+
+
+
 
 </body>
+
 </html>
