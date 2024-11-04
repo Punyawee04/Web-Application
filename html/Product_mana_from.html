@@ -19,13 +19,13 @@
             background-color: #f5f5f5;
         }
 
-        .navbar header{
+        .navbar header {
             display: flex;
             justify-content: space-evenly;
             align-items: center;
         }
-        
-       
+
+
         .navbar {
             display: flex;
             align-items: center;
@@ -33,10 +33,13 @@
             background-color: #EC297B;
             color: white;
         }
-        .navbar header,  .container section{
+
+        .navbar header,
+        .container section {
             margin-left: 10rem;
             margin-right: 10rem;
         }
+
         .navbar img {
             height: 40px;
         }
@@ -44,21 +47,23 @@
         .header {
             color: black;
             padding: 15px;
-margin-top: 20px;
-display: flex;
+            margin-top: 20px;
+            display: flex;
         }
+
         .back-button {
             font-size: 18px;
             color: black;
             text-decoration: none;
             margin-right: 10px;
         }
+
         .header h1 {
             margin: 0;
             font-size: 18px;
         }
 
-       
+
 
         .form {
             display: flex;
@@ -66,19 +71,21 @@ display: flex;
             margin-top: 20px;
         }
 
-        .form-left{
+        .form-left {
             background-color: white;
             padding: 15px;
             border-radius: 8px;
             width: 60%;
             flex: auto;
         }
-        .form-right{
+
+        .form-right {
             background-color: white;
             padding: 15px;
             border-radius: 8px;
             width: 30%;
         }
+
         .form-group {
             margin-bottom: 15px;
             background-color: white;
@@ -174,89 +181,89 @@ display: flex;
                     <a href="#"><img src="/src/bloom logo.png" alt="Logo"></a>
                 </div>
             </header>
-            
-            
+
+
         </div>
         <section>
             <!-- Header Section -->
             <div class="header">
-                <a href="/html/promanage.html" class="back-button">
+                <a href="/html/product_manage.html" class="back-button">
                     <i class="bi bi-arrow-left-square"></i>
                 </a>
                 <h1>Add Products</h1>
             </div>
-            
 
-        <!-- Form Section -->
-        <div class="form">
-            <!-- Left Side Form Fields -->
-            <div class="form-left">
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" id="title" placeholder="Product title">
-                </div>
 
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <div class="editor-container">
-                        <div class="editor-toolbar">
-                            Paragraph
-                                
+            <!-- Form Section -->
+            <div class="form">
+                <!-- Left Side Form Fields -->
+                <div class="form-left">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" placeholder="Product title">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <div class="editor-container">
+                            <div class="editor-toolbar">
+                                Paragraph
+
+                            </div>
+                            <textarea class="editor-content" placeholder="Enter product description here..."></textarea>
                         </div>
-                        <textarea class="editor-content" placeholder="Enter product description here..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Media</label>
+                        <div class="media-placeholder">
+                            <p>Add images, videos, or 3D models to show product details and features.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pricing</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="number" placeholder="Price">
+                            <input type="number" placeholder="Compare at price">
+                        </div>
+                        <input type="number" placeholder="Cost per item" style="margin-top: 10px;">
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Media</label>
-                    <div class="media-placeholder">
-                        <p>Add images, videos, or 3D models to show product details and features.</p>
+                <!-- Right Side Form Fields -->
+                <div class="form-right">
+                    <div class="form-group">
+                        <label>Product Status</label>
+                        <select>
+                            <option>Draft</option>
+                            <option>Active</option>
+                        </select>
+                        <small>This product will be hidden from all sales channels</small>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label>Pricing</label>
-                    <div style="display: flex; gap: 10px;">
-                        <input type="number" placeholder="Price">
-                        <input type="number" placeholder="Compare at price">
+                    <div class="form-group">
+                        <label>Organization</label>
+                        <input type="text" placeholder="Vendor e.g. Innisfree">
+                        <input type="text" placeholder="Category" style="margin-top: 10px;">
+                        <input type="text" placeholder="Collections" style="margin-top: 10px;">
                     </div>
-                    <input type="number" placeholder="Cost per item" style="margin-top: 10px;">
+
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" id="quantity" placeholder="e.g. 1000">
+                    </div>
                 </div>
             </div>
 
-            <!-- Right Side Form Fields -->
-            <div class="form-right">
-                <div class="form-group">
-                    <label>Product Status</label>
-                    <select>
-                        <option>Draft</option>
-                        <option>Active</option>
-                    </select>
-                    <small>This product will be hidden from all sales channels</small>
-                </div>
-
-                <div class="form-group">
-                    <label>Organization</label>
-                    <input type="text" placeholder="Vendor e.g. Innisfree">
-                    <input type="text" placeholder="Category" style="margin-top: 10px;">
-                    <input type="text" placeholder="Collections" style="margin-top: 10px;">
-                </div>
-
-                <div class="form-group">
-                    <label for="quantity">Quantity</label>
-                    <input type="number" id="quantity" placeholder="e.g. 1000">
-                </div>
+            <!-- Button Group -->
+            <div class="button-group">
+                <button class="delete-button">Delete Product</button>
+                <button class="save">Save</button>
             </div>
-        </div>
-
-        <!-- Button Group -->
-        <div class="button-group">
-            <button class="delete-button">Delete Product</button>
-            <button class="save">Save</button>
-        </div>
 
         </section>
-        
+
     </div>
 </body>
 
