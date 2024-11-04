@@ -96,3 +96,15 @@ body{
 .menunav a:hover {
     color: #EC297B;
 }
+
+#image {
+    padding-left: 500px; 
+    /* ยังไม่เสร็จ */
+}
+
+.bi-bell, .bi-box-arrow-right {
+    padding-left: 10px;
+    /* ยังไม่เสร็จ */
+}
+
+
