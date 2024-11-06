@@ -1,37 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link rel="icon" href="\src\icon bloom.png" sizes="180x180">
     <title>Add Product</title>
     <style>
         * {
-
             font-family: Arial, sans-serif;
+            margin: 0;
         }
 
         body {
             background-color: #f5f5f5;
+        }
+
+        .navbar header {
             display: flex;
-            justify-content: center;
+            justify-content: space-evenly;
             align-items: center;
         }
 
-        .container {
-            width: 100%;
 
-            overflow: hidden;
-            padding-left: 5rem;
-            padding-right: 5rem;
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #EC297B;
+            color: white;
+        }
+
+        .navbar header,
+        .container section {
+            margin-left: 10rem;
+            margin-right: 10rem;
+        }
+
+        .navbar img {
+            height: 40px;
         }
 
         .header {
-            /* background-color: #ff3c80; */
             color: black;
             padding: 15px;
+            margin-top: 20px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+        }
+
+        .back-button {
+            font-size: 18px;
+            color: black;
+            text-decoration: none;
+            margin-right: 10px;
         }
 
         .header h1 {
@@ -39,15 +63,7 @@
             font-size: 18px;
         }
 
-        .header .save-button {
-            background-color: #00b300;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-        }
+
 
         .form {
             display: flex;
@@ -56,11 +72,18 @@
         }
 
         .form-left {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
             width: 60%;
+            flex: auto;
         }
 
         .form-right {
-            width: 40%;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            width: 30%;
         }
 
         .form-group {
@@ -68,6 +91,7 @@
             background-color: white;
             padding: 15px;
             border-radius: 8px;
+
         }
 
         .form-group label {
@@ -75,6 +99,17 @@
             font-weight: bold;
             margin-bottom: 5px;
             font-size: 14px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group select,
+        .editor-content {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
 
         .editor-container {
@@ -88,7 +123,7 @@
             color: white;
             display: flex;
             padding: 8px;
-            align-items: center;
+            gap: 10px;
         }
 
         .editor-toolbar button,
@@ -98,24 +133,6 @@
             color: white;
             font-size: 14px;
             cursor: pointer;
-            margin-right: 10px;
-        }
-
-        .editor-toolbar select {
-            padding: 4px;
-            border-radius: 4px;
-            background-color: #ff3c80;
-            color: white;
-        }
-
-        .editor-content {
-            padding: 10px;
-            height: 100px;
-            font-size: 14px;
-            resize: none;
-            width: 100%;
-            outline: none;
-            border: none;
         }
 
         .media-placeholder {
@@ -125,22 +142,6 @@
             color: #ccc;
             font-size: 14px;
             border-radius: 4px;
-        }
-
-        .product-status,
-        .organization {
-            background-color: #f5f5f5;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 15px;
-        }
-
-        .product-status select {
-            width: 100%;
-            padding: 10px;
-            font-size: 14px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
         }
 
         .button-group {
@@ -170,97 +171,100 @@
         }
     </style>
 </head>
+
 <body>
+    <div class="container">
+        <!-- Navbar Section -->
+        <div class="navbar">
+            <header>
+                <div class="logo">
+                    <a href="#"><img src="/src/bloom logo.png" alt="Logo"></a>
+                </div>
+            </header>
 
-<div class="container">
-    <!-- Header Section -->
-    <div class="header">
-        <h1>Add Products</h1>
-        <button class="save-button">Save</button>
-    </div>
 
-    <!-- Form Section -->
-    <div class="form">
-        <!-- Left Side Form Fields -->
-        <div class="form-left">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" id="title" placeholder="Product title">
+        </div>
+        <section>
+            <!-- Header Section -->
+            <div class="header">
+                <a href="/html/product_manage.html" class="back-button">
+                    <i class="bi bi-arrow-left-square"></i>
+                </a>
+                <h1>Add Products</h1>
             </div>
 
-            <div class="form-group">
-                <label for="description">Description</label>
-                <div class="editor-container">
-                    <div class="editor-toolbar">
-                        <select>
-                            <option>Paragraph</option>
-                            <option>Heading 1</option>
-                            <option>Heading 2</option>
-                        </select>
-                        <button><b>B</b></button>
-                        <button><i>I</i></button>
-                        <button><u>U</u></button>
-                        <button>A</button>
-                        <button>•</button>
-                        <button>🔗</button>
-                        <button>📷</button>
-                        <button>📄</button>
-                        <button>📑</button>
-                        <button>•••</button>
-                        <button>📄</button>
+
+            <!-- Form Section -->
+            <div class="form">
+                <!-- Left Side Form Fields -->
+                <div class="form-left">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" placeholder="Product title">
                     </div>
-                    <textarea class="editor-content" placeholder="Enter product description here..."></textarea>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <div class="editor-container">
+                            <div class="editor-toolbar">
+                                Paragraph
+
+                            </div>
+                            <textarea class="editor-content" placeholder="Enter product description here..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Media</label>
+                        <div class="media-placeholder">
+                            <p>Add images, videos, or 3D models to show product details and features.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pricing</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="number" placeholder="Price">
+                            <input type="number" placeholder="Compare at price">
+                        </div>
+                        <input type="number" placeholder="Cost per item" style="margin-top: 10px;">
+                    </div>
+                </div>
+
+                <!-- Right Side Form Fields -->
+                <div class="form-right">
+                    <div class="form-group">
+                        <label>Product Status</label>
+                        <select>
+                            <option>Draft</option>
+                            <option>Active</option>
+                        </select>
+                        <small>This product will be hidden from all sales channels</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Organization</label>
+                        <input type="text" placeholder="Vendor e.g. Innisfree">
+                        <input type="text" placeholder="Category" style="margin-top: 10px;">
+                        <input type="text" placeholder="Collections" style="margin-top: 10px;">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" id="quantity" placeholder="e.g. 1000">
+                    </div>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label>Media</label>
-                <div class="media-placeholder">
-                    <p>Add images, videos, or 3D models to show product details and features.</p>
-                </div>
+            <!-- Button Group -->
+            <div class="button-group">
+                <button class="delete-button">Delete Product</button>
+                <button class="save">Save</button>
             </div>
 
-            <div class="form-group">
-                <label>Pricing</label>
-                <div style="display: flex; gap: 10px;">
-                    <input type="number" placeholder="Price" style="flex: 1;">
-                    <input type="number" placeholder="Compare at price" style="flex: 1;">
-                </div>
-                <input type="number" placeholder="Cost per item" style="margin-top: 10px; width: 100%;">
-            </div>
-        </div>
+        </section>
 
-        <!-- Right Side Form Fields -->
-        <div class="form-right">
-            <div class="product-status form-group">
-                <label>Product Status</label>
-                <select>
-                    <option>Draft</option>
-                    <option>Active</option>
-                </select>
-                <small>This product will be hidden from all sales channels</small>
-            </div>
-
-            <div class="organization form-group">
-                <label>Organization</label>
-                <input type="text" placeholder="Vendor e.g. Innisfree">
-                <input type="text" placeholder="Category" style="margin-top: 10px;">
-                <input type="text" placeholder="Collections" style="margin-top: 10px;">
-            </div>
-
-            <div class="form-group">
-                <label for="quantity">Quantity</label>
-                <input type="number" id="quantity" placeholder="e.g. 1000">
-            </div>
-        </div>
     </div>
-
-    <!-- Button Group -->
-    <div class="button-group">
-        <button class="delete-button">Delete Product</button>
-        <button class="save">Save</button>
-    </div>
-</div>
-
 </body>
+
 </html>

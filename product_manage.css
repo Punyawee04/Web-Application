@@ -1,0 +1,110 @@
+*{
+    font-family: 'Poppins';
+    margin: 0;
+}
+body{
+    background-color: #F3F0EF;
+}
+#nav-header{
+    background-color: #EC297B;
+    
+}
+.navbar {
+    width: 100%;
+    background-color: #333;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    color: white;
+}
+
+.logo img {
+    margin-left: 10rem;
+    margin-right: 10rem;
+    height: 40px; /* Adjust as needed */
+}
+
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 12px;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #555;
+    border-radius: 4px;
+}
+
+.menunav {
+    display: flex;
+    list-style: none;
+}
+
+.menunav {
+    margin-left: 10rem;
+    margin-top: 5px;
+}
+
+.menunav li a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 14px;
+    
+}
+
+.menunav li{
+    padding-right: 3rem;
+}
+.menunav i{
+    padding-right: 8px;
+    font-size: 15px;
+
+}
+
+.menu a:hover {
+    color: #EC297B;
+}
+
+.menunav {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.menunav a {
+    margin-left: 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.menunav a:hover {
+    color: #EC297B;
+}
+
+#image {
+    padding-left: 500px; 
+    /* ยังไม่เสร็จ */
+}
+
+.bi-bell, .bi-box-arrow-right {
+    padding-left: 10px;
+    /* ยังไม่เสร็จ */
+}
+
+
