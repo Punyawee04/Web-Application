@@ -7,9 +7,10 @@ body{
     background-color: #F3F0EF;
 }
 #nav-header{
-    background-color: #EC297B;
-    
+    background-color: #EC297B; 
 }
+
+
 .navbar {
     width: 100%;
     background-color: #333;
@@ -28,13 +29,11 @@ body{
 }
 
 .menunav {
-    display: flex;
-    list-style: none;
-}
-
-.menunav {
     margin-left: 10rem;
     margin-top: 5px;
+    display: flex;
+    list-style: none;
+    border-bottom: 2px solid #d0cccc;
 }
 
 .menunav li a {
@@ -84,23 +83,19 @@ body{
     /* ยังไม่เสร็จ */
 }
 
-
-/* Main content styling */
+ /* Main content styling */
 .products-section {
-    padding: 2rem;
+    padding: 5rem;
 
 }
 
 .products-section1 {
     display: flex;
-    /* ใช้ Flexbox */
-    justify-content: space-between;
     /* จัดระเบียบให้ห่างกัน */
     align-items: center;
     /* จัดแนวให้แนวนอนอยู่ในกลาง */
     font-size: 1.8rem;
     color: #333;
-    margin-bottom: 1rem;
     font-weight: bold;
 }
 
@@ -256,90 +251,84 @@ body{
 }
 
 /* Table Styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
+ /* สไตล์พื้นฐานสำหรับตาราง */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        margin-top: 20px;
+    }
 
-table th,
-table td {
-    padding: 12px;
-    text-align: left;
-    font-size: 14px;
-    border-bottom: 1px solid #e0e0e0;
-}
+    /* สไตล์สำหรับหัวตาราง */
+    thead th {
+        background-color: #f8f8f8;
+        color: #333;
+        font-weight: bold;
+        text-align: left;
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+    }
 
-table th.actions,
-table td.actions {
-    text-align: center;
-}
+    /* สไตล์สำหรับแถวในตาราง */
+    tbody tr {
+        border-bottom: 1px solid #eee;
+    }
 
+    /* เพิ่มสไตล์สำหรับแถวที่ไฮไลต์เมื่อ hover */
+    tbody tr:hover {
+        background-color: #f2f2f2;
+    }
 
-table th {
-    background-color: #f2f2f2;
-    color: #555;
-}
+    /* ช่องเลือก Checkbox */
+    .checkbox input[type="checkbox"] {
+        cursor: pointer;
+    }
 
-/* Image and Checkbox Styles */
-.checkbox {
-    display: flex;
-    justify-content: center;
-}
+    /* ช่องแสดงรูปภาพ */
+    .image-placeholder {
+        width: 50px;
+        height: 50px;
+        background-color: #ccc;
+        border-radius: 4px;
+    }
 
-.image-placeholder {
-    width: 30px;
-    height: 30px;
-    background-color: #d8d8d8;
-    border-radius: 4px;
-    display: inline-block;
-}
+    /* ช่องแสดงสถานะ */
+    .status {
+        padding: 3px 8px;
+        border-radius: 4px;
+        color: white;
+        font-weight: bold;
+    }
 
-/* Status Tags */
-.status {
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    color: #fff;
-    text-align: center;
-}
+    .status.active {
+        background-color: #4CAF50;
+    }
 
-.status.active {
-    background-color: #4caf50;
-}
+    .status.draft {
+        background-color: #b1afad;
+    }
 
-.status.draft {
-    background-color: #d8d8d8;
-    color: #777;
-}
+    /* ช่องสำหรับปุ่มการทำงาน */
+    .actions .edit-icon i {
+        font-size: 16px;
+        color: #00060c;
+        cursor: pointer;
+        transition: color 0.2s ease-in-out;
+    }
 
-/* Actions Column */
-.actions {
-    text-align: center;
-}
+    .actions .edit-icon i:hover {
+        color: #EC297B;
+    }
 
-.actions .edit-icon {
-    cursor: pointer;
-    font-size: 16px;
-    color: #333;
-}
+    /* สไตล์สำหรับเซลล์ในตาราง */
+    td, th {
+        padding: 12px;
+        vertical-align: middle;
+    }
 
-/* Pagination */
-.pagination {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.pagination span {
-    font-size: 14px;
-    margin: 0 8px;
-}
-
-.pagination button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    color: #555;
-}
+    /* กำหนดให้เซลล์ของ checkbox และ action มีขนาดที่เหมาะสม */
+    .checkbox, .actions {
+        text-align: center;
+        width: 50px;
+    }
