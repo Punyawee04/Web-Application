@@ -6,11 +6,11 @@
 body{
     background-color: #F3F0EF;
 }
+
+
 #nav-header{
     background-color: #EC297B; 
 }
-
-
 .navbar {
     width: 100%;
     background-color: #333;
@@ -23,32 +23,24 @@ body{
 }
 
 .logo img {
-    margin-left: 10rem;
-    margin-right: 10rem;
-    height: 40px; /* Adjust as needed */
+    margin-left: 8rem;
+    margin-right: 8rem;
+    height: 50px; /* Adjust as needed */
 }
-
-.menunav {
-    margin-left: 10rem;
-    margin-top: 5px;
+.menu{
     display: flex;
+    flex-direction: row;
+}
+#menu {
+    margin-top: 8px;    
     list-style: none;
     border-bottom: 2px solid #d0cccc;
 }
 
-.menunav li a {
-    text-decoration: none;
-    color: #000000;
-    font-size: 14px;
-    
-}
 
-.menunav li{
-    padding-right: 3rem;
-}
 .menunav i{
     padding-right: 8px;
-    font-size: 15px;
+    font-size: 20px;
 
 }
 
@@ -60,28 +52,28 @@ body{
     display: flex;
     align-items: center;
     padding: 5px;
+    justify-content: space-between;
+    margin-left: 8rem;
+    margin-right: 8rem;
 }
 
 .menunav a {
-    margin-left: 20px;
     color: #333;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 16px;
+    margin-right: 25px;
+}
+
+.product-management{
+    color: #EC297B !important;
 }
 
 .menunav a:hover {
     color: #EC297B;
 }
 
-.bi-person-fill {
-    padding-left: 500px; 
-    /* ยังไม่เสร็จ */
-}
 
-.bi-bell, .bi-box-arrow-right {
-    padding-left: 10px;
-    /* ยังไม่เสร็จ */
-}
+
 
  /* Main content styling */
 .products-section {
@@ -127,7 +119,6 @@ body{
 
 .search-container {
     position: relative;
-    /* เพื่อให้ไอคอนแว่นขยายอยู่ภายในช่องค้นหา */
 }
 
 .search-bar {
@@ -139,9 +130,9 @@ body{
     /* ทำให้มุมกรอบนุ่มนวล */
     margin-left: auto;
     /* ทำให้กล่องค้นหาชิดขวา */
-    width: 380px;
+    width: 280px;
     /* กำหนดความกว้างของช่องค้นหา */
-    height: 38px;
+    height: 18px;
     /* กำหนดความสูงของช่องค้นหา */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     /* เพิ่มเงาให้กับกล่องค้นหา */
@@ -150,7 +141,7 @@ body{
 }
 
 .search-bar:focus {
-    border-color: #007BFF;
+    border-color: #EC297B;
     /* เปลี่ยนสีกรอบเมื่อช่องค้นหาอยู่ในสถานะโฟกัส */
     outline: none;
     /* ลบเอาท์ไลน์ออก */
@@ -158,15 +149,25 @@ body{
 
 .search-icon {
     position: absolute;
-    /* วางไอคอนภายในช่องค้นหา */
-    right: 0.5rem;
-    /* ระยะห่างจากขอบขวา */
+    right: 10px; /* ระยะห่างจากขอบขวา */
     top: 50%;
-    /* จัดให้อยู่กลางในแนวตั้ง */
-    transform: translateY(-50%);
-    /* ปรับตำแหน่งไอคอนให้อยู่กลางแนวตั้ง */
-    pointer-events: none;
-    /* ไม่ให้ไอคอนแว่นขยายรับการคลิก */
+    transform: translateY(-30%); /* ทำให้ไอคอนอยู่ตรงกลางแนวตั้ง */
+    color: #888;
+    font-size: 1.1rem;
+    pointer-events: none; /* ป้องกันไม่ให้ไอคอนรับการโต้ตอบ */
+}
+
+
+.bi-trash3{
+    margin-left: 65rem;
+    font-size: 16px;
+    color: black ;
+    
+}
+
+.bi-trash3:hover {
+    color: #EC297B; /* เปลี่ยนสีไอคอนเมื่อ hover */
+    cursor: pointer; /* เพิ่ม cursor แบบ pointer เมื่อ hover */
 }
 
 /* Container and Header */
@@ -201,13 +202,6 @@ body{
     font-size: 14px;
 }
 
-.delete-button {
-    background-color: #fff;
-    color: #e20909;
-    padding: 8px 16px;
-    border: none;
-
-}
 
 .pagination {
     display: flex;

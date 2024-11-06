@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <!-- Nav for Admin-->
     <nav>
         <div id="nav-header">
             <div class="logo">
@@ -19,12 +20,17 @@
         </div>
         <div id="menu">
             <ul class="menunav">
-                <li><a href="#"><i class="bi bi-person-circle"></i>Account</a></li>
-                <li><a href="#"><i class="bi bi-box-seam"></i>Product Management</a></li>
-                <li><a href="#"><i class="bi bi-headset"></i>Support</a></li>
-                <li><a href="#"><i class="bi bi-bell"></i></a></li>
-                <li><a href="#"><i class="bi bi-person-fill"></i></a></li>
-                <li><a href="#"><i class="bi bi-box-arrow-right"></i></a></li>
+                <div class="menu-1">
+                    <a href="/html/user_acc_manage.html" class="list-left"><i class="bi bi-person-circle"></i>Account</a>
+                    <a href="#" class="list-left product-management"><i class="bi bi-box-seam"></i>Product Management</a>
+                    <a href="#" class="list-left"><i class="bi bi-headset"></i>Support</a>
+                </div>
+
+                <div class="menu-2">
+                    <a href="#"><i class="bi bi-bell"></i></a>
+                    <a href="#"><i class="bi bi-person-fill"></i></a>
+                    <a href="#"><i class="bi bi-box-arrow-right"></i></a>
+                </div>
             </ul>
         </div>
 
@@ -38,7 +44,7 @@
                 <span>Products</span>
                 <div class="search-container">
                     <input type="text" placeholder="Search..." class="search-bar">
-                    <i class="bi bi-search"></i>
+                    <i class="bi bi-search search-icon"></i>
                 </div>
             </div>
 
@@ -52,15 +58,9 @@
                 <div class="container">
                     <div class="header">
                         <h1>Products List</h1>
-                        <div class="pagination">
-                            <button class="pagination-arrow" aria-label="Previous Page">&lt;</button>
-                            <div class="pagination-number">1</div>
-                            <span>/ 8</span>
-                            <button class="pagination-arrow" aria-label="Next Page">&gt;</button>
-                        </div>
-                        <button class="delete-button" aria-label="Delete Selected Products">
+                        <div class="delete">
                             <a href="#"><i class="bi bi-trash3"></i></a>
-                        </button>
+                        </div>
 
                         <button class="add-button" aria-label="Add New Product">Add Product</button>
                     </div>
@@ -109,7 +109,7 @@
                                 <td>000.00</td>
                                 <td><span class="status draft">Draft</span></td>
                                 <td class="actions"><span class="edit-icon">
-                                    <i class="bi bi-pencil-square"></i></span></td>
+                                        <i class="bi bi-pencil-square"></i></span></td>
                             </tr>
                             <!-- เพิ่มแถวเพิ่มเติมตามต้องการ -->
                         </tbody>
