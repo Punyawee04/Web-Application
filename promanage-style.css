@@ -1,102 +1,113 @@
 /* Reset and basic styling */
-* {
+*{
+    font-family: 'Poppins';
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
-
-body {
-    background-color: #f7f5f4;
+body{
+    background-color: #F3F0EF;
 }
-
-/* Container for full-page adjustments */
-.main-container {
-    width: 1440px;
-    height: 1024px;
-    position: absolute;
-    /* ใช้ absolute เพื่อให้ top, left ทำงานได้ */
-    top: -380px;
-    left: 8938px;
-    gap: 0px;
-    opacity: 0;
-    /* ตั้งค่าความโปร่งใสเป็น 0 */
-}
-
-/* Header styling */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
+#nav-header{
     background-color: #EC297B;
-    color: #fff;
+    
 }
-
 .navbar {
-    width: auto;
-    height: 65px;
+    width: 100%;
+    background-color: #333;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    color: white;
 }
 
 .logo img {
-    width: auto;
-    /* กำหนดให้กว้างอัตโนมัติตามสัดส่วน */
-    height: 50px;
-    /* กำหนดความสูงที่ต้องการ เช่น 50px */
+    margin-left: 10rem;
+    margin-right: 10rem;
+    height: 40px; /* Adjust as needed */
 }
 
-.navbar2 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: #F3F0EF;
-    color: #fff;
-}
 
-/* .navbar2 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-} */
-
-/* .navbar2 nav a {
-    color: #EC297B;
-    text-decoration: none;
-    margin: 0 1rem;
-} */
-
-/* .navbar2 nav a.active {
-    font-weight: bold;
-    text-decoration: underline;
-} */
 .nav-links {
-
+    list-style-type: none;
     display: flex;
-    gap: 180px;
-    /* Adjust this value for more or less spacing */
-    align-items: center;
+    gap: 20px;
 }
 
-.nav-links span {
-    text-decoration: underline;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    /* Space between icon and text */
+.nav-links li {
+    display: inline;
 }
 
 .nav-links a {
-    text-decoration-color: #F3F0EF;
-    color: #333
-        /* Keeps the text color as defined by the parent or another style */
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 12px;
+    transition: background-color 0.3s;
 }
 
+.nav-links a:hover {
+    background-color: #555;
+    border-radius: 4px;
+}
 
-
-.user-icons {
+.menunav {
     display: flex;
-    gap: 1rem;
+    list-style: none;
 }
+
+.menunav {
+    margin-left: 10rem;
+    margin-top: 5px;
+}
+
+.menunav li a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 14px;
+    
+}
+
+.menunav li{
+    padding-right: 3rem;
+}
+.menunav i{
+    padding-right: 8px;
+    font-size: 15px;
+
+}
+
+.menu a:hover {
+    color: #EC297B;
+}
+
+.menunav {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.menunav a {
+    margin-left: 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.menunav a:hover {
+    color: #EC297B;
+}
+
+.bi-person-fill {
+    padding-left: 500px; 
+    /* ยังไม่เสร็จ */
+}
+
+.bi-bell, .bi-box-arrow-right {
+    padding-left: 10px;
+    /* ยังไม่เสร็จ */
+}
+
 
 /* Main content styling */
 .products-section {
