@@ -54,25 +54,26 @@ body {
     color: #fff;
 }
 
-/* .navbar2 .logo {
+
+.navbar2 .logo {
     font-size: 1.5rem;
     font-weight: bold;
-} */
+}
 
-/* .navbar2 nav a {
-    color: #EC297B;
+.navbar2 nav a {
+    color: #000000;
     text-decoration: none;
-    margin: 0 1rem;
-} */
+    margin: 0rem;
+}
 
-/* .navbar2 nav a.active {
+.navbar2 nav a.active {
     font-weight: bold;
     text-decoration: underline;
-} */
+}
 .nav-links {
 
     display: flex;
-    gap: 180px;
+    gap: 120px;
     /* Adjust this value for more or less spacing */
     align-items: center;
 }
