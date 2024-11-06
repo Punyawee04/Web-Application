@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Account Management</title>
+    <link rel="stylesheet" href="/user_acc_manage.css">
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <nav class="navbar1">
+                <div class="logo">
+                    <a href="#"><img src="/src/bloom logo.png" alt="Logo"></a>
+                </div>
+            </nav>
+        </div>
+        <div class="navbar2">
+            <div class="nav-links">
+                <nav>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                            class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
+                            <path fill-rule="evenodd"
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1">
+                            </path>
+                        </svg>
+                        <a href="#account">Account</a>
+                    </span>
+                </nav>
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-box-seam"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2zm3.564 1.426L5.596 5 8 5.961 14.154 3.5zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464z">
+                        </path>
+                    </svg>
+                    <a href="#product-management" class="active">Product Management</a>
+                </span>
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-headset"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5">
+                        </path>
+                    </svg>
+                    <a href="#support">Support</a>
+                </span>
+            </div>
+            <div class="user-icons">
+                <span class="notification-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-bell"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6" />
+                    </svg>
+                </span>
+                <span class="user-profile">👤</span>
+                <span class="logout-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"
+                        class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+                        <path fill-rule="evenodd"
+                            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="account-section">
+            <div class="account-section1">
+                <span>Account</span>
+            </div>
+        </section>
+        <section class="account-owner">
+            <h2>Account Owner</h2>
+            <div class="owner-details">
+                <img src="owner-pic.jpg" alt="Admin User Profile">
+                <div class="info">
+                    <span class="name">AdminUser2024</span><br>
+                    <span>steve.jb@bloom.com</span><br>
+                    <span>Last Login: August 2, 2024, 10:45 AM (UTC)</span>
+                </div>
+            </div>
+        </section>
+        <section class="staff-accounts">
+            <div class="add-staff">
+                <h3>Staff Accounts</h3>
+                <button>Add Staff</button>
+            </div>
+            <table class="staff-list">
+                <thead>
+                    <tr>
+                        <th>Pic</th>
+                        <th>Name</th>
+                        <th>E-mail</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="staff-pic.jpg" alt="Staff Profile" width="30"></td>
+                        <td>Sarah Lee</td>
+                        <td>test-101@bloom.org</td>
+                        <td class="action-buttons">
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                    <!-- Additional staff rows as needed -->
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

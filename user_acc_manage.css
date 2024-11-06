@@ -1,0 +1,218 @@
+/* Reset and basic styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f7f5f4;
+}
+
+/* Container for full-page adjustments */
+/* .main-container {
+    width:auto;
+    height:auto;
+    position: absolute;
+    top: -380px;
+    left: 8938px;
+    gap: 0px;
+    opacity: 0;
+} */
+
+/* Header styling */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Adjust alignment */
+    align-items: center;
+    padding: 1rem;
+    background-color: #EC297B;
+    color: #fff;
+    height: 70px;
+    border-bottom: 2px solid #000;
+}
+
+.navbar1{
+  display: flex;
+    justify-content: space-between; /* Adjust alignment */
+    align-items: center;
+    padding: 1rem;
+    background-color: #EC297B;
+    height: 70px;
+
+}
+
+.logo img {
+    width: auto;
+    height: 70px;
+    margin-left: 3rem; /* Shift logo 1 block to the right */
+    border-bottom: 2px solid #EC297B;
+}
+
+
+.navbar2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #F3F0EF;
+    color: #fff;
+    border-bottom: 2px solid #000; /* เปลี่ยนสีและความหนาตามต้องการ */
+}
+
+
+.nav-links {
+    display: flex;
+    gap: 170px;
+    /* Adjust this value for more or less spacing */
+    align-items: center;
+    margin-left: 5rem;
+}
+
+.nav-links span {
+    text-decoration: underline;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Space between icon and text */
+}
+
+.nav-links a {
+    text-decoration-color: #F3F0EF;
+    color: #333
+        /* Keeps the text color as defined by the parent or another style */
+}
+
+
+.user-icons {
+    display: flex;
+    gap: 1rem;
+    margin-right: 5rem;
+}
+
+/* Main content styling */
+.account-section{
+    padding: 2rem;
+
+}
+
+.account-section1 {
+    display: flex;/* ใช้ Flexbox */
+    justify-content: space-between;/* จัดระเบียบให้ห่างกัน */
+    align-items: center;/* จัดแนวให้แนวนอนอยู่ในกลาง */
+    font-size: 1.8rem;
+    color: #333;
+    margin-left: 4rem;
+    font-weight: bold;
+    border-bottom: 2px solid #A69C9C;
+    margin-right: 4rem;
+}
+
+
+.account-overview,
+.account-owner,
+.staff-accounts {
+  background-color: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+/* Account Overview Section */
+.account-overview {
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.account-overview .details {
+  display: flex;
+  gap: 40px;
+}
+
+.account-overview .details div {
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* Account Owner Section */
+.account-owner {
+  width: 768px;
+  height: 190px;
+}
+
+.account-owner .owner-details {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.account-owner .owner-details img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.account-owner .info {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.account-owner .info .name {
+  font-weight: bold;
+  font-size: 1em;
+  color: #333;
+}
+
+/* Staff Accounts Section */
+.staff-accounts {
+  width: 768px;
+  height: 420px;
+  margin-top: 20px;
+}
+
+.staff-accounts .staff-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.staff-accounts .staff-list th,
+.staff-accounts .staff-list td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.staff-accounts .staff-list th {
+  color: #888;
+}
+
+.staff-accounts .action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.staff-accounts .action-buttons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #f54b87;
+  font-size: 1em;
+}
+
+.add-staff {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.add-staff button {
+  padding: 10px 15px;
+  background-color: #f54b87;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
