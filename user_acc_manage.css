@@ -28,7 +28,6 @@ body {
     align-items: center;
     padding: 1rem;
     background-color: #EC297B;
-    color: #fff;
     height: 70px;
     border-bottom: 2px solid #000;
 }
@@ -56,8 +55,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: #F3F0EF;
-    color: #fff;
+    background-color: #f7f5f4;
     border-bottom: 2px solid #000; /* เปลี่ยนสีและความหนาตามต้องการ */
 }
 
@@ -79,7 +77,7 @@ body {
 }
 
 .nav-links a {
-    text-decoration-color: #F3F0EF;
+    text-decoration-color: #f7f5f4;
     color: #333
         /* Keeps the text color as defined by the parent or another style */
 }
@@ -94,7 +92,6 @@ body {
 /* Main content styling */
 .account-section{
     padding: 2rem;
-
 }
 
 .account-section1 {
@@ -102,117 +99,270 @@ body {
     justify-content: space-between;/* จัดระเบียบให้ห่างกัน */
     align-items: center;/* จัดแนวให้แนวนอนอยู่ในกลาง */
     font-size: 1.8rem;
-    color: #333;
-    margin-left: 4rem;
+    color: #000000;
+    margin-left: 10rem;
+    margin-right: 10rem;
     font-weight: bold;
     border-bottom: 2px solid #A69C9C;
-    margin-right: 4rem;
+    padding-bottom: 20px; /* ขยายขอบด้านล่าง */
 }
 
 
-.account-overview,
-.account-owner,
-.staff-accounts {
-  background-color: #fdfdfd;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-}
 
-/* Account Overview Section */
+/* Account overview */
 .account-overview {
-  width: 100%;
-  padding-bottom: 20px;
-}
-
-.account-overview .details {
   display: flex;
-  gap: 40px;
+  align-items: flex-start;
+  gap: 14rem;
+  /* padding: 20px; */
+  padding-bottom: 70px; /* ขยายขอบด้านล่าง */
+  background-color:#f7f5f4;
+  width:auto;
+  margin-left: 12rem;
+  margin-right: 12rem;
+  border-bottom: 2px solid #A69C9C;
 }
 
-.account-overview .details div {
-  font-size: 0.9em;
-  color: #555;
-}
 
-/* Account Owner Section */
-.account-owner {
-  width: 768px;
-  height: 190px;
-}
-
-.account-owner .owner-details {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.account-owner .owner-details img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
-.account-owner .info {
-  font-size: 0.9em;
-  color: #555;
-}
-
-.account-owner .info .name {
+.overview-text h3 {
+  font-size: 1.4rem;
   font-weight: bold;
-  font-size: 1em;
-  color: #333;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.overview-text p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.overview-text a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.overview-details {
+  display: flex;
+  gap: 170px;
+  border: 1px solid #ddd;
+  padding: 15px 35px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.detail p:first-child {
+  font-size: 20px;
+  color: #000000;
+}
+
+.detail p:last-child {
+  font-size: 16px;
+  font-weight: bold;
+  color: #666;
+  margin-top: 15px;
+}
+
+/* Account and permissions */
+.Account-permissions {
+  display: flex;
+  align-items: flex-start;
+  gap: 8rem;
+  padding: 20px 0px;
+  background-color: #f7f5f4;
+  width:auto;
+  margin-left: 12rem;
+  margin-right: 12rem;
+}
+
+.permissions-text h3 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 8px;
+  margin-top: 15px;
+}
+
+
+/* Wrapper for right column containing account owner and staff accounts */
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* width:auto; */
+  width: 100%; 
+  max-width: 1200px; 
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Staff Accounts Section */
 .staff-accounts {
-  width: 768px;
-  height: 420px;
-  margin-top: 20px;
-}
-
-.staff-accounts .staff-list {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.staff-accounts .staff-list th,
-.staff-accounts .staff-list td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.staff-accounts .staff-list th {
-  color: #888;
-}
-
-.staff-accounts .action-buttons {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%; /* ขยายเต็มที่ */
+  max-width: 1200px; /* กำหนดความกว้างสูงสุดให้เหมาะสม */
+  background-color: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 0 auto; /* จัดให้อยู่กึ่งกลาง */
+  flex-grow: 1;
 }
 
-.staff-accounts .action-buttons button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #f54b87;
-  font-size: 1em;
+/* Account Owner Section */
+.account-owner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%; /* ขยายเต็มที่ */
+  max-width: 1200px; /* กำหนดความกว้างสูงสุดให้เหมาะสม */
+  background-color: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 0 auto; /* จัดให้อยู่กึ่งกลาง */
+  flex-grow: 1;
 }
 
-.add-staff {
+.account-owner-text h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 8px;
+  margin-right: auto;
+}
+
+.owner-details {
+  display: flex;
+  align-items: center;
+  gap: 4rem; /* ปรับระยะห่าง */
+  flex-wrap: wrap; /* ให้ขนาดกล่องปรับตามหน้าจอ */
+}
+
+/* button click */
+.account-owner1{
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
 }
 
-.add-staff button {
-  padding: 10px 15px;
-  background-color: #f54b87;
-  color: #fff;
+.action-button {
+  /* padding: 10px 20px; */
+  background-color: #ffffff; /* สีพื้นหลังของปุ่ม */
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 
+/* Staff Accounts Table */
+.staff-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.staff-list th,
+.staff-list td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #dddddd;
+}
+
+/* Acction center */
+.staff-list th:nth-child(4) {
+  text-align: right;
+  padding-right: 28px;
+}
+
+
+
+
+/* Push the action buttons to the right end */
+.staff-list .action-buttons {
+  text-align: right;
+  white-space: nowrap; /* Prevents buttons from wrapping */
+}
+
+.staff-list .action-buttons button {
+  padding: 6px;
+  margin-left: 5px; /* Space between action buttons */
+  background-color: #ffffff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Add staff button */
+.add-staff {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 2rem; /* ปรับระยะห่าง */
+}
+
+.add-staff-text{
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 8px;
+  margin-right: auto;
+}
+
+.add-staff-btn {
+  background-color: #e91e63;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-left: auto;
+}
+
+.search-bar {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 0.9em;
+  width:  20%;
+}
+
+
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .account-owner, .staff-accounts {
+    padding: 15px; /* ลด padding ในหน้าจอเล็ก */
+    gap: 0.5rem;
+  }
+
+  .owner-details {
+    gap: 1rem;
+  }
+
+  .staff-list th,
+  .staff-list td {
+    padding: 8px; /* ลดขนาด padding ในตารางสำหรับหน้าจอเล็ก */
+  }
+
+  .account-owner .info {
+    font-size: 14px; /* ลดขนาดข้อความใน account owner */
+  }
+
+  .add-staff {
+    flex-direction: column; /* จัดปุ่ม Add Staff ให้ตรงกันในกรณีหน้าจอเล็ก */
+    gap: 10px;
+    width: 100%;
+  }
+
+  .account-owner .owner-details img {
+    width: 40px; /* ลดขนาดรูปภาพของ account owner สำหรับหน้าจอเล็ก */
+  }
+}
