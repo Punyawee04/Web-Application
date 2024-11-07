@@ -6,16 +6,14 @@ const path = require('path'); // Import the 'path' module
 const app = express();
 
 // Set the port to listen on
-const PORT = process.env.PORT || 3000;
+const PORT = //process.env.PORT 
 
 // Serve static files from the root directory (optional, if you have styles, etc.)
-app.use(express.static(__dirname)); // This allows serving files from the root
+app.use(express.static(__dirname));
 
 // Set up a route 
 app.get('/', (req, res) => {
-    req.statusCode = 200;
     res.sendFile(path.join(__dirname, 'html', 'index.html') )
-    
 });
 app.get('/team', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'Team.html') )
@@ -23,7 +21,9 @@ app.get('/team', (req, res) => {
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'login.html') )
 });
-
+app.get('/search', (req, res) => {
+    res.sendFile(path.join(__dirname, 'html', 'search-result.html') )
+});
 
 // handle invalid paths
 app.use((req,res,next) => {
@@ -31,6 +31,7 @@ app.use((req,res,next) => {
     console.log(`404: Invalid accessed`);
     res.sendFile(path.join(__dirname,'html','page not found.html'))
 })
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

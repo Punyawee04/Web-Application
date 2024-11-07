@@ -2,15 +2,16 @@
   "name": "bloom",
   "version": "1.0.0",
   "description": "ตอนนี้ยังไม่ได้เชื่อมต่อ web server (node.js หรือ ทำ data base MySQL)\r <br> **ลองดู Demo Landing page** `Code` > `Codespaces` > `create Codespaces`",
-  "main": "app.js",
+  "main": "ClientServer.js",
   "scripts": {
     "start": "node app.js",
-     "dev": "nodemon app.js"
+    "dev": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.1",
+    "mysql2": "^3.11.4",
     "nodemon": "^3.1.7"
   }
 }
