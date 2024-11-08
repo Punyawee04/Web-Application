@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+    
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #FBF8F4;
+}
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Ensures items wrap if the screen is too small */
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10rem; /* Padding left as requested */
+    padding-right: 10rem; /* Padding right as requested */
+    padding-top: 3%; /* Padding top as per your original design */
+    box-sizing: border-box; /* Ensures padding is included in total width */
+    gap: 1rem; /* Optional: Adds spacing between the items */
+}
+
+.item {
+    flex: 1; /* Allows items to flexibly resize based on space */
+    text-align: center; /* Centers text and content */
+}
+
+.box img {
+    width: 50%; /* Makes the images responsive */
+    height: auto; /* Keeps image aspect ratio */
+    border-radius: 5px; /* Optional: Adds rounded corners to the images */
+}
+
+.text {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 0.5rem; /* Adds a little spacing between the image and text */
+}
+
+
+
+
+.announcement {
+    background-color: #EC297B;
+    text-align: center;
+    padding: 10px;
+    color: white;
+}
+
+.slider {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.slide img {
+    width: 100%;
+    display: block;
+}
+
+button {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 3px;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 3%;
+    padding-left: 10rem;
+    padding-right: 10rem;
+    box-sizing: border-box;
+
+}
+
+.box, .text {
+    font-size: 16px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.content-flash-sale h2{
+    margin-top: 8%;
+    font-weight: 200;
+    text-align: center;
+    font-size: 3rem;
+}
+.image-item {
+    flex: 1; /* Each image will take equal space */
+    margin: 0 10px; /* Space between images */
+}
+.image-item img {
+    width: 100%; /* Make image fill the container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 20px; /* Optional: rounded corners */
+    
+}
+
+.content-4{
+    margin-top: 10%;
+    background-color: #EC297B;
+    padding-left: 10rem;
+    padding-right: 10rem;
+}
+
+.align-section {
+    display: flex;
+    justify-content: space-between; /* Ensure image stays on the left and button on the right */
+    align-items: center; /* Vertically align image and button */
+    padding-top: 3%; /* Padding from the top */
+
+    max-width: 1200px; /* Optional: limit max width */
+    margin: 0 auto; /* Center container horizontally */
+}
+
+
+.image-container img {
+    max-width: 100%; /* Ensure the image scales properly */
+    height: auto; /* Maintain the image's aspect ratio */
+}
+
+.btn{
+    text-decoration: none;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff; /* Button background color */
+    padding: 5px 10px; /* Button padding */
+    border-radius: 30px; /* Button rounded corners */
+    font-size: 16px;
+    color: #000000;
+}
+
+.btn:hover {
+    background-color: #000000; /* Button hover color */
+    color: #ddd;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    padding: 20px;
+    
+}
+.flash-sale-card{
+width: 18%;
+}
+
+
+
+.shop-by {
+    display: flex;
+    justify-content: center;
+    margin-top: 8rem;
+    margin-bottom: 8rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
+    align-items: center;
+}
+.shopby-card {
+    flex: 1; 
+    max-width: 20%; /* Ensure the cards don't exceed 25% of the row width */
+    text-align: center; /* Center the image inside the card */
+}
+
+.shopby-card img {
+    width: 80%; /* Make the image fill the card */
+    height: auto; /* Maintain image aspect ratio */
+    display: block; /* Removes unwanted space below images */
+    border-radius: 10px; /* Optional: Add rounded corners to images */
+}

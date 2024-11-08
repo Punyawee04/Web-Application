@@ -1,0 +1,77 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+}
+#Team-title {
+    text-align: center;
+    color: #EC297B;
+    font-size: 70px;
+}
+#Teambloom{
+    font-weight: 100; 
+    color: #E66C93;
+}
+section p {
+    font-size: 15px;
+    color: #505050;
+    margin-bottom: 5px;
+    font-weight: 100;
+}
+p{
+    text-align: center;
+}
+.team-container{ 
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    padding: 20px;
+    padding-top: 30px;
+    text-align: center;
+}
+.team-member img {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+.team-member {
+    background-color: #FFDDE7;
+    width: 200px;
+    height: 290px;
+    text-align: center;
+    border-radius: 13px;
+    padding: 20px;
+
+}
+.team-member-Fluke{
+    background-color: #EADDFF;
+
+}
+.team-member-Fay{
+    background-color: #FECBCA;
+}
+.team-member-Ploy{
+    background-color: #e7aeff;
+}
+.team-member p strong {
+    font-size: 25px;
+    color: black;
+    margin-top: 0;
+}
+.team-member p{
+    padding-top: 0px;
+    font-size: 15px;
+    color: rgb(126, 125, 125);
+}
+
+.social-icons a {
+    color: #333;
+    font-size: 20px;
+    margin: 0 5px;
+}
+
+.social-icons a:hover {
+    color: #1000eb;
+}

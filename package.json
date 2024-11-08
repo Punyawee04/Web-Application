@@ -4,12 +4,13 @@
   "description": "ตอนนี้ยังไม่ได้เชื่อมต่อ web server (node.js หรือ ทำ data base MySQL)\r <br> **ลองดู Demo Landing page** `Code` > `Codespaces` > `create Codespaces`",
   "main": "ClientServer.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node ClientServer.js",
+    "dev": "nodemon ClientServer.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "mysql2": "^3.11.4",
     "nodemon": "^3.1.7"
