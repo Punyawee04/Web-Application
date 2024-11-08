@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Error - Bloom </title>
+    <link rel="icon" href="..\src\icon bloom.png" sizes="180x180">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/nav-style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+</head>
+
+<body>
+    <!-- Nav -->
+    <nav>
+        <!-- Logo -->
+        <div class="logo">
+            <a href="#"><img src="../src/bloom logo.png " alt="Logo"></a>
+        </div>
+
+        <!-- Menu -->
+        <ul class="menu">
+            <li><a href="../html/index.html">Home Page</a></li>
+            <li><a href="../html/index.html">Best Sellers</a></li>
+            <li><a href="../html/index.html">Categories</a></li>
+            <li><a href="../html/Team.html">Contact Us</a></li>
+        </ul>
+
+
+        <!-- action -->
+        <div class="user-cart">
+            <a href="/html/search.html"><i class="bi bi-search"></i></a>
+            <a href="/html/login.html"><i class="bi bi-person" style="font-size: 25px;"></i></a>
+            <a href="/html/page not found.html"><i class="bi bi-cart3" style="font-size: 22px;"></i></a>
+        </div>
+    </nav>
+    <!-- 404 Error Section -->
+    <div class="error-container">
+        <div class="error-code">
+            <span>4</span>
+            <div class="flower-icon">
+                <img src="../src/Pink Y2k Flower Cute Streetwear Logo 1.png" alt="Flower Icon">
+            </div>
+            <span>4</span>
+        </div>
+        <p>Page Not Found, Like Your Old Skincare Routine!</p>
+        <a href="../html/index.html" class="back-home">Back to Home</a>
+    </div>
+</body>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        /* ไว้กำหนด width และ heihht ทั้งหมด */
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #FBF8F4;
+
+    }
+
+    .menu {
+        display: flex;
+        list-style: none;
+    }
+
+    .menu li {
+        margin: 0 15px;
+    }
+
+    .menu li a {
+        text-decoration: none;
+        color: #333;
+
+    }
+
+    .user-cart a {
+        margin-left: 15px;
+        color: #333;
+    }
+
+    .error-container {
+        text-align: center;
+        padding-top: 80px;
+    }
+
+    .error-container .error-code {
+        font-size: 390px;
+        font-weight: 700;
+        color: #2D2C2C;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* gap: 0px; */
+    }
+
+
+    .flower-icon {
+        width: 400px;
+        /* ปรับขนาด container ให้ใกล้เคียงกับขนาดของเลข */
+        height: 400px;
+        margin-bottom: 50px;
+    }
+
+    .flower-icon img {
+        width: 400px;
+        /* ขยายขนาดรูปภาพ */
+        height: 400px;
+    }
+
+    .error-container p {
+        font-size: 30px;
+        font-weight: bold;
+        color: #000000;
+        /* margin: 1px 0 20px; */
+        /* margin-bottom: 47px;
+            margin-top: px; */
+        margin-top: -80px;
+        margin-bottom: 50px;
+    }
+
+    .back-home {
+        padding: 15px 45px;
+        background-color: #EC297B;
+        color: #FFF;
+        border: none;
+        border-radius: 15px;
+        text-decoration: none;
+        font-size: 22px;
+    }
+
+    .back-home:hover {
+        background-color: #ff6d89;
+    }
+</style>
