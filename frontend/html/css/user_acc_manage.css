@@ -1,93 +1,69 @@
 /* Reset and basic styling */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+*{
+  font-family: 'Poppins';
+  margin: 0;
 }
 
 body {
     background-color: #f7f5f4;
 }
 
-/* Container for full-page adjustments */
-/* .main-container {
-    width:auto;
-    height:auto;
-    position: absolute;
-    top: -380px;
-    left: 8938px;
-    gap: 0px;
-    opacity: 0;
-} */
-
 /* Header styling */
-.navbar {
-    display: flex;
-    justify-content: space-between; /* Adjust alignment */
-    align-items: center;
-    padding: 1rem;
-    background-color: #EC297B;
-    height: 70px;
-    border-bottom: 2px solid #000;
-}
-
-.navbar1{
-  display: flex;
-    justify-content: space-between; /* Adjust alignment */
-    align-items: center;
-    padding: 1rem;
-    background-color: #EC297B;
-    height: 70px;
-
+#nav-header{
+  background-color: #EC297B; 
 }
 
 .logo img {
-    width: auto;
-    height: 70px;
-    margin-left: 3rem; /* Shift logo 1 block to the right */
-    border-bottom: 2px solid #EC297B;
+  width: auto;
+  height: 70px;
+  margin-left: 5rem; /* Shift logo 1 block to the right */
+  border-bottom: 1px solid #EC297B;
+}
+.menu{
+  display: flex;
+  flex-direction: row;
+}
+#menu {
+  margin-top: 8px;    
+  list-style: none;
+  border-bottom: 2px solid #d0cccc;
 }
 
 
-.navbar2 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: #f7f5f4;
-    border-bottom: 2px solid #000; /* เปลี่ยนสีและความหนาตามต้องการ */
+.menunav i{
+  padding-right: 8px;
+  font-size: 20px;
+
 }
 
-
-.nav-links {
-    display: flex;
-    gap: 170px;
-    /* Adjust this value for more or less spacing */
-    align-items: center;
-    margin-left: 5rem;
+.menu a:hover {
+  color: #EC297B;
 }
 
-.nav-links span {
-    text-decoration: underline;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    /* Space between icon and text */
+.menunav {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  justify-content: space-between;
+  margin-left: 8rem;
+  margin-right: 8rem;
 }
 
-.nav-links a {
-    text-decoration-color: #f7f5f4;
-    color: #333
-        /* Keeps the text color as defined by the parent or another style */
+.menunav a {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  margin-right: 25px;
 }
 
-
-.user-icons {
-    display: flex;
-    gap: 1rem;
-    margin-right: 5rem;
+.product-management{
+  color: #EC297B !important;
 }
+
+.menunav a:hover {
+  color: #EC297B;
+}
+
 
 /* Main content styling */
 .account-section{
