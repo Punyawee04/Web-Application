@@ -1,0 +1,161 @@
+        * {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        #nav-header{
+            background-color: #EC297B; 
+        }
+        
+        .logo img {
+            width: auto;
+            height: 70px;
+            margin-left: 5rem; /* Shift logo 1 block to the right */
+            border-bottom: 1px solid #EC297B;
+        }
+
+
+        .navbar header,
+        .container section {
+            margin-left: 10rem;
+            margin-right: 10rem;
+        }
+
+
+        .header {
+            color: black;
+            padding: 15px;
+            margin-top: 20px;
+            display: flex;
+        }
+
+        .back-button {
+            font-size: 18px;
+            color: black;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+
+
+        .form {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .form-left {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            width: 60%;
+            flex: auto;
+        }
+
+        .form-right {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            width: 30%;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group select,
+        .editor-content {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .editor-container {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .editor-toolbar {
+            background-color: #ff3c80;
+            color: white;
+            display: flex;
+            padding: 8px;
+            gap: 10px;
+        }
+
+        .editor-content{
+            width: 98%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ffffff;
+            border-radius: 4px; 
+        }
+
+        .editor-toolbar button,
+        .editor-toolbar select {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .media-placeholder {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            color: #ccc;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .delete-button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .save {
+            background-color: #00b300;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
