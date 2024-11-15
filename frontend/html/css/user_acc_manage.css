@@ -56,13 +56,15 @@ body {
   margin-right: 25px;
 }
 
-.product-management{
+
+.account{
   color: #EC297B !important;
 }
 
 .menunav a:hover {
   color: #EC297B;
 }
+
 
 
 /* Main content styling */
