@@ -23,7 +23,7 @@ app.get('/team', (req, res) => {
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'login.html'));
 });
-app.get('/search', (req, res) => {
+app.get('/search-all', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'search-result.html'));
 });
 app.get('/add-product', (req, res) => {

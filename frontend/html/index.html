@@ -13,7 +13,47 @@
 
     <link rel="icon" href="../src/icon bloom.png" sizes="180x180">
 
-
+    <style>
+        .product-container {
+            padding-top: 50px;
+            padding-left: 10rem; /* Padding left as requested */
+            padding-right: 10rem; /* Padding right as requested */    }
+    
+    .product-list {
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    
+    .product-card {
+        width: 180px;
+        border: 1px solid #ddd;
+        padding: 15px;
+        text-align: center;
+        background-color: #fff;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    .product-image {
+        width: 100%;
+        height: auto;
+    }
+    
+    .product-name {
+        font-size: 14px;
+        margin: 10px 0;
+    }
+    
+    .product-price {
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .product-rating {
+        color: #f39c12;
+    }
+    </style>
 </head>
 
 <body>
@@ -26,22 +66,22 @@
     <nav>
         <!-- Logo -->
         <div class="logo">
-            <a href="#"><img src="../src/bloom logo.png " alt="Logo"></a>
+            <a href="http://localhost:8081/"><img src="../src/bloom logo.png " alt="Logo"></a>
         </div>
 
         <!-- Menu -->
         <ul class="menu">
-            <li><a href="/html/index.html">Home Page</a></li>
+            <li><a href="http://localhost:8081/">Home Page</a></li>
             <li><a href="#cate-box">Best Sellers</a></li>
             <li><a href="#cate-box">Categories</a></li>
-            <li><a href="/html/Team.html">Contact Us</a></li>
+            <li><a href="http://localhost:8081/team">Contact Us</a></li>
         </ul>
 
 
         <!-- action -->
         <div class="user-cart">
-            <a href="/html/search.html"><i class="bi bi-search"></i></a>
-            <a href="/html/login.html"><i class="bi bi-person" style="font-size: 25px;"></i></a>
+            <a href="http://localhost:8081/search"><i class="bi bi-search"></i></a>
+            <a href="http://localhost:8081/login"><i class="bi bi-person" style="font-size: 25px;"></i></a>
             <a href="/html/page not found.html"><i class="bi bi-cart3" style="font-size: 22px;"></i></a>
         </div>
     </nav>
@@ -94,6 +134,17 @@
             <div class="text">Sale</div>
         </div>
     </div>
+
+    <div id="best-seller" class="product-container">
+        <h2 style="margin-bottom: 20px;">BEST SELLER</h2>
+        <div id="product-container" class="product-list">
+            <!-- Product cards will be inserted here dynamically -->
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+            <script src="/js/callBestSeller.js"></script>
+        </div>
+    </div>
+    
 
     <!-- 9.9 Flash Sale -->
     <div class="content-flash-sale">
@@ -241,6 +292,7 @@
 </body>
 
 </html>
+
 
 <script>
     let currentIndex = 0;

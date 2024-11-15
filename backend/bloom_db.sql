@@ -117,19 +117,21 @@ VALUES
 (204, 'Sunscreen', 'Sunscreen and sunblock products'),
 (205, 'Cleanser', 'Cleansers for face and body'),
 (206, 'Acne Prevention', 'Products for acne prevention and treatment');
+drop table product; 
 -- Insert data into Product table with well-known brand products
 INSERT INTO Product (product_id, product_rating, stock_quantity, price, description, origin, benefit, skin_type, quantity, ingredients, brand, product_name)
 VALUES 
-('PD1', 4.8, 100, 45.99, 'Hydrating Facial Cleanser', 'USA', 'Hydration', 'All', 1, 'Hyaluronic Acid, Glycerin', 'CeraVe', 'CeraVe Hydrating Cleanser'),
-('PD2', 4.6, 150, 29.99, 'Gentle Facial Cleanser', 'Canada', 'Cleansing', 'Sensitive', 1, 'Glycerin, Water', 'Cetaphil', 'Cetaphil Gentle Cleanser'),
-('PD3', 4.7, 200, 55.00, 'Vitamin C Brightening Serum', 'USA', 'Brightening', 'All', 1, 'Vitamin C, Hyaluronic Acid', 'Obagi', 'Obagi Professional-C Serum'),
-('PD4', 4.5, 180, 30.99, 'Oil-Free Gel Moisturizer', 'South Korea', 'Hydration', 'Oily', 1, 'Water, Glycerin', 'COSRX', 'COSRX Oil-Free Ultra Moisturizing Lotion'),
-('PD5', 4.9, 120, 59.99, 'Anti-Aging Retinol Night Cream', 'USA', 'Anti-Aging', 'All', 1, 'Retinol, Peptides', 'Olay', 'Olay Regenerist Retinol 24 Night Moisturizer'),
-('PD6', 4.3, 130, 34.99, 'Daily Sunscreen SPF 50', 'France', 'Sun Protection', 'All', 1, 'Zinc Oxide, Vitamin E', 'La Roche-Posay', 'La Roche-Posay Anthelios Melt-in Milk SPF 50'),
-('PD7', 4.6, 90, 32.00, 'Green Tea Seed Serum', 'South Korea', 'Soothing', 'All', 1, 'Green Tea, Betaine', 'Innisfree', 'Innisfree Green Tea Seed Serum'),
-('PD8', 4.4, 110, 18.99, 'Micellar Cleansing Water', 'France', 'Cleansing', 'All', 1, 'Micelles, Glycerin', 'Garnier', 'Garnier SkinActive Micellar Cleansing Water'),
-('PD9', 4.8, 75, 65.00, 'Advanced Night Repair Serum', 'USA', 'Repairing', 'All', 1, 'Hyaluronic Acid, Peptides', 'Estée Lauder', 'Estée Lauder Advanced Night Repair'),
-('PD10', 4.5, 140, 24.99, 'Smoothing Body Lotion', 'USA', 'Exfoliating', 'All', 1, 'Lactic Acid, Glycerin', 'AmLactin', 'AmLactin Daily Moisturizing Body Lotion');
+('PD1', 4.8, 100, 500, 'Hydrating Facial Cleanser', 'USA', 'Hydration', 'All', 1, 'Hyaluronic Acid, Glycerin', 'CeraVe', 'CeraVe Hydrating Cleanser'),
+('PD2', 4.6, 150, 279, 'Gentle Facial Cleanser', 'Canada', 'Cleansing', 'Sensitive', 1, 'Glycerin, Water', 'Cetaphil', 'Cetaphil Gentle Cleanser'),
+('PD3', 4.7, 200, 549, 'Vitamin C Brightening Serum', 'USA', 'Brightening', 'All', 1, 'Vitamin C, Hyaluronic Acid', 'Obagi', 'Obagi Professional-C Serum'),
+('PD4', 4.5, 180, 620, 'Oil-Free Gel Moisturizer', 'South Korea', 'Hydration', 'Oily', 1, 'Water, Glycerin', 'COSRX', 'COSRX Oil-Free Ultra Moisturizing Lotion'),
+('PD5', 4.9, 120, 879, 'Anti-Aging Retinol Night Cream', 'USA', 'Anti-Aging', 'All', 1, 'Retinol, Peptides', 'Olay', 'Olay Regenerist Retinol 24 Night Moisturizer'),
+('PD6', 4.3, 130, 300, 'Daily Sunscreen SPF 50', 'France', 'Sun Protection', 'All', 1, 'Zinc Oxide, Vitamin E', 'La Roche-Posay', 'La Roche-Posay Anthelios Melt-in Milk SPF 50'),
+('PD7', 4.6, 90, 935, 'Green Tea Seed Serum', 'South Korea', 'Soothing', 'All', 1, 'Green Tea, Betaine', 'Innisfree', 'Innisfree Green Tea Seed Serum'),
+('PD8', 4.4, 110, 398, 'Micellar Cleansing Water', 'France', 'Cleansing', 'All', 1, 'Micelles, Glycerin', 'Garnier', 'Garnier SkinActive Micellar Cleansing Water'),
+('PD9', 4.8, 75, 9800, 'Advanced Night Repair Serum', 'USA', 'Repairing', 'All', 1, 'Hyaluronic Acid, Peptides', 'Estée Lauder', 'Estée Lauder Advanced Night Repair'),
+('PD10', 4.5, 140, 280, 'Smoothing Body Lotion', 'USA', 'Exfoliating', 'All', 1, 'Lactic Acid, Glycerin', 'AmLactin', 'AmLactin Daily Moisturizing Body Lotion');
+
 
 -- Insert data into ProductCategory table for category associations
 INSERT INTO ProductCategory (product_id, category_id)
