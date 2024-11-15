@@ -17,25 +17,27 @@
             <div class="announcement" id="announcement">
                 Welcome! to Bloom
             </div>
-            <a href="/html/index.html"><i class="bi bi-arrow-left-short" style="font-size: 40px; padding-top: 30px"></i></a>
+            <a href="/html/index.html">
+                <i class="bi bi-arrow-left-short" style="font-size: 40px; padding-top: 30px"></i>
+            </a>
             <div class="logo">
                 <img src="../src/bloom logo.png" alt="Logo">
             </div>
 
             <h1>Admin Login</h1>
             <p>Username</p>
-            <input type="email" placeholder="Enter your Email" required title="Required e-mail">
+            <input type="email" id="username" placeholder="Enter your Email" required title="Required e-mail">
             <p>Password</p>
-            <input type="password" placeholder="Enter your password"><br>
-            <a  href="\html\user_acc_manage.html" style="text-decoration: none; color:#fff;"><button > Log in</button></a>
+            <input type="password" id="password" placeholder="Enter your password" required><br>
+            <button id="loginButton">Log in</button>
 
-            <div class="footer">
-                © Bloom Inc. 2024. All rights reserved.
-            </div>
+            <div id="message" class="footer"></div>
         </div>
 
         <div class="image-section"></div>
     </div>
+
+    <script src="js/login.js"></script>
 </body>
 
 <style>

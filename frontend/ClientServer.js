@@ -11,7 +11,8 @@ const app = express();
 // Serve static files from the root directory (optional, if you have styles, etc.)
 app.use(express.static(__dirname));
 app.use("/css",express.static(path.join(__dirname,"html/css")));
-
+app.use("/js", express.static(path.join(__dirname, "callWS")));
+app.use("/js", express.static(path.join(__dirname, "js")));
 // Set up routes
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'index.html'));
@@ -25,9 +26,16 @@ app.get('/login', (req, res) => {
 app.get('/search', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'search-result.html'));
 });
-app.get('/user-account', (req, res) => {
+app.get('/add-product', (req, res) => {
+    res.sendFile(path.join(__dirname, 'html', 'Product_mana_from.html'));
+});
+app.get('/user_acc_manage.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'user_acc_manage.html'));
 });
+
+console.log("Serving JavaScript files from:", path.join(__dirname, "callWS"));
+
+    
 // Handle invalid paths
 app.use((req, res, next) => {
     console.log(`Request at ${req.url}`);

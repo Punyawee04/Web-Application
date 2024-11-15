@@ -107,7 +107,7 @@
             </div>
         </div>
     </div>
-    <script src="../script.js"></script>
+
 
     <!-- Flash Sale -->
     <div class="content-4">
@@ -125,7 +125,7 @@
             <img src="..\src\flash sale\flash sale p1 (3).png" alt="Card 1" class="flash-sale-card">
             <img src="..\src\flash sale\flash sale p1 (2).png" alt="Card 1" class="flash-sale-card">
             <img src="..\src\flash sale\flash sale p1 (1).png" alt="Card 1" class="flash-sale-card">
-            <img src="..\src\flash sale\flash sale p1.png" alt="Card 1" class="flash-sale-card"> 
+            <img src="..\src\flash sale\flash sale p1.png" alt="Card 1" class="flash-sale-card">
         </section>
     </div>
 
@@ -216,7 +216,8 @@
                     <input type="email" id="email" name="email" placeholder="Enter your email">
                     <span class="next-icon">&#10095;</span> <!-- Next arrow icon -->
                 </div>
-                <p style="font-size: 14px;">Please refer to our Privacy Policy and Terms of Use for more details or Contact Us</p>
+                <p style="font-size: 14px;">Please refer to our Privacy Policy and Terms of Use for more details
+                    or Contact Us</p>
 
                 <ul class="nav__ul">
                     <i class="bi bi-facebook"></i>
@@ -240,3 +241,17 @@
 </body>
 
 </html>
+
+<script>
+    let currentIndex = 0;
+
+    function moveSlide(step) {
+        const slides = document.querySelector('.slides');
+        const totalSlides = document.querySelectorAll('.slide').length;
+        currentIndex = (currentIndex + step + totalSlides) % totalSlides;
+        const offset = -currentIndex * 100;
+        slides.style.transform = `translateX(${offset}%)`;
+    }
+
+
+</script>
