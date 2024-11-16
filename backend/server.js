@@ -35,7 +35,17 @@ app.use(express.static(__dirname));
 
 // Route to fetch all products
 app.get('/api/products', (req, res) => {
-    const sql = 'SELECT * FROM Product';
+    const sql = `SELECT 
+            product_id,
+            product_name,
+            brand,
+            price,
+            image_url,
+            stock_quantity,
+            category_name
+        FROM 
+            Product
+`;
     db.query(sql, (err, results) => {
         if (err) {
             res.status(500).json({ error: err.message });

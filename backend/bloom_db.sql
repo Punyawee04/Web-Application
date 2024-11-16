@@ -12,42 +12,15 @@ SET image_url = 'http://localhost:8080/images/product1.jpg'
 WHERE product_id = 'PD1';
 
 UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product2.jpeg' 
-WHERE product_id = 'PD2';
-
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product3.png' 
-WHERE product_id = 'PD3';
-
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product4.jpg' 
-WHERE product_id = 'PD4';
-
-UPDATE Product 
 SET image_url = 'http://localhost:8080/images/product5.jpg' 
 WHERE product_id = 'PD5';
-
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product6.jpg' 
-WHERE product_id = 'PD6';
-
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product7.jpg' 
-WHERE product_id = 'PD7';
-
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product8.jpg' 
-WHERE product_id = 'PD8';
-
 UPDATE Product 
 SET image_url = 'http://localhost:8080/images/product9.jpg' 
 WHERE product_id = 'PD9';
 
 UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product10.jpg' 
-WHERE product_id = 'PD10';
-
-
+SET image_url = 'http://localhost:8080/images/product7.jpg' 
+WHERE product_id = 'PD7';
 
 -- Table: LoginDetail
 CREATE TABLE LoginDetail (
@@ -101,12 +74,6 @@ CREATE TABLE Product (
     product_name VARCHAR(100)              -- Product Name
 );
 
--- Table: Category
-CREATE TABLE Category (
-    category_id INT PRIMARY KEY,            -- Category ID
-    category_name VARCHAR(100),             -- Category Name
-    description VARCHAR(255)                -- Category Description
-);
 
 -- Table: AdministratorProducts
 CREATE TABLE AdministratorProducts (
@@ -117,15 +84,7 @@ CREATE TABLE AdministratorProducts (
     FOREIGN KEY (product_id) REFERENCES Product(product_id)
 );
 
--- Table: ProductCategory
-CREATE TABLE ProductCategory (
-    product_id varchar(5),                         -- Product ID
-    category_id INT,                        -- Category ID
-    PRIMARY KEY (product_id, category_id),  -- Composite Primary Key
-    FOREIGN KEY (product_id) REFERENCES Product(product_id),
-    FOREIGN KEY (category_id) REFERENCES Category(category_id)
-);
-DROP TABLE IF EXISTS LoginDetail;
+
 
 
 -- ----------------------------------------------------------------------------------------------------------------
@@ -134,12 +93,12 @@ DROP TABLE IF EXISTS LoginDetail;
 
 
 -- Insert data into LoginDetail table
-INSERT INTO LoginDetail (UserName, Password, Email, login_Time, logout_Time, login_Date, Status)
+INSERT INTO LoginDetail (UserName, Passwd, Email, login_Time, logout_Time, login_Date, Status)
 VALUES 
 ('admin1', '1111', 'admin1@example.com', '08:00', '16:00', '2024-11-01', 'Active'),
 ('admin2', '2222', 'admin2@example.com', '09:00', '17:00', '2024-11-02', 'Inactive'),
 ('testUser', 'hashedPassword', 'test@example.com', '10:00', '18:00', '2024-11-17', 'Active');
-INSERT INTO LoginDetail (UserName, Password) VALUES ('admin1', '1111');
+INSERT INTO LoginDetail (UserName, Passwd) VALUES ('admin1', '1111');
 
 -- Insert data into Administor table
 INSERT INTO Administor (admin_id, admin_name, login_Date, login_Time, login_id)
@@ -147,7 +106,6 @@ VALUES
 (1001, 'Alice Johnson', '2024-11-01', '08:00', 1),
 (1002, 'Bob Smith', '2024-11-02', '09:00', 2);
 drop table LoginDetail;
-drop table Administor;
 -- Insert data into Administor_phonenum table
 INSERT INTO Administor_phonenum (admin_id, admin_phone_number)
 VALUES 
@@ -161,15 +119,8 @@ VALUES
 (1001, 'alice.johnson@example.com'),
 (1002, 'bob.smith@example.com');
 
--- Insert categories into Category table
-INSERT INTO Category (category_id, category_name, description)
-VALUES 
-(201, 'Body', 'Body care products'),
-(202, 'Mask', 'Face masks and treatments'),
-(203, 'Face Care', 'Facial care products'),
-(204, 'Sunscreen', 'Sunscreen and sunblock products'),
-(205, 'Cleanser', 'Cleansers for face and body'),
-(206, 'Acne Prevention', 'Products for acne prevention and treatment');
+
+
 drop table product; 
 -- Insert data into Product table with well-known brand products
 INSERT INTO Product (product_id, product_rating, stock_quantity, price, description, origin, benefit, skin_type, quantity, ingredients, brand, product_name)
@@ -185,18 +136,11 @@ VALUES
 ('PD9', 4.8, 75, 9800, 'Advanced Night Repair Serum', 'USA', 'Repairing', 'All', 1, 'Hyaluronic Acid, Peptides', 'Estée Lauder', 'Estée Lauder Advanced Night Repair'),
 ('PD10', 4.5, 140, 280, 'Smoothing Body Lotion', 'USA', 'Exfoliating', 'All', 1, 'Lactic Acid, Glycerin', 'AmLactin', 'AmLactin Daily Moisturizing Body Lotion');
 
+UPDATE Product SET category_name = 'Cleanser' WHERE product_id IN ('PD1', 'PD2', 'PD8');
+UPDATE Product SET category_name = 'Face Care' WHERE product_id IN ('PD3', 'PD4', 'PD5', 'PD7', 'PD9');
+UPDATE Product SET category_name = 'Sunscreen' WHERE product_id = 'PD6';
+UPDATE Product SET category_name = 'Body' WHERE product_id = 'PD10';
 
 -- Insert data into ProductCategory table for category associations
-INSERT INTO ProductCategory (product_id, category_id)
-VALUES 
-('PD1', 205),  -- CeraVe Hydrating Cleanser - Cleanser
-('PD2', 205),  -- Cetaphil Gentle Cleanser - Cleanser
-('PD3', 203),  -- Obagi Vitamin C Serum - Face Care
-('PD4', 203),  -- COSRX Oil-Free Ultra Moisturizing Lotion - Face Care
-('PD5', 203),  -- Olay Regenerist Retinol Night Moisturizer - Face Care
-('PD6', 204),  -- La Roche-Posay Anthelios SPF 50 - Sunscreen
-('PD7', 203),  -- Innisfree Green Tea Seed Serum - Face Care
-('PD8', 205),  -- Garnier Micellar Cleansing Water - Cleanser
-('PD9', 203),  -- Estée Lauder Advanced Night Repair - Face Care
-('PD10', 201); -- AmLactin Daily Moisturizing Body Lotion - Body
+
 
