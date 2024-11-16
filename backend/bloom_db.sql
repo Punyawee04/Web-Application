@@ -5,6 +5,23 @@ use Bloom_db;
 CREATE USER 'bloom'@'localhost' IDENTIFIED BY 'ict555';
 GRANT SELECT, INSERT ON Bloom_db.* TO 'bloom'@'localhost';
 
+ALTER TABLE Product ADD image_url VARCHAR(255);
+
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product1.jpg' 
+WHERE product_id = 'PD1';
+
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product5.jpg' 
+WHERE product_id = 'PD5';
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product9.jpg' 
+WHERE product_id = 'PD9';
+
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product7.jpg' 
+WHERE product_id = 'PD7';
+
 -- Table: LoginDetail
 CREATE TABLE LoginDetail (
     login_id INT PRIMARY KEY,  -- LoginDetailID
