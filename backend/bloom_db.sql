@@ -51,15 +51,17 @@ WHERE product_id = 'PD10';
 
 -- Table: LoginDetail
 CREATE TABLE LoginDetail (
-    login_id INT PRIMARY KEY,  -- LoginDetailID
-    UserName VARCHAR(100),     -- Username
-    Password VARCHAR(70),      -- Password
-    Email VARCHAR(225),        -- Email
-    login_Time TIME,           -- LoginTime (Format: HH:MM)
-    logout_Time TIME,          -- LogoutTime (Format: HH:MM)
-    login_Date DATE,           -- LoginDate (Format: YYYY-MM-DD)
-    Status VARCHAR(20)         -- Login Status
-);
+    login_id INT NOT NULL AUTO_INCREMENT,       -- Automatically incrementing ID
+    UserName VARCHAR(255) NOT NULL UNIQUE,     -- Unique username
+    Password VARCHAR(255) NOT NULL,            -- Hashed password
+    Email VARCHAR(255),                        -- Optional email
+    login_Time TIME,                           -- Login time (optional)
+    logout_Time TIME,                          -- Logout time (optional)
+    login_Date DATE,                           -- Login date (optional)
+    Status VARCHAR(50),                        -- Account status (e.g., Active/Inactive)
+    PRIMARY KEY (login_id)                     -- Primary key on login_id
+) ENGINE=InnoDB;
+
 
 -- Table: Administor
 CREATE TABLE Administor (
@@ -123,28 +125,35 @@ CREATE TABLE ProductCategory (
     FOREIGN KEY (product_id) REFERENCES Product(product_id),
     FOREIGN KEY (category_id) REFERENCES Category(category_id)
 );
+DROP TABLE IF EXISTS LoginDetail;
+
 
 -- ----------------------------------------------------------------------------------------------------------------
 -- INSERT ------------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------------------
 
+
 -- Insert data into LoginDetail table
-INSERT INTO LoginDetail (login_id, UserName, Password, Email, login_Time, logout_Time, login_Date, Status)
+INSERT INTO LoginDetail (UserName, Password, Email, login_Time, logout_Time, login_Date, Status)
 VALUES 
-(101, 'admin1', '1111', 'admin1@example.com', '08:00', '16:00', '2024-11-01', 'Active'),
-(102, 'admin2', '2222', 'admin2@example.com', '09:00', '17:00', '2024-11-02', 'Inactive');
+('admin1', '1111', 'admin1@example.com', '08:00', '16:00', '2024-11-01', 'Active'),
+('admin2', '2222', 'admin2@example.com', '09:00', '17:00', '2024-11-02', 'Inactive'),
+('testUser', 'hashedPassword', 'test@example.com', '10:00', '18:00', '2024-11-17', 'Active');
+INSERT INTO LoginDetail (UserName, Password) VALUES ('admin1', '1111');
 
 -- Insert data into Administor table
 INSERT INTO Administor (admin_id, admin_name, login_Date, login_Time, login_id)
 VALUES 
 (1001, 'Alice Johnson', '2024-11-01', '08:00', 1),
 (1002, 'Bob Smith', '2024-11-02', '09:00', 2);
-
+drop table LoginDetail;
+drop table Administor;
 -- Insert data into Administor_phonenum table
 INSERT INTO Administor_phonenum (admin_id, admin_phone_number)
 VALUES 
 (1001, '123-456-7890'),
 (1002, '987-654-3210');
+SELECT UserName, Password FROM LoginDetail;
 
 -- Insert data into Email table
 INSERT INTO Email (admin_id, admin_email)

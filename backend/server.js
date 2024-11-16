@@ -35,16 +35,15 @@ app.use(express.static(__dirname));
 
 // Route to fetch all products
 app.get('/api/products', (req, res) => {
-    const sql = 'SELECT * FROM Product'; // Ensure your table is named correctly
+    const sql = 'SELECT * FROM Product';
     db.query(sql, (err, results) => {
         if (err) {
             res.status(500).json({ error: err.message });
             return;
         }
-        res.json(results); // Send product data as JSON
+        res.json(results);
     });
 });
-
 
 // Route to fetch data from the LoginDetail table
 app.get('/api/loginDetails', (req, res) => {
@@ -57,61 +56,96 @@ app.get('/api/loginDetails', (req, res) => {
 });
 
 // Route to insert a new user into the LoginDetail table
-app.post('/api/addLoginDetail', (req, res) => {
+app.post('/api/addLoginDetail', async (req, res) => {
     const { username, password } = req.body;
+
     if (!username || !password) {
-        return res.status(400).json({ error: "Username and password are required." });
+        return res.status(400).json({ error: 'Username and password are required.' });
     }
 
-    const sql = 'INSERT INTO LoginDetail (username, password) VALUES (?, ?)';
-    db.query(sql, [username, password], (err, result) => {
-        if (err) {
-            return res.status(500).json({ error: err.message });
-        }
-        res.json({ message: 'User added successfully!', userId: result.insertId });
-    });
-});
-// Secure  user management and product management
-app.get('/api/validate-token', authenticateToken, (req, res) => {
-    res.json({ valid: true, user: req.user }); // If valid, send user data
+    try {
+        // Hash the password before storing it
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const sql = 'INSERT INTO LoginDetail (UserName, Password) VALUES (?, ?)';
+        db.query(sql, [username, hashedPassword], (err, result) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            res.json({ message: 'User added successfully!', userId: result.insertId });
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Error hashing password.' });
+    }
 });
 
+// Secure user management and product management
 app.get('/api/user-manage', authenticateToken, (req, res) => {
     res.json({ message: 'User Management Access Granted', user: req.user });
 });
-app.get('/product-manage', authenticateToken, (req, res) => {
-    res.sendFile(path.join(__dirname, 'html', 'promanage.html'));
+
+// Register
+app.post('/api/register', async (req, res) => {
+    const { username, password, email } = req.body;
+
+    if (!username || !password) {
+        return res.status(400).json({ message: 'Username and password are required.' });
+    }
+
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const sql = 'INSERT INTO LoginDetail (UserName, Password, Email, login_Time, logout_Time, login_Date, Status) VALUES (?, ?, ?, "00:00", "00:00", CURDATE(), "Active")';
+        db.query(sql, [username, hashedPassword, email], (err, result) => {
+            if (err) {
+                console.error('Database Error:', err);
+                return res.status(500).json({ message: 'Database error.' });
+            }
+            res.status(201).json({ message: 'User registered successfully!' });
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Error hashing password.' });
+    }
 });
 // Login endpoint
 app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
 
-    // Query the database for the user with the provided username
+    console.log('Login Request:', { username, password });
+
+    if (!username || !password) {
+        return res.status(400).json({ message: 'Username and password are required.' });
+    }
+
     const sql = 'SELECT * FROM LoginDetail WHERE UserName = ?';
-    db.query(sql, [username], async (err, results) => {
+    db.query(sql, [username], (err, results) => {
         if (err) {
-            return res.status(500).json({ error: 'Database query failed' });
+            console.error('Database Error:', err);
+            return res.status(500).json({ message: 'Database error.' });
         }
+
+        console.log('Database Results:', results);
 
         if (results.length === 0) {
-            return res.status(400).json({ message: 'Invalid username or password' });
+            console.log('User not found:', username);
+            return res.status(400).json({ message: 'Invalid username or password.' });
         }
 
-        const user = results[0]; // Get the user object from the results
+        const user = results[0];
+        console.log('Stored Password:', user.Password);
 
-        // Compare the hashed password using bcrypt
-        const isPasswordMatch = await bcrypt.compare(password, user.Password);
-        if (!isPasswordMatch) {
-            return res.status(400).json({ message: 'Invalid username or password' });
+        if (password !== user.Password) {
+            console.log('Passwords do not match!');
+            return res.status(400).json({ message: 'Invalid username or password.' });
         }
 
-        // Generate JWT if the password matches
         const token = jwt.sign(
-            { username: user.UserName },
-            process.env.JWT_SECRET,
-            { expiresIn: process.env.JWT_EXPIRES_IN }
+            { userId: user.login_id, username: user.UserName },
+            'your_secret_key',
+            { expiresIn: '365d' }
         );
-        res.json({ token });
+
+        res.json({ message: 'Login successful!', token });
     });
 });
 
@@ -152,19 +186,6 @@ app.post('/api/search', (req, res) => {
 });
 
 
-
-
-
-
-const tokenBlacklist = new Set(); // Replace with Redis or database for production
-
-app.post('/api/logout', (req, res) => {
-    const token = req.headers['authorization']?.split(' ')[1];
-    if (token) {
-        tokenBlacklist.add(token); // Add the token to the blacklist
-    }
-    res.json({ message: 'Logged out successfully' });
-});
 
 
 // Catch-all route for undefined routes
