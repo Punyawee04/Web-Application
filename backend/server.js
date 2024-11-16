@@ -84,42 +84,71 @@ app.get('/api/user-manage', authenticateToken, (req, res) => {
     res.json({ message: 'User Management Access Granted', user: req.user });
 });
 
-// Login endpoint
-app.post('/api/login', (req, res) => {
-    const { username, password } = req.body;
+// Register
+app.post('/api/register', async (req, res) => {
+    const { username, password, email } = req.body;
 
     if (!username || !password) {
         return res.status(400).json({ message: 'Username and password are required.' });
     }
 
-    // Query the database for the user with the provided username
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const sql = 'INSERT INTO LoginDetail (UserName, Password, Email, login_Time, logout_Time, login_Date, Status) VALUES (?, ?, ?, "00:00", "00:00", CURDATE(), "Active")';
+        db.query(sql, [username, hashedPassword, email], (err, result) => {
+            if (err) {
+                console.error('Database Error:', err);
+                return res.status(500).json({ message: 'Database error.' });
+            }
+            res.status(201).json({ message: 'User registered successfully!' });
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Error hashing password.' });
+    }
+});
+// Login endpoint
+app.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
+
+    console.log('Login Request:', { username, password });
+
+    if (!username || !password) {
+        return res.status(400).json({ message: 'Username and password are required.' });
+    }
+
     const sql = 'SELECT * FROM LoginDetail WHERE UserName = ?';
-    db.query(sql, [username], async (err, results) => {
+    db.query(sql, [username], (err, results) => {
         if (err) {
-            return res.status(500).json({ error: 'Database query failed' });
+            console.error('Database Error:', err);
+            return res.status(500).json({ message: 'Database error.' });
         }
 
+        console.log('Database Results:', results);
+
         if (results.length === 0) {
+            console.log('User not found:', username);
             return res.status(400).json({ message: 'Invalid username or password.' });
         }
 
         const user = results[0];
+        console.log('Stored Password:', user.Password);
 
-        // Compare the provided password with the stored hashed password
-        const isPasswordValid = await bcrypt.compare(password, user.Password);
-        if (!isPasswordValid) {
+        if (password !== user.Password) {
+            console.log('Passwords do not match!');
             return res.status(400).json({ message: 'Invalid username or password.' });
         }
 
-        // Generate JWT if the password matches
         const token = jwt.sign(
-            { username: user.UserName },
-            process.env.JWT_SECRET,
-            { expiresIn: process.env.JWT_EXPIRES_IN }
+            { userId: user.login_id, username: user.UserName },
+            'your_secret_key',
+            { expiresIn: '365d' }
         );
-        res.json({ token });
+
+        res.json({ message: 'Login successful!', token });
     });
 });
+
 
 
 
