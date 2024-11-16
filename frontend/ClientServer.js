@@ -29,10 +29,12 @@ app.get('/search-all', (req, res) => {
 app.get('/add-product', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'Product_mana_from.html'));
 });
-app.get('/user_acc_manage.html', (req, res) => {
+app.get('/user-manage', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'user_acc_manage.html'));
 });
-
+app.get('/product-manage',(req, res) => {
+    res.sendFile(path.join(__dirname, 'html', 'promanage.html'));
+});
 console.log("Serving JavaScript files from:", path.join(__dirname, "callWS"));
 
     

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/promanage-style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -21,17 +22,16 @@
         <div id="menu">
             <ul class="menunav">
                 <div class="menu-1">
-                    <a href="../html/user_acc_manage.html" class="list-left"><i
+                    <a href="http://localhost:8081/user-manage" class="list-left"><i
                             class="bi bi-person-circle"></i>Account</a>
-                    <a href="#" class="list-left product-management"><i class="bi bi-box-seam"></i>Product
+                    <a href="http://localhost:8081/product-manage" class="list-left product-management"><i class="bi bi-box-seam"></i>Product
                         Management</a>
-                    <a href="#" class="list-left"><i class="bi bi-headset"></i>Support</a>
                 </div>
-
                 <div class="menu-2">
-                    <a href="#"><i class="bi bi-bell"></i></a>
                     <a href="#"><i class="bi bi-person-fill"></i></a>
-                    <a href="#"><i class="bi bi-box-arrow-right"></i></a>
+                    <button id="logoutButton"><i class="bi bi-box-arrow-right"></i></button>
+                    <script src="/js/logout.js"></script>
+
                 </div>
             </ul>
         </div>

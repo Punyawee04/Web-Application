@@ -7,17 +7,12 @@ const jwt = require('jsonwebtoken');
 const mysql = require('mysql2');
 const cors = require('cors');
 const authenticateToken = require('./authMiddleware');
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
-// Load environment variables
+
 dotenv.config();
-
-// Initialize Express app
 const app = express();
-
-// Middleware to enable CORS for cross-origin requests
 app.use(cors());
-
-// Middleware to parse JSON requests
 app.use(express.json());
 
 // Connection to MySQL
@@ -77,15 +72,24 @@ app.post('/api/addLoginDetail', (req, res) => {
         res.json({ message: 'User added successfully!', userId: result.insertId });
     });
 });
+// Secure  user management and product management
+app.get('/api/validate-token', authenticateToken, (req, res) => {
+    res.json({ valid: true, user: req.user }); // If valid, send user data
+});
 
-
+app.get('/api/user-manage', authenticateToken, (req, res) => {
+    res.json({ message: 'User Management Access Granted', user: req.user });
+});
+app.get('/product-manage', authenticateToken, (req, res) => {
+    res.sendFile(path.join(__dirname, 'html', 'promanage.html'));
+});
 // Login endpoint
 app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
 
     // Query the database for the user with the provided username
     const sql = 'SELECT * FROM LoginDetail WHERE UserName = ?';
-    db.query(sql, [username], (err, results) => {
+    db.query(sql, [username], async (err, results) => {
         if (err) {
             return res.status(500).json({ error: 'Database query failed' });
         }
@@ -96,18 +100,31 @@ app.post('/api/login', (req, res) => {
 
         const user = results[0]; // Get the user object from the results
 
-        // Compare the provided password with the stored password directly
-        if (password !== user.Password) {
+        // Compare the hashed password using bcrypt
+        const isPasswordMatch = await bcrypt.compare(password, user.Password);
+        if (!isPasswordMatch) {
             return res.status(400).json({ message: 'Invalid username or password' });
         }
 
         // Generate JWT if the password matches
-        const token = jwt.sign({ username: user.UserName }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
+        const token = jwt.sign(
+            { username: user.UserName },
+            process.env.JWT_SECRET,
+            { expiresIn: process.env.JWT_EXPIRES_IN }
+        );
         res.json({ token });
     });
 });
 
+const tokenBlacklist = new Set(); // Replace with Redis or database for production
 
+app.post('/api/logout', (req, res) => {
+    const token = req.headers['authorization']?.split(' ')[1];
+    if (token) {
+        tokenBlacklist.add(token); // Add the token to the blacklist
+    }
+    res.json({ message: 'Logged out successfully' });
+});
 
 
 // Catch-all route for undefined routes
