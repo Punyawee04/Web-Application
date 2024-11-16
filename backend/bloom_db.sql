@@ -12,15 +12,42 @@ SET image_url = 'http://localhost:8080/images/product1.jpg'
 WHERE product_id = 'PD1';
 
 UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product2.jpeg' 
+WHERE product_id = 'PD2';
+
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product3.png' 
+WHERE product_id = 'PD3';
+
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product4.jpg' 
+WHERE product_id = 'PD4';
+
+UPDATE Product 
 SET image_url = 'http://localhost:8080/images/product5.jpg' 
 WHERE product_id = 'PD5';
+
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product6.jpg' 
+WHERE product_id = 'PD6';
+
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product7.jpg' 
+WHERE product_id = 'PD7';
+
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product8.jpg' 
+WHERE product_id = 'PD8';
+
 UPDATE Product 
 SET image_url = 'http://localhost:8080/images/product9.jpg' 
 WHERE product_id = 'PD9';
 
 UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product7.jpg' 
-WHERE product_id = 'PD7';
+SET image_url = 'http://localhost:8080/images/product10.jpg' 
+WHERE product_id = 'PD10';
+
+
 
 -- Table: LoginDetail
 CREATE TABLE LoginDetail (

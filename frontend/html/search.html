@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +25,7 @@
 
         .logo img {
             height: 90px;
-            margin-right:-10px;
+            margin-right: -10px;
         }
 
         .search-container {
@@ -152,20 +153,36 @@
         }
     </style>
 </head>
+
 <body>
     <div class="header">
         <div class="search-container">
             <div class="logo">
                 <a href="http://localhost:8081/"><img src="../src/bloom logo.png" alt="Bloom Logo"></a>
             </div>
-
             <div class="search-bar">
-                <a href="http://localhost:8081/search-all"><i class="bi bi-search"></i></a>
-                <input type="text" placeholder="searching">
-                <i class="bi bi-funnel" id="filterIcon"></i>
+                <!-- ไอคอนค้นหาแบบเดิม -->
+                <a href="http://localhost:8081/search-all" id="searchIcon" style="color: black;">
+                    <i class="bi bi-ui-checks-grid"></i>
+                </a>
+                
+
+                <!-- ฟอร์มค้นหาใหม่ -->
+                <form id="searchForm" style="flex: 1; display: flex; align-items: center; margin-left: 10px;">
+                    <input type="text" id="searchInput" placeholder="searching"
+                        style="flex: 1; border: none; outline: none; padding: 5px 10px; border-radius: 5px;" />
+                    <button type="submit" style="border: none; background: none; cursor: pointer;">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
+                
+
+                <!-- ไอคอนฟิลเตอร์ -->
+                <i class="bi bi-funnel" id="filterIcon" style="margin-left: 10px; cursor: pointer;"></i>
             </div>
 
-            <a href="/html/index.html" class="cancel-button">Cancel</a>
+
+            <a href="http://localhost:8081/" class="cancel-button">Cancel</a>
         </div>
     </div>
 
@@ -174,7 +191,7 @@
             <label>Brand</label>
             <input type="text" placeholder="search by brand">
         </div>
-        
+
         <div class="filter-group">
             <label>Category</label>
             <div class="category-buttons">
@@ -197,12 +214,13 @@
         </div>
     </div>
 
+
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const filterIcon = document.getElementById('filterIcon');
             const filterSection = document.getElementById('filterSection');
 
-            filterIcon.addEventListener('click', function() {
+            filterIcon.addEventListener('click', function () {
                 if (filterSection.style.display === 'none' || filterSection.style.display === '') {
                     filterSection.style.display = 'block';
                 } else {
@@ -213,12 +231,13 @@
             // Add click event listeners to category buttons
             const categoryButtons = document.querySelectorAll('.category-button');
             categoryButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     categoryButtons.forEach(btn => btn.classList.remove('active'));
                     this.classList.add('active');
                 });
             });
         });
     </script>
+    <script src="/js/callSearch.js"></script>
 </body>
 </html>

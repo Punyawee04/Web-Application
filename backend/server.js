@@ -8,7 +8,6 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const authenticateToken = require('./authMiddleware');
 
-
 dotenv.config();
 const app = express();
 app.use(cors());
@@ -116,6 +115,47 @@ app.post('/api/login', (req, res) => {
     });
 });
 
+// search
+app.post('/api/search', (req, res) => {
+    console.log('Request received at /api/search'); // ตรวจสอบว่า Route ถูกเรียก
+
+    const query = req.body.query; // ดึง query จาก req.body
+    console.log('Query received:', query); // Debug query
+
+    if (!query) {
+        console.log('Query is missing'); // Log กรณีไม่มี query
+        return res.status(400).json({ error: 'Query is required' });
+    }
+
+    // SQL สำหรับการค้นหา
+    const sql = `
+        SELECT * FROM Product 
+        WHERE product_name LIKE ? 
+           OR description LIKE ? 
+           OR brand LIKE ? 
+           OR benefit LIKE ?
+    `;
+
+    const searchValue = `%${query}%`;
+    console.log('SQL Query:', sql, 'Search Value:', searchValue); // Debug SQL
+
+    db.query(sql, [searchValue, searchValue, searchValue, searchValue], (err, results) => {
+        if (err) {
+            console.error('Database Error:', err); // Log ข้อผิดพลาดของฐานข้อมูล
+            return res.status(500).json({ error: 'Database query failed' });
+        }
+
+        console.log('Search Results:', results); // Debug ผลลัพธ์
+        res.setHeader('Content-Type', 'application/json'); // ระบุว่า Response เป็น JSON
+        res.json(results); // ส่งผลลัพธ์
+    });
+});
+
+
+
+
+
+
 const tokenBlacklist = new Set(); // Replace with Redis or database for production
 
 app.post('/api/logout', (req, res) => {
@@ -128,9 +168,23 @@ app.post('/api/logout', (req, res) => {
 
 
 // Catch-all route for undefined routes
+// app.use((req, res) => {
+//     res.status(404).send('Page not found');
+// });
+
+// Handle 404 Not Found
 app.use((req, res) => {
-    res.status(404).send('Page not found');
+    console.log('404 Error: Route not found'); // Debug กรณี Route ไม่ถูกต้อง
+    res.status(404).json({ error: 'Endpoint not found' });
 });
+
+// Handle unexpected errors
+app.use((err, req, res, next) => {
+    console.error('Unexpected Error:', err.stack); // Log ข้อผิดพลาด
+    res.status(500).json({ error: 'Internal server error' });
+});
+
+
 
 // Start the server
 const PORT = process.env.PORT || 8080;

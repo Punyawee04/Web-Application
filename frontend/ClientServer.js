@@ -6,7 +6,7 @@ dotenv.config();
 const port =8081
 // Initialize the Express app
 const app = express();
-
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // Serve static files from the root directory (optional, if you have styles, etc.)
 app.use(express.static(__dirname));
@@ -40,6 +40,9 @@ app.get('/product-manage',(req, res) => {
 });
 console.log("Serving JavaScript files from:", path.join(__dirname, "callWS"));
 
+app.get('/search-result', (req, res) => {
+    res.sendFile(path.join(__dirname, 'html', 'search-result(ce).html'));
+});
     
 // Handle invalid paths
 app.use((req, res, next) => {

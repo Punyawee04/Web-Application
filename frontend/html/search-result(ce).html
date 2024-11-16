@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom - Search Results</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css\nav-style.css">
+    <link rel="stylesheet" href="css\footer.css">
+    <style>
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+
+        }
+
+        .product {
+            background-color: #ffffff;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            /* กรอบสีเทาอ่อน */
+            border-radius: 8px;
+            /* มุมโค้ง */
+            padding: 16px;
+            /* ระยะห่างภายใน */
+            width: 200px;
+            /* ความกว้าง */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* เงา */
+            text-align: center;
+            /* จัดกึ่งกลางข้อความ */
+            background-color: #ffffff;
+            /* เพิ่มสีพื้นหลังเป็นสีขาว */
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .product-price {
+            color: #e91e63;
+            font-weight: bold;
+        }
+
+        .btn-buy {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        * {
+            font-family: 'Poppins';
+            margin: 0;
+        }
+
+        body {
+            background-color: #F3F0EF;
+        }
+
+        #header-search {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .breadcrumbs {
+            padding: 10px 10px;
+            background-color: #ffffff;
+        }
+
+        .search-header {
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .search-container {
+            margin-top: 20px;
+        }
+
+        .container {
+            padding: 20px;
+            margin-left: 10rem;
+            margin-right: 10rem;
+        }
+
+        .filter {
+            width: 20%;
+            position: sticky;
+            top: 20px;
+            position: sticky;
+
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #000000;
+        }
+
+        .filter h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .results {
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;
+
+        }
+
+        #section-2 {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .product {
+            width: 25%;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .product img {
+            max-width: 100%;
+        }
+
+        .product p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <!-- Logo -->
+        <div class="logo">
+            <a href="#"><img src="../src/bloom logo.png " alt="Logo"></a>
+        </div>
+
+        <!-- Menu -->
+        <ul class="menu">
+            <li><a href="http://localhost:8081/">Home Page</a></li>
+            <li><a href="http://localhost:8081/">Best Sellers</a></li>
+            <li><a href="http://localhost:8081/">Categories</a></li>
+            <li><a href="http://localhost:8081/team">Contact Us</a></li>
+        </ul>
+
+
+        <!-- action -->
+        <div class="user-cart">
+            <a href="http://localhost:8081/search"><i class="bi bi-search"></i></a>
+            <a href="http://localhost:8081/login"><i class="bi bi-person-fill" style="font-size: 22px;"></i></a>
+            <a href="/html/page not found.html"><i class="bi bi-cart3" style="font-size: 22px;"></i></a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Search Bar -->
+        <div id="header-search">
+            <div style="margin-bottom: 10px;">
+                <p>Search results for</p>
+                <h2>Search Input</h2>
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search for products...">
+                <button class="search-button">Search</button>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div id="section-2">
+            <aside class="filter">
+                <h3>Brand</h3>
+                <div id="brand" style="border-bottom:1px solid black ; padding-bottom:10px;">
+                    <input type="checkbox" id="brand1">
+                    <label for="brand1">Body</label><br>
+                    <input type="checkbox" id="brand2">
+                    <label for="brand2">Mask</label><br>
+                    <input type="checkbox" id="brand3">
+                    <label for="brand3">Face Care</label>
+                </div>
+
+                <h3 style="padding-top:10px;">Category</h3>
+                <div id="category" style="border-bottom:1px solid black ; padding-bottom:10px;">
+                    <input type="checkbox" id="body">
+                    <label for="body">Body</label><br>
+                    <input type="checkbox" id="mask">
+                    <label for="mask">Mask</label><br>
+                    <input type="checkbox" id="face-care">
+                    <label for="face care">Face Care</label><br>
+                    <input type="checkbox" id="sunscreen">
+                    <label for="sunscreen">Sunscreen</label><br>
+                    <input type="checkbox" id="cleanser">
+                    <label for="cleanser">Cleanser</label><br>
+                    <input type="checkbox" id="acne-prevention">
+                    <label for="acne-prevention">Acne Prevention</label><br>
+                </div>
+
+                <h3 style="padding-top:10px;">Availability</h3>
+                <div id="stock">
+                    <input type="checkbox" id="in-stock">
+                    <label for="in-stock">In Stock</label><br>
+                    <input type="checkbox" id="out-stock">
+                    <label for="out-stock">Out of Stock</label><br>
+                </div>
+
+            </aside>
+            <div id="product-container" class="product-container">
+                <!-- ผลลัพธ์จะแสดงที่นี่ -->
+            </div>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    // ดึงข้อมูลผลลัพธ์จาก LocalStorage
+                    const searchResults = JSON.parse(localStorage.getItem("searchResults"));
+                    const searchQuery = localStorage.getItem("searchQuery");
+
+                    const productContainer = document.getElementById("product-container");
+
+                    if (!searchResults || searchResults.length === 0) {
+                        productContainer.innerHTML = "<p>No products found for \"" + searchQuery + "\"</p>";
+                        return;
+                    }
+
+                    // แสดงผลลัพธ์
+                    searchResults.forEach((product) => {
+                        const productCard = document.createElement("div");
+                        productCard.className = "card";
+
+                        productCard.innerHTML = `
+                    <img src="${product.image_url}" alt="${product.product_name}" class="product-image">
+                    <div class="product-name">${product.product_name}</div>
+                    <div class="product-price">฿${product.price}</div>
+                    <button class="btn-buy">Buy Now</button>
+                `;
+
+                        productContainer.appendChild(productCard);
+                    });
+                });
+            </script>
+
+
+        </div>
+
+    </div>
+    </main>
+
+    <!-- Add more result items as needed -->
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__addr">
+            <img src="../src\bloom logo.png" alt="bloom logo">
+
+            <h2>Location</h2>
+
+            <address>
+                Bangkok, Thailand<br>
+            </address>
+        </div>
+
+        <ul class="footer__nav">
+            <li class="nav__item">
+                <h2 class="nav__title">BLOOM</h2>
+
+                <ul class="nav__ul">
+                    <li>
+                        <a href="#">Brand Story</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Contact Us</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Track Order</a>
+                    </li>
+                    <li>
+                        <a href="#">Return / Refund</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav__item nav__item--extra">
+                <h2 class="nav__title">CATEGORY</h2>
+
+                <ul class="nav__ul nav__ul--extra">
+                    <li>
+                        <a href="#">Body</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Mask</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Face Care</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Sunscreen</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Cleanser</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Acne Prevention</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav__item">
+                <h2 class="nav__title">Stay In Touch. </h2>
+                <div class="email-container">
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                    <span class="next-icon">&#10095;</span> <!-- Next arrow icon -->
+                </div>
+                <p style="font-size: 14px;">Please refer to our Privacy Policy and Terms of Use for more details
+                    or Contact Us</p>
+
+                <ul class="nav__ul">
+                    <i class="bi bi-facebook"></i>
+                    <i class="bi bi-instagram"></i>
+                    <i class="bi bi-tiktok"></i>
+
+                </ul>
+            </li>
+        </ul>
+
+        <div class="legal">
+            <p>&copy; Bloom Inc. 2024. All rights reserved.</p>
+
+            <div class="legal__links">
+                <span>Terms & Conditions </span>
+                <span>Privacy Policy </span>
+            </div>
+        </div>
+    </footer>
+
+
+
+</body>
+
+</html>
