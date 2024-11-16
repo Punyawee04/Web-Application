@@ -7,7 +7,6 @@ const jwt = require('jsonwebtoken');
 const mysql = require('mysql2');
 const cors = require('cors');
 const authenticateToken = require('./authMiddleware');
-app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
 dotenv.config();
@@ -46,6 +45,7 @@ app.get('/api/products', (req, res) => {
         res.json(results); // Send product data as JSON
     });
 });
+
 
 // Route to fetch data from the LoginDetail table
 app.get('/api/loginDetails', (req, res) => {

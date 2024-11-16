@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Insert HTML structure for each product card
                 card.innerHTML = `
                     <img src="${product.image_url}" alt="${product.name}" class="product-image"/>
-                    <h3 class="product-name">${product.product_name}</h3>
+                    <h5 class="product-name">${product.product_name}</h5>
                     <p class="product-price">${product.price} บาท</p>
                     <button class="btn-buy">ซื้อสินค้า</button>
                 `;

@@ -15,7 +15,7 @@ body{
 .logo img {
     width: auto;
     height: 70px;
-    margin-left: 5rem; /* Shift logo 1 block to the right */
+    margin-left: 5rem; 
     border-bottom: 1px solid #EC297B;
 }
 .menu{
