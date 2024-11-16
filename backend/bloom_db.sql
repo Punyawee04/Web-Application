@@ -107,11 +107,12 @@ DROP TABLE IF EXISTS LoginDetail;
 
 
 -- Insert data into LoginDetail table
-INSERT INTO LoginDetail (UserName, Password, Email, login_Time, logout_Time, login_Date, Status)
+INSERT INTO LoginDetail (UserName, Passwd, Email, login_Time, logout_Time, login_Date, Status)
 VALUES 
 ('admin1', '1111', 'admin1@example.com', '08:00', '16:00', '2024-11-01', 'Active'),
 ('admin2', '2222', 'admin2@example.com', '09:00', '17:00', '2024-11-02', 'Inactive'),
 ('testUser', 'hashedPassword', 'test@example.com', '10:00', '18:00', '2024-11-17', 'Active');
+INSERT INTO LoginDetail (UserName, Passwd) VALUES ('admin1', '1111');
 
 -- Insert data into Administor table
 INSERT INTO Administor (admin_id, admin_name, login_Date, login_Time, login_id)
