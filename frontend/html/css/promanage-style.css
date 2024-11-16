@@ -72,15 +72,6 @@ body{
 
 }
 
-.products-section1 {
-    display: flex;
-    /* จัดระเบียบให้ห่างกัน */
-    align-items: center;
-    /* จัดแนวให้แนวนอนอยู่ในกลาง */
-    font-size: 1.8rem;
-    color: #333;
-    font-weight: bold;
-}
 
 
 .product-nav {
@@ -150,7 +141,7 @@ body{
 
 
 .bi-trash3{
-    margin-left: 65rem;
+    margin-left: 30rem;
     font-size: 16px;
     color: black ;
     
@@ -172,14 +163,33 @@ body{
 
 .header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
     margin-bottom: 20px;
+    padding: 0 10px; /* Add padding to align nicely with the container */
 }
-
+.header2{
+    position: relative;
+}
 .header h1 {
     font-size: 18px;
     margin: 0;
+    flex: 1; /* Ensure it takes available space */
+}
+
+.header .delete {
+    margin-right: 10px; /* Add spacing between delete icon and button */
+}
+
+.header .delete a i {
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.header .delete a i:hover {
+    color: #EC297B;
 }
 
 .add-button {
@@ -189,51 +199,16 @@ body{
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    border: none;
     font-size: 14px;
+    margin-left: 10px; /* Ensure spacing between delete icon and button */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
 }
 
-
-.pagination {
-    display: flex;
-    margin-left: auto;
-    font-size: 12px;
-    color: #333;
-    margin-left: auto;
-}
-
-.pagination-arrow {
-    background: none;
-    border: none;
-    color: #333;
-    font-size: 12px;
-    cursor: pointer;
-    padding: 5px;
-    outline: none;
-}
-
-.pagination-number {
-    display: inline-block;
-    padding: 3px 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin: 0 5px;
-    font-size: 12px;
-    text-align: center;
-    min-width: 20px;
-}
-
-.pagination span {
-    font-size: 14px;
-    margin-left: 5px;
-    color: #333333;
-}
-
-
-
-.add-button-btn:hover {
+.add-button:hover {
     background-color: #ff6fa8;
 }
+
 
 /* Table Styles */
  /* สไตล์พื้นฐานสำหรับตาราง */

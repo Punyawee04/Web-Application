@@ -8,7 +8,6 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const authenticateToken = require('./authMiddleware');
 
-
 dotenv.config();
 const app = express();
 app.use(cors());
@@ -36,16 +35,15 @@ app.use(express.static(__dirname));
 
 // Route to fetch all products
 app.get('/api/products', (req, res) => {
-    const sql = 'SELECT * FROM Product'; // Ensure your table is named correctly
+    const sql = 'SELECT * FROM Product';
     db.query(sql, (err, results) => {
         if (err) {
             res.status(500).json({ error: err.message });
             return;
         }
-        res.json(results); // Send product data as JSON
+        res.json(results);
     });
 });
-
 
 // Route to fetch data from the LoginDetail table
 app.get('/api/loginDetails', (req, res) => {
@@ -58,34 +56,41 @@ app.get('/api/loginDetails', (req, res) => {
 });
 
 // Route to insert a new user into the LoginDetail table
-app.post('/api/addLoginDetail', (req, res) => {
+app.post('/api/addLoginDetail', async (req, res) => {
     const { username, password } = req.body;
+
     if (!username || !password) {
-        return res.status(400).json({ error: "Username and password are required." });
+        return res.status(400).json({ error: 'Username and password are required.' });
     }
 
-    const sql = 'INSERT INTO LoginDetail (username, password) VALUES (?, ?)';
-    db.query(sql, [username, password], (err, result) => {
-        if (err) {
-            return res.status(500).json({ error: err.message });
-        }
-        res.json({ message: 'User added successfully!', userId: result.insertId });
-    });
-});
-// Secure  user management and product management
-app.get('/api/validate-token', authenticateToken, (req, res) => {
-    res.json({ valid: true, user: req.user }); // If valid, send user data
+    try {
+        // Hash the password before storing it
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const sql = 'INSERT INTO LoginDetail (UserName, Password) VALUES (?, ?)';
+        db.query(sql, [username, hashedPassword], (err, result) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            res.json({ message: 'User added successfully!', userId: result.insertId });
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Error hashing password.' });
+    }
 });
 
+// Secure user management and product management
 app.get('/api/user-manage', authenticateToken, (req, res) => {
     res.json({ message: 'User Management Access Granted', user: req.user });
 });
-app.get('/product-manage', authenticateToken, (req, res) => {
-    res.sendFile(path.join(__dirname, 'html', 'promanage.html'));
-});
+
 // Login endpoint
 app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
+
+    if (!username || !password) {
+        return res.status(400).json({ message: 'Username and password are required.' });
+    }
 
     // Query the database for the user with the provided username
     const sql = 'SELECT * FROM LoginDetail WHERE UserName = ?';
@@ -95,15 +100,15 @@ app.post('/api/login', (req, res) => {
         }
 
         if (results.length === 0) {
-            return res.status(400).json({ message: 'Invalid username or password' });
+            return res.status(400).json({ message: 'Invalid username or password.' });
         }
 
-        const user = results[0]; // Get the user object from the results
+        const user = results[0];
 
-        // Compare the hashed password using bcrypt
-        const isPasswordMatch = await bcrypt.compare(password, user.Password);
-        if (!isPasswordMatch) {
-            return res.status(400).json({ message: 'Invalid username or password' });
+        // Compare the provided password with the stored hashed password
+        const isPasswordValid = await bcrypt.compare(password, user.Password);
+        if (!isPasswordValid) {
+            return res.status(400).json({ message: 'Invalid username or password.' });
         }
 
         // Generate JWT if the password matches
@@ -116,15 +121,8 @@ app.post('/api/login', (req, res) => {
     });
 });
 
-const tokenBlacklist = new Set(); // Replace with Redis or database for production
 
-app.post('/api/logout', (req, res) => {
-    const token = req.headers['authorization']?.split(' ')[1];
-    if (token) {
-        tokenBlacklist.add(token); // Add the token to the blacklist
-    }
-    res.json({ message: 'Logged out successfully' });
-});
+
 
 
 // Catch-all route for undefined routes

@@ -110,14 +110,15 @@ VALUES
 -- Insert data into Administor table
 INSERT INTO Administor (admin_id, admin_name, login_Date, login_Time, login_id)
 VALUES 
-(1001, 'Alice Johnson', '2024-11-01', '08:00', 1),
-(1002, 'Bob Smith', '2024-11-02', '09:00', 2);
-
+(1001, 'Alice Johnson', '2024-11-01', '08:00', 101),
+(1002, 'Bob Smith', '2024-11-02', '09:00', 102);
+drop table LoginDetail;
 -- Insert data into Administor_phonenum table
 INSERT INTO Administor_phonenum (admin_id, admin_phone_number)
 VALUES 
 (1001, '123-456-7890'),
 (1002, '987-654-3210');
+SELECT UserName, Password FROM LoginDetail;
 
 -- Insert data into Email table
 INSERT INTO Email (admin_id, admin_email)
