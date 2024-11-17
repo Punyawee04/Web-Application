@@ -143,7 +143,7 @@ UPDATE Product SET category_name = 'Cleanser' WHERE product_id IN ('PD1', 'PD2',
 UPDATE Product SET category_name = 'Face Care' WHERE product_id IN ('PD3', 'PD4', 'PD5', 'PD7', 'PD9');
 UPDATE Product SET category_name = 'Sunscreen' WHERE product_id = 'PD6';
 UPDATE Product SET category_name = 'Body' WHERE product_id = 'PD10';
-
+select * from Product;
 -- Insert data into ProductCategory table for category associations
 
 
