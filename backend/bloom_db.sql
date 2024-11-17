@@ -1,6 +1,5 @@
 create database Bloom_db;
 use Bloom_db;
-
 -- Create a new user 'new_user' with a password
 CREATE USER 'bloom'@'localhost' IDENTIFIED BY 'ict555';
 GRANT SELECT, INSERT ON Bloom_db.* TO 'bloom'@'localhost';
@@ -118,7 +117,7 @@ VALUES
 ('PD7', 4.6, 90, 935, 'Green Tea Seed Serum', 'South Korea', 'Soothing', 'All', 1, 'Green Tea, Betaine', 'Innisfree', 'Innisfree Green Tea Seed Serum', 'Serum'),
 ('PD8', 4.4, 110, 398, 'Micellar Cleansing Water', 'France', 'Cleansing', 'All', 1, 'Micelles, Glycerin', 'Garnier', 'Garnier SkinActive Micellar Cleansing Water', 'Cleanser'),
 ('PD9', 4.8, 75, 9800, 'Advanced Night Repair Serum', 'USA', 'Repairing', 'All', 1, 'Hyaluronic Acid, Peptides', 'Estée Lauder', 'Estée Lauder Advanced Night Repair', 'Serum'),
-('PD10', 4.5, 140, 280, 'Smoothing Body Lotion', 'USA', 'Exfoliating', 'All', 1, 'Lactic Acid, Glycerin', 'AmLactin', 'AmLactin Daily Moisturizing Body Lotion', 'Lotion');
+('PD10', 4.5, 140, 280, 'Smoothing Body Lotion', 'USA', 'Exfoliating', 'All', 1, 'Lactic Acid, Glycerin', 'AmLactin', 'AmLactin Daily Moisturizing Body Lotion', 'body');
 
 
 UPDATE Product 
@@ -161,4 +160,5 @@ UPDATE Product
 SET image_url = 'http://localhost:8080/images/product10.jpg' 
 WHERE product_id = 'PD10';
 
-select * from loginDetail;
+
+

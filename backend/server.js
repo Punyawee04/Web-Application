@@ -254,6 +254,148 @@ app.post('/api/search', (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// search filter
+app.post('/api/filter-search', (req, res) => {
+    const { brand, category, priceMin, priceMax } = req.body;
+
+    let sql = `SELECT * FROM Product WHERE 1=1`;
+    const params = [];
+
+    if (brand) {
+        sql += ` AND brand LIKE ?`;
+        params.push(`%${brand}%`);
+    }
+
+    if (category) {
+        sql += ` AND category_name = ?`;
+        params.push(category);
+    }
+
+    if (priceMin) {
+        sql += ` AND price >= ?`;
+        params.push(priceMin);
+    }
+
+    if (priceMax) {
+        sql += ` AND price <= ?`;
+        params.push(priceMax);
+    }
+
+    db.query(sql, params, (err, results) => {
+        if (err) {
+            console.error('Database Error:', err);
+            return res.status(500).json({ error: 'Database query failed' });
+        }
+
+        res.json(results);
+    });
+});
+
+
+
 // Handle 404 Not Found
 app.use((req, res) => {
     res.status(404).json({ error: 'Endpoint not found' });

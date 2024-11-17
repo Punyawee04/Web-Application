@@ -44,6 +44,10 @@ console.log("Serving JavaScript files from:", path.join(__dirname, "callWS"));
 app.get('/search-result', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'search-result(ce).html'));
 });
+
+app.get('/filter-search', (req, res) => {
+    res.sendFile(path.join(__dirname, 'html', 'search-result(ce).html'));
+});
     
 // Handle invalid paths
 app.use((req, res, next) => {
