@@ -51,25 +51,25 @@ app.use(express.static(__dirname));
 
 // Route to fetch all products
 app.get('/api/products', (req, res) => {
-    const sql = `SELECT 
-            product_id,
-            product_name,
-            brand,
-            price,
-            image_url,
-            stock_quantity,
-            category_name
-        FROM 
-            Product
-`;
+    const sql = 'SELECT * FROM Product';
+    console.log('Executing SQL:', sql); // Debug SQL query
+
     db.query(sql, (err, results) => {
         if (err) {
+            console.error('Database Error:', err); // Log error for debugging
             res.status(500).json({ error: err.message });
             return;
         }
+        if (results.length === 0) {
+            console.log('No products found'); // Debug empty results
+            res.json({ message: 'No products available' });
+            return;
+        }
+        console.log('Query Results:', results); // Debug results
         res.json(results);
     });
 });
+
 //Add product
 
 

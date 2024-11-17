@@ -159,6 +159,7 @@ VALUES
 
 
 
+<<<<<<< HEAD
 -- Insert data into Product table with well-known brand products
 INSERT INTO Product (product_id, product_rating, stock_quantity, price, description, origin, benefit, skin_type, quantity, ingredients, brand, product_name, category_name)
 VALUES 
@@ -176,6 +177,13 @@ VALUES
 
 
 
+=======
+UPDATE Product SET category_name = 'Cleanser' WHERE product_id IN ('PD1', 'PD2', 'PD8');
+UPDATE Product SET category_name = 'Face Care' WHERE product_id IN ('PD3', 'PD4', 'PD5', 'PD7', 'PD9');
+UPDATE Product SET category_name = 'Sunscreen' WHERE product_id = 'PD6';
+UPDATE Product SET category_name = 'Body' WHERE product_id = 'PD10';
+select * from Product;
+>>>>>>> 47e0ecd0ad2b60aae8940b23d7188bfc44926875
 -- Insert data into ProductCategory table for category associations
 
 
