@@ -1,53 +1,9 @@
 create database Bloom_db;
 use Bloom_db;
-ALTER TABLE Product MODIFY image_url VARCHAR(500);
 
 -- Create a new user 'new_user' with a password
 CREATE USER 'bloom'@'localhost' IDENTIFIED BY 'ict555';
 GRANT SELECT, INSERT ON Bloom_db.* TO 'bloom'@'localhost';
-ALTER TABLE Product MODIFY image_url TEXT;
-
-ALTER TABLE Product ADD image_url VARCHAR(255);
-
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product1.jpg' 
-WHERE product_id = 'PD1';
-
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product2.jpeg' 
-WHERE product_id = 'PD2';
-
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product3.png' 
-WHERE product_id = 'PD3';
-
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product4.jpg' 
-WHERE product_id = 'PD4';
-
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product5.jpg' 
-WHERE product_id = 'PD5';
-
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product6.jpg' 
-WHERE product_id = 'PD6';
-
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product7.jpg' 
-WHERE product_id = 'PD7';
-
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product8.jpg' 
-WHERE product_id = 'PD8';
-
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product9.jpg' 
-WHERE product_id = 'PD9';
-
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product10.jpg' 
-WHERE product_id = 'PD10';
 
 -- Table: LoginDetail
 CREATE TABLE LoginDetail (
@@ -61,7 +17,6 @@ CREATE TABLE LoginDetail (
     Status VARCHAR(50),                        -- Account status (e.g., Active/Inactive)
     PRIMARY KEY (login_id)                     -- Primary key on login_id
 ) ENGINE=InnoDB;
-
 
 -- Table: Administor
 CREATE TABLE Administor (
@@ -104,7 +59,6 @@ CREATE TABLE Product (
     image_url  VARCHAR(500)
 );
 
-DROP TABLE Product;
 
 -- Table: AdministratorProducts
 -- CREATE TABLE AdministratorProducts (
@@ -115,9 +69,6 @@ DROP TABLE Product;
 --     FOREIGN KEY (product_id) REFERENCES Product(product_id)
 -- );
 
-
-USE bloom_db;
-SHOW TABLES;
 
 
 -- ----------------------------------------------------------------------------------------------------------------
@@ -141,13 +92,11 @@ VALUES
 (1001, 'Alice Johnson', '2024-11-01', '08:00', 1),
 (1002, 'Bob Smith', '2024-11-02', '09:00', 2);
 
-
 -- Insert data into Administor_phonenum table
 INSERT INTO Administor_phonenum (admin_id, admin_phone_number)
 VALUES 
 (1001, '123-456-7890'),
 (1002, '987-654-3210');
-
 
 
 -- Insert data into Email table
@@ -157,9 +106,6 @@ VALUES
 (1002, 'bob.smith@example.com');
 
 
-
-
-<<<<<<< HEAD
 -- Insert data into Product table with well-known brand products
 INSERT INTO Product (product_id, product_rating, stock_quantity, price, description, origin, benefit, skin_type, quantity, ingredients, brand, product_name, category_name)
 VALUES 
@@ -175,15 +121,44 @@ VALUES
 ('PD10', 4.5, 140, 280, 'Smoothing Body Lotion', 'USA', 'Exfoliating', 'All', 1, 'Lactic Acid, Glycerin', 'AmLactin', 'AmLactin Daily Moisturizing Body Lotion', 'Lotion');
 
 
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product1.jpg' 
+WHERE product_id = 'PD1';
 
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product2.jpeg' 
+WHERE product_id = 'PD2';
 
-=======
-UPDATE Product SET category_name = 'Cleanser' WHERE product_id IN ('PD1', 'PD2', 'PD8');
-UPDATE Product SET category_name = 'Face Care' WHERE product_id IN ('PD3', 'PD4', 'PD5', 'PD7', 'PD9');
-UPDATE Product SET category_name = 'Sunscreen' WHERE product_id = 'PD6';
-UPDATE Product SET category_name = 'Body' WHERE product_id = 'PD10';
-select * from Product;
->>>>>>> 47e0ecd0ad2b60aae8940b23d7188bfc44926875
--- Insert data into ProductCategory table for category associations
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product3.png' 
+WHERE product_id = 'PD3';
 
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product4.jpg' 
+WHERE product_id = 'PD4';
 
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product5.jpg' 
+WHERE product_id = 'PD5';
+
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product6.jpg' 
+WHERE product_id = 'PD6';
+
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product7.jpg' 
+WHERE product_id = 'PD7';
+
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product8.jpg' 
+WHERE product_id = 'PD8';
+
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product9.jpg' 
+WHERE product_id = 'PD9';
+
+UPDATE Product 
+SET image_url = 'http://localhost:8080/images/product10.jpg' 
+WHERE product_id = 'PD10';
+
+select * from loginDetail;
