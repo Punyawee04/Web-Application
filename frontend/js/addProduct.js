@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Send product data to the backend API
         try {
-            const response = await fetch('http://localhost:8080/api/products', {
+            const response = await fetch('http://localhost:8080/api/add-product', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(productData),

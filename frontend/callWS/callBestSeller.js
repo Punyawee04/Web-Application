@@ -10,9 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.classList.add('product-card');
                 card.innerHTML = `
                     <img src="${product.image_url}" alt="${product.name}" class="product-image" />
-                    <h3 class="product-name">${product.product_name}</h3>
+                    <p class="product-name">${product.product_name}</p>
                     <p class="product-price">฿${product.price}</p>
-                    <p class="product-rating">⭐ ${product.product_rating}</p>
                 `;
                 container.appendChild(card);
             });

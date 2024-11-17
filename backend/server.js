@@ -54,6 +54,55 @@ app.get('/api/products', (req, res) => {
         res.json(results);
     });
 });
+//Add product
+app.post('/api/add-product', (req, res) => {
+    const {
+        product_id,
+        product_rating,
+        stock_quantity,
+        price,
+        description,
+        origin,
+        benefit,
+        skin_type,
+        quantity,
+        ingredients,
+        brand,
+        product_name,
+        image_url,
+    } = req.body;
+
+    const query = `
+        INSERT INTO Product 
+        (product_id, product_rating, stock_quantity, price, description, origin, benefit, skin_type, quantity, ingredients, brand, product_name, image_url)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    const values = [
+        product_id,
+        product_rating,
+        stock_quantity,
+        price,
+        description,
+        origin,
+        benefit,
+        skin_type,
+        quantity,
+        ingredients,
+        brand,
+        product_name,
+        image_url,
+    ];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Error inserting product:', err);
+            res.status(500).send({ message: 'Error saving product' });
+        } else {
+            res.status(201).send({ message: 'Product saved successfully!' });
+        }
+    });
+});
 
 // Route to fetch data from the LoginDetail table
 app.get('/api/loginDetails', (req, res) => {
@@ -123,6 +172,7 @@ app.post('/api/login', (req, res) => {
 
     console.log('Login Request:', { username, password });
 
+    // ตรวจสอบว่า username และ password ถูกส่งมาหรือไม่
     if (!username || !password) {
         return res.status(400).json({ message: 'Username and password are required.' });
     }
@@ -136,6 +186,7 @@ app.post('/api/login', (req, res) => {
 
         console.log('Database Results:', results);
 
+        // ตรวจสอบว่าเจอผู้ใช้งานหรือไม่
         if (results.length === 0) {
             console.log('User not found:', username);
             return res.status(400).json({ message: 'Invalid username or password.' });
@@ -144,18 +195,25 @@ app.post('/api/login', (req, res) => {
         const user = results[0];
         console.log('Stored Password:', user.Password);
 
+        // ตรวจสอบ Password (ในกรณีนี้ยังไม่มีการใช้ bcrypt แต่ควรใช้ในระบบจริง)
         if (password !== user.Password) {
             console.log('Passwords do not match!');
             return res.status(400).json({ message: 'Invalid username or password.' });
         }
 
+        // สร้าง JWT Token พร้อมกำหนดอายุ 1 ชั่วโมง
         const token = jwt.sign(
             { userId: user.login_id, username: user.UserName },
-            'your_secret_key',
-            { expiresIn: '365d' }
+            'blommpass', // เปลี่ยนเป็น `process.env.JWT_SECRET` ในระบบจริง
+            { expiresIn: '1h' } // กำหนดอายุ 1 ชั่วโมง
         );
 
-        res.json({ message: 'Login successful!', token });
+        // ส่งกลับ Token และข้อความแจ้งเตือน
+        res.json({ 
+            message: 'Login successful!', 
+            token,
+            expiresIn: 3600 // อายุของ Token เป็นวินาที (1 ชั่วโมง)
+        });
     });
 });
 
@@ -198,20 +256,15 @@ app.post('/api/search', (req, res) => {
 
 
 
-// Catch-all route for undefined routes
-// app.use((req, res) => {
-//     res.status(404).send('Page not found');
-// });
+
 
 // Handle 404 Not Found
 app.use((req, res) => {
-    console.log('404 Error: Route not found'); // Debug กรณี Route ไม่ถูกต้อง
     res.status(404).json({ error: 'Endpoint not found' });
 });
 
 // Handle unexpected errors
 app.use((err, req, res, next) => {
-    console.error('Unexpected Error:', err.stack); // Log ข้อผิดพลาด
     res.status(500).json({ error: 'Internal server error' });
 });
 
