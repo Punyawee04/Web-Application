@@ -16,17 +16,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Configure multer for file uploads
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'images/'); // Directory to save uploaded files
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
-    }
-});
-
-const upload = multer({ storage });
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // Connection to MySQL
@@ -51,55 +40,95 @@ app.use(express.static(__dirname));
 
 // Route to fetch all products
 app.get('/api/products', (req, res) => {
-    const sql = 'SELECT * FROM Product';
-    console.log('Executing SQL:', sql); // Debug SQL query
-
+    const sql = `SELECT * FROM Product`;
     db.query(sql, (err, results) => {
         if (err) {
-            console.error('Database Error:', err); // Log error for debugging
-            res.status(500).json({ error: err.message });
-            return;
+            console.error('Error fetching products:', err);
+            return res.status(500).json({ error: 'Failed to fetch products' });
         }
-        if (results.length === 0) {
-            console.log('No products found'); // Debug empty results
-            res.json({ message: 'No products available' });
-            return;
-        }
-        console.log('Query Results:', results); // Debug results
+
+        console.log('Products Fetched:', results); // Debug log
         res.json(results);
     });
 });
 
-//Add product
 
 
-// Add product route
+
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'images/'); // Directory to save uploaded images
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}-${file.originalname}`); // Unique filename
+    },
+});
+
+const upload = multer({ storage });
+
 app.post('/api/add-product', upload.single('image'), (req, res) => {
     const {
         product_id,
         product_name,
+        category_name,
         price,
-        description
+        description,
+        product_rating,
+        stock_quantity,
+        origin,
+        benefit,
+        skin_type,
+        quantity,
+        ingredients,
+        brand,
     } = req.body;
 
-    const imageUrl = req.file ? `/images/${req.file.filename}` : null;
+    // Generate the image URL based on the uploaded file
+    const imageUrl = req.file ? `http://localhost:8080/images/${req.file.filename}` : null;
+
+    if (!product_id || !product_name || !price) {
+        return res.status(400).json({ message: 'Product ID, name, and price are required.' });
+    }
 
     const query = `
-        INSERT INTO Product (product_id, product_name, price, description, image_url)
-        VALUES (?, ?, ?, ?, ?)
+        INSERT INTO Product (
+            product_id, product_name, category_name, price, description, product_rating, stock_quantity, 
+            origin, benefit, skin_type, quantity, ingredients, brand, image_url
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
-    const values = [product_id, product_name, price, description, imageUrl];
+    const values = [
+        product_id,
+        product_name,
+        category_name,
+        price,
+        description,
+        product_rating || null,
+        stock_quantity || null,
+        origin || null,
+        benefit || null,
+        skin_type || null,
+        quantity || null,
+        ingredients || null,
+        brand || null,
+        imageUrl, // Use the generated image URL
+    ];
 
     db.query(query, values, (err) => {
         if (err) {
             console.error('Error saving product:', err);
-            res.status(500).json({ message: 'Error saving product' });
-        } else {
-            res.status(201).json({ message: 'Product added successfully!' });
+            return res.status(500).json({ message: 'Failed to add product. Please try again.' });
         }
+        res.status(201).json({ message: 'Product added successfully!' });
     });
 });
+
+
+
+
+
+
 // Route to fetch data from the LoginDetail table
 app.get('/api/loginDetails', (req, res) => {
     db.query('SELECT * FROM LoginDetail', (err, results) => {

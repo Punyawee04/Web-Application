@@ -105,60 +105,61 @@ VALUES
 (1001, 'alice.johnson@example.com'),
 (1002, 'bob.smith@example.com');
 
-
+-- DO NOT insert FORM MySQL Insert from Web form
 -- Insert data into Product table with well-known brand products
-INSERT INTO Product (product_id, product_rating, stock_quantity, price, description, origin, benefit, skin_type, quantity, ingredients, brand, product_name, category_name)
-VALUES 
-('PD1', 4.8, 100, 500, 'Hydrating Facial Cleanser', 'USA', 'Hydration', 'All', 1, 'Hyaluronic Acid, Glycerin', 'CeraVe', 'CeraVe Hydrating Cleanser', 'Cleanser'),
-('PD2', 4.6, 150, 279, 'Gentle Facial Cleanser', 'Canada', 'Cleansing', 'Sensitive', 1, 'Glycerin, Water', 'Cetaphil', 'Cetaphil Gentle Cleanser', 'Cleanser'),
-('PD3', 4.7, 200, 549, 'Vitamin C Brightening Serum', 'USA', 'Brightening', 'All', 1, 'Vitamin C, Hyaluronic Acid', 'Obagi', 'Obagi Professional-C Serum', 'Serum'),
-('PD4', 4.5, 180, 620, 'Oil-Free Gel Moisturizer', 'South Korea', 'Hydration', 'Oily', 1, 'Water, Glycerin', 'COSRX', 'COSRX Oil-Free Ultra Moisturizing Lotion', 'Moisturizer'),
-('PD5', 4.9, 120, 879, 'Anti-Aging Retinol Night Cream', 'USA', 'Anti-Aging', 'All', 1, 'Retinol, Peptides', 'Olay', 'Olay Regenerist Retinol 24 Night Moisturizer', 'Moisturizer'),
-('PD6', 4.3, 130, 300, 'Daily Sunscreen SPF 50', 'France', 'Sun Protection', 'All', 1, 'Zinc Oxide, Vitamin E', 'La Roche-Posay', 'La Roche-Posay Anthelios Melt-in Milk SPF 50', 'Sunscreen'),
-('PD7', 4.6, 90, 935, 'Green Tea Seed Serum', 'South Korea', 'Soothing', 'All', 1, 'Green Tea, Betaine', 'Innisfree', 'Innisfree Green Tea Seed Serum', 'Serum'),
-('PD8', 4.4, 110, 398, 'Micellar Cleansing Water', 'France', 'Cleansing', 'All', 1, 'Micelles, Glycerin', 'Garnier', 'Garnier SkinActive Micellar Cleansing Water', 'Cleanser'),
-('PD9', 4.8, 75, 9800, 'Advanced Night Repair Serum', 'USA', 'Repairing', 'All', 1, 'Hyaluronic Acid, Peptides', 'Estée Lauder', 'Estée Lauder Advanced Night Repair', 'Serum'),
-('PD10', 4.5, 140, 280, 'Smoothing Body Lotion', 'USA', 'Exfoliating', 'All', 1, 'Lactic Acid, Glycerin', 'AmLactin', 'AmLactin Daily Moisturizing Body Lotion', 'Lotion');
+-- INSERT INTO Product (product_id, product_rating, stock_quantity, price, description, origin, benefit, skin_type, quantity, ingredients, brand, product_name, category_name)
+-- VALUES 
+-- ('PD1', 4.8, 100, 500, 'Hydrating Facial Cleanser', 'USA', 'Hydration', 'All', 1, 'Hyaluronic Acid, Glycerin', 'CeraVe', 'CeraVe Hydrating Cleanser', 'Cleanser'),
+-- ('PD2', 4.6, 150, 279, 'Gentle Facial Cleanser', 'Canada', 'Cleansing', 'Sensitive', 1, 'Glycerin, Water', 'Cetaphil', 'Cetaphil Gentle Cleanser', 'Cleanser'),
+-- ('PD3', 4.7, 200, 549, 'Vitamin C Brightening Serum', 'USA', 'Brightening', 'All', 1, 'Vitamin C, Hyaluronic Acid', 'Obagi', 'Obagi Professional-C Serum', 'Serum'),
+-- ('PD4', 4.5, 180, 620, 'Oil-Free Gel Moisturizer', 'South Korea', 'Hydration', 'Oily', 1, 'Water, Glycerin', 'COSRX', 'COSRX Oil-Free Ultra Moisturizing Lotion', 'Moisturizer'),
+-- ('PD5', 4.9, 120, 879, 'Anti-Aging Retinol Night Cream', 'USA', 'Anti-Aging', 'All', 1, 'Retinol, Peptides', 'Olay', 'Olay Regenerist Retinol 24 Night Moisturizer', 'Moisturizer'),
+-- ('PD6', 4.3, 130, 300, 'Daily Sunscreen SPF 50', 'France', 'Sun Protection', 'All', 1, 'Zinc Oxide, Vitamin E', 'La Roche-Posay', 'La Roche-Posay Anthelios Melt-in Milk SPF 50', 'Sunscreen'),
+-- ('PD7', 4.6, 90, 935, 'Green Tea Seed Serum', 'South Korea', 'Soothing', 'All', 1, 'Green Tea, Betaine', 'Innisfree', 'Innisfree Green Tea Seed Serum', 'Serum'),
+-- ('PD8', 4.4, 110, 398, 'Micellar Cleansing Water', 'France', 'Cleansing', 'All', 1, 'Micelles, Glycerin', 'Garnier', 'Garnier SkinActive Micellar Cleansing Water', 'Cleanser'),
+-- ('PD9', 4.8, 75, 9800, 'Advanced Night Repair Serum', 'USA', 'Repairing', 'All', 1, 'Hyaluronic Acid, Peptides', 'Estée Lauder', 'Estée Lauder Advanced Night Repair', 'Serum'),
+-- ('PD10', 4.5, 140, 280, 'Smoothing Body Lotion', 'USA', 'Exfoliating', 'All', 1, 'Lactic Acid, Glycerin', 'AmLactin', 'AmLactin Daily Moisturizing Body Lotion', 'Body');
 
 
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product1.jpg' 
-WHERE product_id = 'PD1';
+-- UPDATE Product 
+-- SET image_url = 'http://localhost:8080/images/product1.jpg' 
+-- WHERE product_id = 'PD1';
 
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product2.jpeg' 
-WHERE product_id = 'PD2';
+-- UPDATE Product 
+-- SET image_url = 'http://localhost:8080/images/product2.jpeg' 
+-- WHERE product_id = 'PD2';
 
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product3.png' 
-WHERE product_id = 'PD3';
+-- UPDATE Product 
+-- SET image_url = 'http://localhost:8080/images/product3.png' 
+-- WHERE product_id = 'PD3';
 
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product4.jpg' 
-WHERE product_id = 'PD4';
+-- UPDATE Product 
+-- SET image_url = 'http://localhost:8080/images/product4.jpg' 
+-- WHERE product_id = 'PD4';
 
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product5.jpg' 
-WHERE product_id = 'PD5';
+-- UPDATE Product 
+-- SET image_url = 'http://localhost:8080/images/product5.jpg' 
+-- WHERE product_id = 'PD5';
 
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product6.jpg' 
-WHERE product_id = 'PD6';
+-- UPDATE Product 
+-- SET image_url = 'http://localhost:8080/images/product6.jpg' 
+-- WHERE product_id = 'PD6';
 
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product7.jpg' 
-WHERE product_id = 'PD7';
+-- UPDATE Product 
+-- SET image_url = 'http://localhost:8080/images/product7.jpg' 
+-- WHERE product_id = 'PD7';
 
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product8.jpg' 
-WHERE product_id = 'PD8';
+-- UPDATE Product 
+-- SET image_url = 'http://localhost:8080/images/product8.jpg' 
+-- WHERE product_id = 'PD8';
 
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product9.jpg' 
-WHERE product_id = 'PD9';
+-- UPDATE Product 
+-- SET image_url = 'http://localhost:8080/images/product9.jpg' 
+-- WHERE product_id = 'PD9';
 
-UPDATE Product 
-SET image_url = 'http://localhost:8080/images/product10.jpg' 
-WHERE product_id = 'PD10';
+-- UPDATE Product 
+-- SET image_url = 'http://localhost:8080/images/product10.jpg' 
+-- WHERE product_id = 'PD10';
+drop table product;
+select * from product;
 
-select * from loginDetail;

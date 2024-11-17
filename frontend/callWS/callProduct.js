@@ -15,15 +15,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         products.forEach((product) => {
             const row = document.createElement("tr");
             console.log("Product category:", product.category);
+            
             row.innerHTML = `
+            
                 <td><img src="${product.image_url}" alt="${product.product_name}" style="width: 50px; height: 50px; margin-left:30px;"></td>
                 <td>${product.product_id}</td>
                 <td>${product.product_name}</td>
-                <td>${product.brand || "Vendor"}</td>
+                <td>${product.brand || " -"}</td>
                 <td>${product.category_name  || "Category"}</td>
                 <td>${product.stock_quantity || 0} in stock</td>
                 <td>${product.price || "0.00"} บาท</td>
-                <td><span class="${product.status === "Active" ? "status-active" : "status-draft"}">${product.status || "Draft"}</span></td>
+                <td><span class="${product.status === "Active" ? "status-active" : "status-draft"}">${product.status || "Active"}</span></td>
                 <td style"display:flex;     flex-direction: row;">
                     <button class="edit-button"><i class="bi bi-trash3"></i></button>
 

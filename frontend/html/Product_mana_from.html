@@ -43,16 +43,16 @@
                             <label for="product_name">Product Name</label>
                             <input type="text" id="product_name" placeholder="e.g., Sample Product">
                         </div>
-
+                        <div class="form-group">
+                            <label for="category_name">Category Name</label>
+                            <input type="text" id="category_name" placeholder="e.g., Body">
+                        </div>
                         <div class="form-group">
                             <label for="description">Description</label>
                             <textarea id="description" placeholder="Enter product description here..."></textarea>
                         </div>
 
-                        <div class="form-group">
-                            <label for="image_url">Image URL</label>
-                            <input type="text" id="image_url" placeholder="e.g., http://localhost:8080/images/sample.jpg">
-                        </div>
+                        
 
                         <div class="form-group">
                             <label for="price">Price</label>
@@ -66,7 +66,7 @@
                         <div class="form-group">
                             <label for="imageUpload">Upload Image</label>
                             <input type="file" id="imageUpload" accept="image/*">
-                            <img id="imagePreview" src="" alt="Image Preview" style="display: none; width: 200px; height: auto; margin-top: 10px;">
+                                <img id="imagePreview" src="" alt="Image Preview" style="display: none; width: 200px; height: auto; margin-top: 10px;">
 
                         </div>
                     </div>
@@ -123,12 +123,11 @@
 </html>
 
 <script>
-    // Preview the uploaded image
-    document.getElementById('imageUpload').addEventListener('change', function(event) {
+    document.getElementById('imageUpload').addEventListener('change', function (event) {
         const file = event.target.files[0]; // Get the selected file
         if (file) {
             const reader = new FileReader(); // Create a FileReader to read the file
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 const preview = document.getElementById('imagePreview');
                 preview.src = e.target.result; // Set the image source to the file data
                 preview.style.display = 'block'; // Make the preview visible
@@ -137,45 +136,44 @@
         }
     });
     document.getElementById('addProductForm').addEventListener('submit', async (event) => {
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault();
 
-        // Collect form data
-        const product = {
-            product_id: document.getElementById('product_id').value,
-            product_rating: parseFloat(document.getElementById('product_rating').value),
-            stock_quantity: parseInt(document.getElementById('stock_quantity').value, 10),
-            price: parseFloat(document.getElementById('price').value),
-            description: document.getElementById('description').value,
-            origin: document.getElementById('origin').value,
-            benefit: document.getElementById('benefit').value,
-            skin_type: document.getElementById('skin_type').value,
-            quantity: parseInt(document.getElementById('quantity').value, 10),
-            ingredients: document.getElementById('ingredients').value,
-            brand: document.getElementById('brand').value,
-            product_name: document.getElementById('product_name').value,
-            image_url: document.getElementById('image_url').value,
-        };
+        const formData = new FormData();
+        formData.append('product_id', document.getElementById('product_id').value);
+        formData.append('product_name', document.getElementById('product_name').value);
+        formData.append('category_name', document.getElementById('category_name').value);
+        formData.append('price', document.getElementById('price').value);
+        formData.append('description', document.getElementById('description').value);
+        formData.append('product_rating', document.getElementById('product_rating').value);
+        formData.append('stock_quantity', document.getElementById('stock_quantity').value);
+        formData.append('origin', document.getElementById('origin').value);
+        formData.append('benefit', document.getElementById('benefit').value);
+        formData.append('skin_type', document.getElementById('skin_type').value);
+        formData.append('quantity', document.getElementById('quantity').value);
+        formData.append('ingredients', document.getElementById('ingredients').value);
+        formData.append('brand', document.getElementById('brand').value);
+
+        const fileInput = document.getElementById('imageUpload');
+        if (fileInput.files[0]) {
+            formData.append('image', fileInput.files[0]); // Append the image file
+        }
 
         try {
-            // Send data to the backend
             const response = await fetch('http://localhost:8080/api/add-product', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(product),
+                body: formData,
             });
 
+            const data = await response.json();
             if (response.ok) {
-                const data = await response.json();
-                alert(data.message); // Display success message
+                alert(data.message);
             } else {
-                const error = await response.json();
-                alert(`Error: ${error.message}`);
+                alert(`Error: ${data.message}`);
             }
         } catch (err) {
             console.error('Error:', err);
             alert('Failed to save the product.');
         }
     });
+    
 </script>
