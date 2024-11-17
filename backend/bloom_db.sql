@@ -1,9 +1,11 @@
 create database Bloom_db;
 use Bloom_db;
+ALTER TABLE Product MODIFY image_url VARCHAR(500);
 
 -- Create a new user 'new_user' with a password
 CREATE USER 'bloom'@'localhost' IDENTIFIED BY 'ict555';
 GRANT SELECT, INSERT ON Bloom_db.* TO 'bloom'@'localhost';
+ALTER TABLE Product MODIFY image_url TEXT;
 
 ALTER TABLE Product ADD image_url VARCHAR(255);
 
@@ -45,6 +47,7 @@ CREATE TABLE Administor (
     login_id INT,              -- Foreign Key to LoginDetail
     FOREIGN KEY (login_id) REFERENCES LoginDetail(login_id)
 );
+
 
 -- Table: Administor_phonenum
 CREATE TABLE Administor_phonenum (

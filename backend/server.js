@@ -6,12 +6,28 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mysql = require('mysql2');
 const cors = require('cors');
+const multer = require('multer');
+
 const authenticateToken = require('./authMiddleware');
+
 
 dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'images/'); // Directory to save uploaded files
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
+    }
+});
+
+const upload = multer({ storage });
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // Connection to MySQL
 const db = mysql.createConnection({
@@ -55,55 +71,35 @@ app.get('/api/products', (req, res) => {
     });
 });
 //Add product
-app.post('/api/add-product', (req, res) => {
+
+
+// Add product route
+app.post('/api/add-product', upload.single('image'), (req, res) => {
     const {
         product_id,
-        product_rating,
-        stock_quantity,
-        price,
-        description,
-        origin,
-        benefit,
-        skin_type,
-        quantity,
-        ingredients,
-        brand,
         product_name,
-        image_url,
+        price,
+        description
     } = req.body;
 
+    const imageUrl = req.file ? `/images/${req.file.filename}` : null;
+
     const query = `
-        INSERT INTO Product 
-        (product_id, product_rating, stock_quantity, price, description, origin, benefit, skin_type, quantity, ingredients, brand, product_name, image_url)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO Product (product_id, product_name, price, description, image_url)
+        VALUES (?, ?, ?, ?, ?)
     `;
 
-    const values = [
-        product_id,
-        product_rating,
-        stock_quantity,
-        price,
-        description,
-        origin,
-        benefit,
-        skin_type,
-        quantity,
-        ingredients,
-        brand,
-        product_name,
-        image_url,
-    ];
+    const values = [product_id, product_name, price, description, imageUrl];
 
-    db.query(query, values, (err, result) => {
+    db.query(query, values, (err) => {
         if (err) {
-            console.error('Error inserting product:', err);
-            res.status(500).send({ message: 'Error saving product' });
+            console.error('Error saving product:', err);
+            res.status(500).json({ message: 'Error saving product' });
         } else {
-            res.status(201).send({ message: 'Product saved successfully!' });
+            res.status(201).json({ message: 'Product added successfully!' });
         }
     });
 });
-
 // Route to fetch data from the LoginDetail table
 app.get('/api/loginDetails', (req, res) => {
     db.query('SELECT * FROM LoginDetail', (err, results) => {

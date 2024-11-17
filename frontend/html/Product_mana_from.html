@@ -63,6 +63,12 @@
                             <label for="product_rating">Rating</label>
                             <input type="number" id="product_rating" step="0.1" max="5" placeholder="e.g., 4.5">
                         </div>
+                        <div class="form-group">
+                            <label for="imageUpload">Upload Image</label>
+                            <input type="file" id="imageUpload" accept="image/*">
+                            <img id="imagePreview" src="" alt="Image Preview" style="display: none; width: 200px; height: auto; margin-top: 10px;">
+
+                        </div>
                     </div>
 
                     <!-- Right Side Form Fields -->
@@ -117,6 +123,19 @@
 </html>
 
 <script>
+    // Preview the uploaded image
+    document.getElementById('imageUpload').addEventListener('change', function(event) {
+        const file = event.target.files[0]; // Get the selected file
+        if (file) {
+            const reader = new FileReader(); // Create a FileReader to read the file
+            reader.onload = function(e) {
+                const preview = document.getElementById('imagePreview');
+                preview.src = e.target.result; // Set the image source to the file data
+                preview.style.display = 'block'; // Make the preview visible
+            };
+            reader.readAsDataURL(file); // Read the file as a data URL
+        }
+    });
     document.getElementById('addProductForm').addEventListener('submit', async (event) => {
         event.preventDefault(); // Prevent the default form submission
 
