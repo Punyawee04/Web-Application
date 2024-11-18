@@ -189,29 +189,32 @@
     <div class="filter-section" id="filterSection">
         <div class="filter-group inline">
             <label>Brand</label>
-            <input type="text" placeholder="search by brand">
+            <input type="text" id="brandInput" placeholder="search by brand">
         </div>
 
         <div class="filter-group">
             <label>Category</label>
             <div class="category-buttons">
-                <button class="category-button">Body</button>
-                <button class="category-button ">Mask</button>
-                <button class="category-button">Face Care</button>
-                <button class="category-button">Sunscreen</button>
-                <button class="category-button">Cleanser</button>
-                <button class="category-button">Acne Prevention</button>
+                <button class="category-button" data-category="Body">Body</button>
+                <button class="category-button "data-category="serum">Serum</button>
+                <button class="category-button"data-category="moisturizer">Moisturizer</button>
+                <button class="category-button"data-category="Sunscreen">Sunscreen</button>
+                <button class="category-button"data-category="Cleanser">Cleanser</button>
             </div>
         </div>
 
         <div class="filter-group inline">
             <label>Price</label>
             <div class="price-inputs">
-                <input type="text" placeholder="฿">
+                <input type="text" id="priceMin" placeholder="Min price ฿">
                 <span>-</span>
-                <input type="text" placeholder="฿">
+                <input type="text" id="priceMax" placeholder="Max price ฿">
             </div>
         </div>
+<!-- search filter -->
+        
+    <button id="searchButton">Search</button>
+        
     </div>
 
 
@@ -237,7 +240,47 @@
                 });
             });
         });
+        //  search filter --
+        document.getElementById('searchButton').addEventListener('click', async () => {
+    const brand = document.getElementById('brandInput')?.value || '';
+    const priceMin = document.getElementById('priceMin')?.value || '';
+    const priceMax = document.getElementById('priceMax')?.value || '';
+    const selectedCategoryButton = document.querySelector('.category-button.active');
+    const category = selectedCategoryButton ? selectedCategoryButton.dataset.category : '';
+
+    // Debugging parameters
+    console.log('Brand:', brand);
+    console.log('Category:', category);
+    console.log('Price Min:', priceMin);
+    console.log('Price Max:', priceMax);
+
+    const searchParams = { brand, category, priceMin, priceMax };
+
+    try {
+        console.log('Fetching filtered results...');
+        const results = await fetchFilteredResults(searchParams);
+
+        // Debugging API response
+        console.log('Search Results:', results);
+
+        // Redirect to the results page
+        window.location.href = '/search-result';
+    } catch (error) {
+        console.error('Error during search:', error);
+    }
+});
+       
+
     </script>
+
+
+
+
+
+
+
+<script type="module" src="/js/callsearch-filter.js"></script>
+    
     <script src="/js/callSearch.js"></script>
 </body>
 </html>

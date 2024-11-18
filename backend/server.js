@@ -278,8 +278,180 @@ app.post('/api/search', (req, res) => {
     });
 });
 
+// DELETE product endpoint
+app.delete("/api/delete-product/:id", (req, res) => {
+    const productId = req.params.id;
+
+    // Query to delete the product
+    const query = "DELETE FROM product WHERE product_id = ?";
+
+    db.query(query, [productId], (err, result) => {
+        if (err) {
+            console.error("Error deleting product:", err);
+            return res.status(500).json({
+                success: false,
+                message: "Failed to delete product from database.",
+            });
+        }
+
+        if (result.affectedRows === 0) {
+            // No product found with the given ID
+            return res.status(404).json({
+                success: false,
+                message: "Product not found.",
+            });
+        }
+
+        // Successfully deleted the product
+        res.status(200).json({
+            success: true,
+            message: "Product deleted successfully.",
+        });
+    });
+});
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// search filter
+app.post('/api/filter-search', (req, res) => {
+    const { brand, category, priceMin, priceMax } = req.body;
+
+    let sql = `SELECT * FROM Product WHERE 1=1`;
+    const params = [];
+
+    if (brand) {
+        sql += ` AND brand LIKE ?`;
+        params.push(`%${brand}%`);
+    }
+
+    if (category) {
+        sql += ` AND category_name = ?`;
+        params.push(category);
+    }
+
+    if (priceMin) {
+        sql += ` AND price >= ?`;
+        params.push(priceMin);
+    }
+
+    if (priceMax) {
+        sql += ` AND price <= ?`;
+        params.push(priceMax);
+    }
+
+    db.query(sql, params, (err, results) => {
+        if (err) {
+            console.error('Database Error:', err);
+            return res.status(500).json({ error: 'Database query failed' });
+        }
+
+        res.json(results);
+    });
+});
 
 
 

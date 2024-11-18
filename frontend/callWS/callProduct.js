@@ -27,13 +27,25 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <td>${product.price || "0.00"} บาท</td>
                 <td><span class="${product.status === "Active" ? "status-active" : "status-draft"}">${product.status || "Active"}</span></td>
                 <td style"display:flex;     flex-direction: row;">
-                    <button class="edit-button"><i class="bi bi-trash3"></i></button>
+                    <button class="delete-button" data-id="${product.product_id}"><i class="bi bi-trash3"></i></button>
 
                     <button class="edit-button">Edit</button>
                 </td>
             `;
 
             tableBody.appendChild(row);
+        });
+
+         // Event delegation for delete buttons
+         tableBody.addEventListener("click", (event) => {
+            if (event.target.closest(".delete-button")) {
+                const productId = event.target.closest(".delete-button").getAttribute("data-id");
+
+                // Confirm deletion
+                if (confirm("Are you sure you want to delete this product?")) {
+                    deleteProduct(productId);
+                }
+            }
         });
     }
     // Render product cards if on the product list page
@@ -58,7 +70,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Render product table rows if on the product management page
     
 });
+async function deleteProduct(productId) {
+    try {
+        const response = await fetch(`http://localhost:8080/api/delete-product/${productId}`, {
+            method: "DELETE",
+        });
 
+        if (!response.ok) {
+            throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+
+        alert("Product deleted successfully!");
+        location.reload(); // Reload the page to reflect changes
+    } catch (error) {
+        console.error("Error deleting product:", error);
+        alert("Failed to delete the product.");
+    }
+}
 // Define the reusable fetchProducts function
 async function fetchProducts() {
     try {

@@ -162,4 +162,5 @@ VALUES
 -- WHERE product_id = 'PD10';
 drop table product;
 select * from product;
+SHOW COLUMNS FROM Product;
 
