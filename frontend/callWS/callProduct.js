@@ -110,6 +110,17 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         });
     });
+
+    productContainer.addEventListener("click", function (event) {
+        if (event.target.classList.contains("btn-buy")) {
+            const productId = event.target.getAttribute("data-id");
+            if (productId) {
+                // เปลี่ยนเส้นทางไปยัง Product_detail.html พร้อมแนบ product_id
+                window.location.href = `/product-detail?product_id=${productId}`;
+            }
+        }
+    });
+
 });
 async function deleteProduct(productId) {
     try {
@@ -143,3 +154,4 @@ async function fetchProducts() {
         return []; // Return an empty array if there is an error
     }
 }
+
