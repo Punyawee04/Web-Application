@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const mysql = require('mysql2');
 const cors = require('cors');
 const multer = require('multer');
+const fs = require("fs");
 
 const authenticateToken = require('./authMiddleware');
 
@@ -66,7 +67,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
-
+// Add
 app.post('/api/add-product', upload.single('image'), (req, res) => {
     const {
         product_id,
@@ -126,6 +127,25 @@ app.post('/api/add-product', upload.single('image'), (req, res) => {
 
 
 
+// Route to fetch a single product by ID
+app.get('/api/products/:id', (req, res) => {
+    const productId = req.params.id;
+
+    const query = `SELECT * FROM Product WHERE product_id = ?`;
+
+    db.query(query, [productId], (err, results) => {
+        if (err) {
+            console.error("Error fetching product:", err);
+            return res.status(500).json({ error: 'Failed to fetch product' });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+
+        res.json(results[0]); // Return the first matching product
+    });
+});
 
 
 
@@ -306,6 +326,112 @@ app.delete("/api/delete-product/:id", (req, res) => {
         res.status(200).json({
             success: true,
             message: "Product deleted successfully.",
+        });
+    });
+});
+
+// Update
+app.put("/api/products/:id", upload.single("image"), (req, res) => {
+    const productId = req.params.id; // Extract product ID from URL
+    const {
+        product_name,
+        category_name,
+        price,
+        description,
+        product_rating,
+        stock_quantity,
+        origin,
+        benefit,
+        skin_type,
+        quantity,
+        ingredients,
+        brand,
+    } = req.body;
+
+    // Query to fetch existing product
+    const selectQuery = `SELECT * FROM Product WHERE product_id = ?`;
+
+    db.query(selectQuery, [productId], (err, results) => {
+        if (err) {
+            console.error("Error fetching product:", err);
+            return res.status(500).json({
+                success: false,
+                message: "Failed to fetch product.",
+            });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Product not found.",
+            });
+        }
+
+        const existingProduct = results[0];
+        const newImageUrl = req.file ? `http://localhost:8080/images/${req.file.filename}` : existingProduct.image_url;
+
+        // Delete old image if a new one is uploaded
+        if (req.file && existingProduct.image_url) {
+            const oldImagePath = path.join(__dirname, existingProduct.image_url);
+            fs.unlink(oldImagePath, (err) => {
+                if (err) {
+                    console.error("Error deleting old image:", err);
+                } else {
+                    console.log("Old image deleted:", oldImagePath);
+                }
+            });
+        }
+
+        // Update product in the database
+        const updateQuery = `
+            UPDATE Product
+            SET 
+                product_name = ?, 
+                category_name = ?, 
+                price = ?, 
+                description = ?, 
+                product_rating = ?, 
+                stock_quantity = ?, 
+                origin = ?, 
+                benefit = ?, 
+                skin_type = ?, 
+                quantity = ?, 
+                ingredients = ?, 
+                brand = ?, 
+                image_url = ?
+            WHERE product_id = ?
+        `;
+
+        const values = [
+            product_name || existingProduct.product_name,
+            category_name || existingProduct.category_name,
+            parseFloat(price) || existingProduct.price,
+            description || existingProduct.description,
+            parseFloat(product_rating) || existingProduct.product_rating,
+            parseInt(stock_quantity) || existingProduct.stock_quantity,
+            origin || existingProduct.origin,
+            benefit || existingProduct.benefit,
+            skin_type || existingProduct.skin_type,
+            parseInt(quantity) || existingProduct.quantity,
+            ingredients || existingProduct.ingredients,
+            brand || existingProduct.brand,
+            newImageUrl,
+            productId,
+        ];
+
+        db.query(updateQuery, values, (err, result) => {
+            if (err) {
+                console.error("Error updating product:", err);
+                return res.status(500).json({
+                    success: false,
+                    message: "Failed to update product.",
+                });
+            }
+
+            res.status(200).json({
+                success: true,
+                message: "Product updated successfully.",
+            });
         });
     });
 });

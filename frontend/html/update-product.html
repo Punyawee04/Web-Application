@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/Product_mana_from.css">
     <link rel="icon" href="..\src\icon bloom.png" sizes="180x180">
-    <title>Add Product</title>
+    <title>Update Product</title>
 </head>
 
 <body>
@@ -45,7 +45,15 @@
                         </div>
                         <div class="form-group">
                             <label for="category_name">Category Name</label>
-                            <input type="text" id="category_name" placeholder="e.g., Body">
+                            <!-- <input type="text" id="category_name" placeholder="e.g., Body"> -->
+                            <select id="category_name" name="category_name">
+                                <option value="Default">Default</option>
+                                <option value="Body">Body</option>
+                                <option value="Serum">Serum</option>
+                                <option value="Moisturizer">Moisturizer</option>
+                                <option value="Sunscreen">Sunscreen</option>
+                                <option value="Cleanser">Cleanser</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
@@ -118,6 +126,8 @@
             </form>
         </section>
     </div>
+    <script src="/js/update-product.js"></script>
+
 </body>
 
 </html>
@@ -177,3 +187,4 @@
     });
     
 </script>
+<script src="/js/callProduct.js"></script>

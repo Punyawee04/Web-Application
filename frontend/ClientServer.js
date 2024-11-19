@@ -13,6 +13,14 @@ app.use(express.static(__dirname));
 app.use("/css",express.static(path.join(__dirname,"html/css")));
 app.use("/js", express.static(path.join(__dirname, "callWS")));
 app.use("/js", express.static(path.join(__dirname, "js")));
+// Serve static files for the frontend
+const publicDirectory = path.join(__dirname, 'frontend'); // Adjust to your directory structure
+app.use(express.static(publicDirectory));
+
+// Serve specific pages for direct access
+
+
+
 
 // Set up routes
 app.get('/', (req, res) => {
@@ -31,7 +39,10 @@ app.get('/search-all', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'search-result.html'));
 });
 app.get('/add-product', (req, res) => {
-    res.sendFile(path.join(__dirname, 'html', 'Product_mana_from.html'));
+    res.sendFile(path.join(__dirname, 'html', 'add-product.html'));
+});
+app.get('/update-product', (req, res) => {
+    res.sendFile(path.join(__dirname, 'html', 'update-product.html'));
 });
 app.get('/user-manage', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'user_acc_manage.html'));
