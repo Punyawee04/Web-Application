@@ -9,12 +9,10 @@ fetch('http://localhost:8080/api/products')
             const card = document.createElement('div');
             card.classList.add('product-card');
             card.innerHTML = `
-            <div>
                 <img src="${product.image_url}" alt="${product.product_name}" class="product-image" />
                 <p class="product-name">${product.product_name}</p>
                 <p class="product-price">฿${product.price}</p>
                 <button class="btn-buy" data-id="${product.product_id}">Buy now</button>
-                </div>
             `;
             container.appendChild(card);
         });
