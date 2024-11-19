@@ -145,6 +145,31 @@
         </div>
     </div>
 
+    <!-- detail-Product -->
+    <script>
+        // Load product details from localStorage
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get("product_id");
+
+            if (productId) {
+                // ตัวอย่างการ fetch ข้อมูลสินค้า
+                fetch(`http://localhost:8080/api/products/${productId}`)
+                    .then(response => response.json())
+                    .then(product => {
+                        document.getElementById("product-image").src = product.image_url;
+                        document.getElementById("product-name").textContent = product.product_name;
+                        document.getElementById("product-price").textContent = `฿${product.price}`;
+                        document.getElementById("product-description").textContent = product.description;
+                    })
+                    .catch(error => {
+                        console.error("Error fetching product details:", error);
+                    });
+            } else {
+                console.error("No product ID found in URL.");
+            }
+        });
+    </script>
     <!-- Footer -->
     <footer class="footer">
         <div class="footer__addr">
