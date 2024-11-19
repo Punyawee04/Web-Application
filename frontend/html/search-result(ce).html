@@ -53,12 +53,12 @@
         }
 
         .product-price {
-            color: #e91e63;
+            color: rgb(220, 53, 69);
             font-weight: bold;
         }
 
         .btn-buy {
-            background-color: #4CAF50;
+            background-color: #EC297B;
             color: white;
             padding: 8px 16px;
             border: none;
@@ -192,32 +192,45 @@
 
             <!-- searchfilter, -->
             <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    const searchResults = JSON.parse(localStorage.getItem('searchResults')) || [];
-                    const productContainer = document.getElementById('product-container');
-                
-                    if (searchResults.length === 0) {
-                        productContainer.innerHTML = "<p>No products found.</p>";
-                        return;
-                    }
-                
-                    searchResults.forEach((product) => {
-                        const productCard = document.createElement('div');
-                        productCard.className = 'card';
-                
-                        productCard.innerHTML = `
-                            <img src="${product.image_url}" alt="${product.product_name}" class="product-image">
-                            <div class="product-name">${product.product_name}</div>
-                            <div class="product-price">฿${product.price}</div>
-                            <button class="btn-buy">Buy Now</button>
-                        `;
-                
-                        productContainer.appendChild(productCard);
-                    });
-                });
+               document.addEventListener("DOMContentLoaded", function () {
+    const searchResults = JSON.parse(localStorage.getItem('searchResults')) || [];
+    const productContainer = document.getElementById('product-container');
+
+    if (searchResults.length === 0) {
+        productContainer.innerHTML = "<p>No products found.</p>";
+        return;
+    }
+
+    searchResults.forEach((product) => {
+        const productCard = document.createElement('div');
+        productCard.className = 'card';
+
+        productCard.innerHTML = `
+            <img src="${product.image_url}" alt="${product.product_name}" class="product-image">
+            <div class="product-name">${product.product_name}</div>
+            <div class="product-price">฿${product.price}</div>
+            <button class="btn-buy" data-id="${product.product_id}">Buy now</button>
+        `;
+
+        productContainer.appendChild(productCard);
+    });
+
+    // เพิ่ม Event Listener สำหรับปุ่ม Buy now
+    productContainer.addEventListener("click", function (event) {
+        if (event.target.classList.contains("btn-buy")) {
+            const productId = event.target.getAttribute("data-id");
+            if (productId) {
+                // เปลี่ยนเส้นทางไปยัง Product_detail.html พร้อมแนบ product_id
+                window.location.href = `/product-detail?product_id=${productId}`;
+            }
+        }
+    });
+});
+
                 </script>
                 
-            
+                <script src="/js/callsearch-filter.js"></script>
+
             
 
         </div>

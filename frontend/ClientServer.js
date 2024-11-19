@@ -59,6 +59,71 @@ app.get('/search-result', (req, res) => {
 app.get('/filter-search', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'search-result(ce).html'));
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get('/product-detail', (req, res) => {
+    res.sendFile(path.join(__dirname, 'html', 'Product_detail.html'));
+});
     
 // Handle invalid paths
 app.use((req, res, next) => {
