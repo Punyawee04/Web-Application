@@ -1,11 +1,11 @@
 fetch('http://localhost:8080/api/products')
-    .then(response => response.json())
-    .then(products => {
+    .then((response) => response.json())
+    .then((products) => {
         const container = document.getElementById('product-container');
         const limitedProducts = products.slice(0, 4); // Limit to 4 products
 
-        // สร้างสินค้าแบบ Dynamic
-        limitedProducts.forEach(product => {
+        // Dynamically create product cards
+        limitedProducts.forEach((product) => {
             const card = document.createElement('div');
             card.classList.add('product-card');
             card.innerHTML = `
@@ -17,43 +17,11 @@ fetch('http://localhost:8080/api/products')
             container.appendChild(card);
         });
 
-        // เรียกฟังก์ชันเพิ่ม Event Listener ให้ปุ่ม
+        // Add event listeners to dynamically created buttons
         addBuyButtonListeners();
     })
-    .catch(error => console.error('Error fetching products:', error));
+    .catch((error) => console.error('Error fetching products:', error));
 
-
-buyButtons.forEach(button => {
-    button.addEventListener("click", async () => {
-        const productId = button.getAttribute("data-id");
-        console.log(`Button clicked with product ID: ${productId}`);
-
-        if (!productId) {
-            console.error("Product ID not found!");
-            return;
-        }
-
-        // Fetch product details
-        try {
-            const response = await fetch(`http://localhost:8080/api/product-detail/${productId}`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const productData = await response.json();
-            console.log("Fetched product data:", productData);
-
-            // Save product data to localStorage
-            localStorage.setItem("selectedProductData", JSON.stringify(productData));
-
-            // Redirect to product-detail page
-            window.location.href = "/product-detail";
-        } catch (error) {
-            console.error("Error fetching product details:", error);
-            alert("Failed to fetch product details. Please try again.");
-        }
-    });
-});
 function addBuyButtonListeners() {
     const buyButtons = document.querySelectorAll('.btn-buy');
 
@@ -64,7 +32,7 @@ function addBuyButtonListeners() {
 
     console.log(`Found ${buyButtons.length} buy buttons`);
 
-    buyButtons.forEach(button => {
+    buyButtons.forEach((button) => {
         button.addEventListener('click', async () => {
             const productId = button.getAttribute('data-id');
             console.log(`Button clicked with product ID: ${productId}`);
@@ -75,8 +43,10 @@ function addBuyButtonListeners() {
             }
 
             try {
-                // ดึงข้อมูลสินค้าโดยใช้ productId
-                const response = await fetch(`http://localhost:8080/api/product-detail/${productId}`);
+                // Fetch product details using productId
+                const response = await fetch(
+                    `http://localhost:8080/api/product-detail/${productId}`
+                );
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -84,10 +54,10 @@ function addBuyButtonListeners() {
                 const productData = await response.json();
                 console.log('Fetched product data:', productData);
 
-                // บันทึกข้อมูลสินค้าใน localStorage
+                // Save product data to localStorage
                 localStorage.setItem('selectedProductData', JSON.stringify(productData));
 
-                // เปลี่ยนเส้นทางไปยังหน้ารายละเอียดสินค้า
+                // Redirect to product-detail page
                 window.location.href = '/product-detail';
             } catch (error) {
                 console.error('Error fetching product details:', error);
@@ -96,4 +66,3 @@ function addBuyButtonListeners() {
         });
     });
 }
-

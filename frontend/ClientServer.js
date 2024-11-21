@@ -63,6 +63,10 @@ app.get('/filter-search', (req, res) => {
 app.get('/product-detail', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'Product_detail.html'));
 });
+
+app.get('/404', (req, res) => {
+    res.sendFile(path.join(__dirname, 'html', 'page not found.html'));
+});
     
 // Handle invalid paths
 app.use((req, res, next) => {
