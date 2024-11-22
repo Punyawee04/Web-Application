@@ -13,6 +13,8 @@ app.use(express.static(__dirname));
 app.use("/css",express.static(path.join(__dirname,"html/css")));
 app.use("/js", express.static(path.join(__dirname, "callWS")));
 app.use("/js", express.static(path.join(__dirname, "js")));
+app.use(express.static(path.join(__dirname, 'html')));
+
 // Serve static files for the frontend
 const publicDirectory = path.join(__dirname, 'frontend'); // Adjust to your directory structure
 app.use(express.static(publicDirectory));

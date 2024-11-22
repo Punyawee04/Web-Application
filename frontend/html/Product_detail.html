@@ -22,18 +22,17 @@
         Free shipping on orders over 499 THB!
     </div>
 
-    <!-- Nav -->
-    <nav>
+     <!-- Nav -->
+     <nav>
         <!-- Logo -->
         <div class="logo">
-            <a href="#"><img src="../src/bloom logo.png " alt="Logo"></a>
+            <a href="http://localhost:8081/"><img src="../src/bloom logo.png " alt="Logo"></a>
         </div>
 
         <!-- Menu -->
         <ul class="menu">
             <li><a href="http://localhost:8081/">Home Page</a></li>
-            <li><a href="http://localhost:8081/">Best Sellers</a></li>
-            <li><a href="http://localhost:8081/">Categories</a></li>
+            <li><a href="#cate-box">Best Sellers</a></li>
             <li><a href="http://localhost:8081/team">Contact Us</a></li>
         </ul>
 
@@ -41,8 +40,8 @@
         <!-- action -->
         <div class="user-cart">
             <a href="http://localhost:8081/search"><i class="bi bi-search"></i></a>
-            <a href="http://localhost:8081/login"><i class="bi bi-person-fill" style="font-size: 22px;"></i></i></a>
-            <a href="/html/page not found.html"><i class="bi bi-cart3" style="font-size: 22px;"></i></a>
+            <a href="http://localhost:8081/login"><i class="bi bi-person" style="font-size: 25px;"></i></a>
+            <a href="http://localhost:8081/404"><i class="bi bi-cart3" style="font-size: 22px;"></i></a>
         </div>
     </nav>
 
@@ -56,64 +55,44 @@
                         Mineral Mask 7 25ml </h2>
 
                     <h1>฿ <span id="price"> 35</span></h1>
-                    <div class="rating-section">
-                        <div class="stars" data-rating="4.5"></div>
-                        <p class="rating-count">(123 Reviews)</p>
-                    </div>
-                    <p>เพื่อผิวสวย 7 ประการกับแผ่นมาสก์ไฮโดรเจล จากโรจูคิส อุดมแร่ธาตุบำรุงผิว 7 ชนิดสำหรับผิวหมองคล้ำ
-                        จุดด่างดำแก้ยาก ผสานพลัง Jeju Lotus ช่วยฟื้นบำรุงให้ผิวดูกระจ่างใส ลดเลือนรอยดำ
-                        และทำให้สีผิวดูสม่ำเสมอ พร้อมเผยผิวดูสุขภาพดี</p>
+                    
+                    <div class="description"><p>Description Here</p></div>
                     <hr>
                     <p style="color: #666; font-size:small;">Availability: <span id="stock">120 </span> in stock </p>
                 </div>
 
                 <div id="action">
                     <button class="add-to-cart-btn">ADD TO CART</button>
-                    <button class="buy-now-btn">BUY NOW</button>
+                    <button class="buy-now-btn" >BUY NOW</button>
                 </div>
-                <p><i class="bi bi-truck"></i> Free shipping on orders over 499 THB!</p>
-            </div>
-        </div>
-        <div id="product-description">
+                <p><i class="bi bi-truck" ></i> Free shipping on orders over 499 THB!</p>
 
-            <div id="inside-des">
-                <div id="img-des">
-                    <img src="../src/product image/example-product.png">
-                </div>
-                <div id="des-1">
-                    <p> <i class="bi bi-globe-central-south-asia"></i> Brand Origin: <span
-                            id="brand-origin">Korea</span>
-                    </p>
-                    <p> <i class="bi bi-droplet-half"></i> Function: <span id="function">Whitening, Firming</span>
-                    </p>
-                    <p> <i class="bi bi-gender-ambiguous"></i> Gender: <span id="gender">Female/ Unisex</span>
-                    </p>
-                    <p> <i class="bi bi-upc-scan"></i> Skin Type: <span id="skin-type">Normal Skin/ All Skin Type</span>
-                    </p>
-                    <p> <i class="bi bi-water"></i> Amount: <span id="amount">25ml</span>
-                    </p>
-                </div>
-                <div id="des-2">
-                    <p style="font-size:14px">Description <br>
-
-                        Hydro-gel mask sheet Merge 7 skin nourishing minerals for dull skin. Dark spots, difficult to
-                        solve Proven 7 minerals to revitalize and nourish 7 skin problems to solve for 7 beautiful skin.
-                        <br><br>
-
-                        Place of Origin : Korea
-                        <br><br>
-
-                        Product Usage : After cleansing Place the mask on the face. Leave for 7 minutes or longer.The
-                        gel texture mixed with 7 types of minerals will gradually penetrate into the skin. Then pull out
-                        the mask and massage gently.In order for the important substances to fully penetrate the skin
-                        <br><br>
-
-                        Ingredients : Ferrous, Sodium, Calcium, Manganese, Zinc, Copper, Magnesium
-                    </p>
+                <div id="inside-des" style="margin-top: 20px;">
+                
+                    <div id="des-1">
+                        <p> <i class="bi bi-globe-central-south-asia"></i> &nbsp; Brand Origin: <span
+                                id="brand-origin">Here</span>
+                        </p>
+                        <p> <i class="bi bi-droplet-half"></i> &nbsp Function: <span id="function">Here</span>
+                        </p>
+                        <p> <i class="bi bi-gender-ambiguous"></i> &nbsp Gender: <span id="gender">Female/ Unisex</span>
+                        </p>
+                        <p> <i class="bi bi-upc-scan"></i> &nbsp Skin Type: <span id="skin-type">Here</span>
+                        </p>
+                        <p> <i class="bi bi-water"></i> &nbsp Amount: <span id="amount">Here</span>
+                        </p>
+                        <div id="des-2">
+                            <p style="font-size:14px">Description <br>
+        
+                               
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
-
+            
         </div>
+        
 
     </div>
 
@@ -149,29 +128,47 @@
 
     <!-- detail-Product -->
     <script>
-        // Load product details from localStorage
+        // Load product details from URL parameter
         document.addEventListener("DOMContentLoaded", function () {
             const urlParams = new URLSearchParams(window.location.search);
             const productId = urlParams.get("product_id");
-
+    
             if (productId) {
-                // ตัวอย่างการ fetch ข้อมูลสินค้า
+                // Fetch product details from the backend
                 fetch(`http://localhost:8080/api/products/${productId}`)
-                    .then(response => response.json())
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Product not found.');
+                        }
+                        return response.json();
+                    })
                     .then(product => {
-                        document.getElementById("product-image").src = product.image_url;
-                        document.getElementById("product-name").textContent = product.product_name;
-                        document.getElementById("product-price").textContent = `฿${product.price}`;
-                        document.getElementById("product-description").textContent = product.description;
+                        // Update HTML content with the product details
+                        document.querySelector(".product-image img").src = product.image_url;
+                        document.querySelector(".product-info h2").textContent = product.product_name;
+                        document.querySelector(".description p").textContent = product.description;
+                        document.querySelector("#price").textContent = product.price;
+                        document.querySelector("#stock").textContent = product.stock_quantity;
+                        document.querySelector("#brand-origin").textContent = product.origin;
+                        document.querySelector("#function").textContent = product.benefit;
+                        document.querySelector("#skin-type").textContent = product.skin_type;
+                        document.querySelector("#amount").textContent = product.quantity + "ml";
+                        document.querySelector("#des-2 p").innerHTML = ` <br>
+                            Place of Origin: ${product.origin} 
+                            Ingredients: ${product.ingredients}
+                        `;
                     })
                     .catch(error => {
                         console.error("Error fetching product details:", error);
+                        document.getElementById("main").innerHTML = "<p>Product details not available.</p>";
                     });
             } else {
                 console.error("No product ID found in URL.");
+                document.getElementById("main").innerHTML = "<p>No product selected.</p>";
             }
         });
     </script>
+    
     <!-- Footer -->
     <footer class="footer">
         <div class="footer__addr">
