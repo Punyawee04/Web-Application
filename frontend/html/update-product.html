@@ -9,6 +9,60 @@
     <link rel="stylesheet" href="css/Product_mana_from.css">
     <link rel="icon" href="..\src\icon bloom.png" sizes="180x180">
     <title>Update Product</title>
+    <style>
+        /* Overlay for the popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Hidden by default */
+.hidden {
+    display: none;
+}
+
+/* Content box */
+.popup-content {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* Message text */
+#popup-message {
+    font-size: 16px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* Close button */
+.popup-close {
+    background: #4caf50; /* Green for success */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+
+}
+
+.popup-close:hover {
+    background: #45a049;
+}
+
+
+    </style>
 </head>
 
 <body>
@@ -30,7 +84,8 @@
             </div>
 
             <!-- Form Section -->
-            <form id="addProductForm">
+            <form id="updateProductForm">
+                
                 <div class="form">
                     <!-- Left Side Form Fields -->
                     <div class="form-left">
@@ -123,16 +178,35 @@
                     <button type="button" class="delete-button">Delete Product</button>
                     <button type="submit" class="save" id="saveButton">Save</button>
                 </div>
+                <script src="/js/update-product.js"></script>
+
             </form>
         </section>
     </div>
-    <script src="/js/update-product.js"></script>
+
+    <div id="popup" class="popup hidden">
+        <div class="popup-content">
+            <span id="popup-message"></span>
+            <i class="bi bi-check-circle-fill" style="font-size: 56px; color:#45a049"></i>
+        </div>
+    </div>
+    
 
 </body>
 
 </html>
 
 <script>
+    function showPopup(message) {
+        // กำหนดข้อความ
+        document.getElementById('popup-message').textContent = message;
+    
+        // แสดง Pop-up
+        const popup = document.getElementById('popup');
+        popup.classList.remove('hidden');
+    }
+    
+    
     document.getElementById('imageUpload').addEventListener('change', function (event) {
         const file = event.target.files[0]; // Get the selected file
         if (file) {
@@ -145,7 +219,7 @@
             reader.readAsDataURL(file); // Read the file as a data URL
         }
     });
-    document.getElementById('addProductForm').addEventListener('submit', async (event) => {
+    document.getElementById('updateProductForm').addEventListener('submit', async (event) => {
         event.preventDefault();
 
         const formData = new FormData();
@@ -169,22 +243,29 @@
         }
 
         try {
-            const response = await fetch('http://localhost:8080/api/add-product', {
-                method: 'POST',
-                body: formData,
+            const response = await fetch('http://localhost:8080/api/update-product', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: formData
             });
-
+        
             const data = await response.json();
-            if (response.ok) {
-                alert(data.message);
-            } else {
-                alert(`Error: ${data.message}`);
-            }
+        
+            showPopup('Product updated successfully!');
+
         } catch (err) {
             console.error('Error:', err);
-            alert('Failed to save the product.');
         }
+        
+        
+        
     });
     
 </script>
 <script src="/js/callProduct.js"></script>
+
+<script>
+
+</script>

@@ -7,7 +7,7 @@ GRANT ALL PRIVILEGES ON Bloom_db.* TO 'bloom'@'localhost';
 
 -- Table: LoginDetail
 CREATE TABLE LoginDetail (
-    login_id INT NOT NULL AUTO_INCREMENT,       -- Automatically incrementing ID
+    login_id VARCHAR(255) NOT NULL UNIQUE,       -- Automatically incrementing ID
     UserName VARCHAR(255) NOT NULL UNIQUE,     -- Unique username
     Password VARCHAR(255) NOT NULL,            -- Hashed password
     Email VARCHAR(255),                        -- Optional email
@@ -18,21 +18,21 @@ CREATE TABLE LoginDetail (
     PRIMARY KEY (login_id)                     -- Primary key on login_id
 ) ENGINE=InnoDB;
 
--- Table: Administor
-CREATE TABLE Administor (
-    admin_id INT PRIMARY KEY,  -- Admin ID
+-- Table: Administrator_phonenum
+CREATE TABLE Administrator_phonenum (
+    admin_id INT PRIMARY KEY,               -- Admin ID
+    admin_phone_number VARCHAR(15)          -- Admin phone number (Format: XXX-XXX-XXXX)
+);
+
+-- Table: Administrator
+CREATE TABLE Administrator (
+    admin_id INT PRIMARY KEY auto_increment,  -- Admin ID
     admin_name VARCHAR(100),   -- Admin Name
     login_Date DATE,           -- Login Date (Format: YYYY-MM-DD)
     login_Time TIME,           -- Login Time (Format: HH:MM)
-    login_id INT,              -- Foreign Key to LoginDetail
+    login_id VARCHAR(500) NOT NULL UNIQUE,              -- Foreign Key to LoginDetail
+    image_url  VARCHAR(500),
     FOREIGN KEY (login_id) REFERENCES LoginDetail(login_id)
-);
-
-
--- Table: Administor_phonenum
-CREATE TABLE Administor_phonenum (
-    admin_id INT PRIMARY KEY,               -- Admin ID
-    admin_phone_number VARCHAR(15)          -- Admin phone number (Format: XXX-XXX-XXXX)
 );
 
 -- Table: Email
@@ -60,22 +60,10 @@ CREATE TABLE Product (
 );
 
 
--- Table: AdministratorProducts
--- CREATE TABLE AdministratorProducts (
---     admin_id INT,                           -- Admin ID
---     product_id INT,                         -- Product ID
---     PRIMARY KEY (admin_id, product_id),     -- Composite Primary Key
---     FOREIGN KEY (admin_id) REFERENCES Administor(admin_id),
---     FOREIGN KEY (product_id) REFERENCES Product(product_id)
--- );
-
-
-
 -- ----------------------------------------------------------------------------------------------------------------
 -- INSERT ------------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------------------
 
-SELECT * FROM logindetail;
 
 -- Insert data into LoginDetail table
 INSERT INTO LoginDetail (UserName, Password, Email, login_Time, logout_Time, login_Date, Status)
@@ -159,7 +147,38 @@ WHERE product_id = 'PD9';
 UPDATE Product 
 SET image_url = 'http://localhost:8080/images/product10.jpg' 
 WHERE product_id = 'PD10';
-drop table product;
-select * from product;
-SHOW COLUMNS FROM Product;
+
+
+-- Insert data into LoginDetail table
+INSERT INTO LoginDetail (UserName, Password, Email, login_Time, logout_Time, login_Date, Status)
+VALUES 
+('admin1', '1111', 'admin1@example.com', '08:00', '16:00', '2024-11-01', 'Active'),
+('admin2', '2222', 'admin2@example.com', '09:00', '17:00', '2024-11-02', 'Inactive'),
+('testUser', 'hashedPassword', 'test@example.com', '10:00', '18:00', '2024-11-17', 'Active');
+
+
+
+-- Insert data into Administor table
+INSERT INTO Administor (admin_id, admin_name, login_Date, login_Time, login_id)
+VALUES 
+(1001, 'Alice Johnson', '2024-11-01', '08:00', 1),
+(1002, 'Bob Smith', '2024-11-02', '09:00', 2);
+
+-- Insert data into Administor_phonenum table
+INSERT INTO Administor_phonenum (admin_id, admin_phone_number)
+VALUES 
+(1001, '123-456-7890'),
+(1002, '987-654-3210');
+
+
+-- Insert data into Email table
+INSERT INTO Email (admin_id, admin_email)
+VALUES 
+(1001, 'alice.johnson@example.com'),
+(1002, 'bob.smith@example.com');
+
+
+-- drop table product;
+-- select * from product;
+-- SHOW COLUMNS FROM Product;
 
