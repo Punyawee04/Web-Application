@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const form = document.getElementById("addProductForm");
+    const form = document.getElementById("updateProductForm");
     const params = new URLSearchParams(window.location.search);
     const productId = params.get("product_id");
 
@@ -92,13 +92,75 @@ async function updateProduct(formData, productId) {
 
         const result = await response.json();
         if (response.ok) {
-            alert("Product updated successfully!");
+            // alert("Product updated successfully!");
         } else {
             alert(`Error updating product: ${result.message}`);
         }
     } catch (error) {
         console.error("Error updating product:", error);
-        alert("Failed to update the product.");
+        // alert("Failed to update the product.");
     }
 }
 
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const tableBody = document.querySelector("tbody");
+    const searchBar = document.querySelector(".search-bar");
+    const showAllButton = document.getElementById("show-all-button");
+
+    let allProducts = [];
+
+    // Fetch products
+    async function fetchProducts() {
+        try {
+            const response = await fetch("http://localhost:8080/api/products");
+            if (!response.ok) throw new Error("Failed to fetch products");
+            return await response.json();
+        } catch (error) {
+            console.error(error);
+            return [];
+        }
+    }
+
+    // Display products
+    function displayProducts(products) {
+        tableBody.innerHTML = "";
+        products.forEach((product) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td><img src="${product.image_url}" alt="${product.product_name}" style="width: 50px; height: 50px;"></td>
+                <td>${product.product_id}</td>
+                <td>${product.product_name}</td>
+                <td>${product.brand || "-"}</td>
+                <td>${product.category_name || "Category"}</td>
+                <td>${product.stock_quantity || 0} in stock</td>
+                <td>${product.price || "0.00"} บาท</td>
+                <td>
+                    <button class="delete-button" data-id="${product.product_id}"><i class="bi bi-trash3"></i></button>
+                    <button class="edit-button" data-id="${product.product_id}">Edit</button>
+                </td>`;
+            tableBody.appendChild(row);
+        });
+        // addEventListenersToButtons();
+    }        
+
+    // Search functionality
+    searchBar.addEventListener("input", () => {
+        const query = searchBar.value.toLowerCase();
+        const filteredProducts = allProducts.filter((product) =>
+            product.product_name.toLowerCase().includes(query) ||
+            product.product_id.toLowerCase().includes(query) ||
+            product.brand?.toLowerCase().includes(query)
+        );
+        displayProducts(filteredProducts);
+    });
+
+    // Show all products
+    showAllButton.addEventListener("click", () => {
+        searchBar.value = "";
+        displayProducts(allProducts);
+    });
+
+    allProducts = await fetchProducts();
+    displayProducts(allProducts);
+});
