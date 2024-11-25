@@ -119,7 +119,7 @@ app.post('/api/add-product', upload.single('image'), (req, res) => {
     db.query(query, values, (err) => {
         if (err) {
             console.error('Error saving product:', err);
-            return res.status(500).json({ message: 'Failed to add product. Please try again.' });
+            // return res.status(500).json({ message: 'Failed to add product. Please try again.' });
         }
         res.status(201).json({ message: 'Product added successfully!' });
     });

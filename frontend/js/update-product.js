@@ -102,25 +102,3 @@ async function updateProduct(formData, productId) {
     }
 }
 
-
-
-
-// Add a new product to the backend
-// async function addProduct(formData) {
-//     try {
-//         const response = await fetch("http://localhost:8080/api/products", {
-//             method: "POST",
-//             body: formData,
-//         });
-
-//         const result = await response.json();
-//         if (response.ok) {
-//             alert("Product added successfully!");
-//         } else {
-//             alert(`Error: ${result.message}`);
-//         }
-//     } catch (error) {
-//         console.error("Error adding product:", error);
-//         alert("Failed to add the product.");
-//     }
-// }

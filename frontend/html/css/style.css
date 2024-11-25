@@ -71,7 +71,7 @@ body {
     display: block;
 }
 
-button {
+#button-slide {
     position: absolute;
     top: 50%;
     width: auto;

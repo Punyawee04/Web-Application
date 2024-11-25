@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.warn("No buy buttons found!");
         return;
     }
-
+    
     console.log(`Found ${buyButtons.length} buy buttons`);
 
     // Add event listeners to each button
@@ -83,7 +83,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         button.addEventListener("click", async () => {
             const productId = button.getAttribute("data-id");
             console.log(`Button clicked with product ID: ${productId}`);
-
+            if (productId) {
+                // เปลี่ยนเส้นทางไปยัง Product_detail.html พร้อมแนบ product_id
+                window.location.href = `/product-detail?product_id=${productId}`;
+            }
             if (!productId) {
                 console.error("Product ID not found!");
                 return;

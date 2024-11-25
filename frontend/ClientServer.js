@@ -13,6 +13,8 @@ app.use(express.static(__dirname));
 app.use("/css",express.static(path.join(__dirname,"html/css")));
 app.use("/js", express.static(path.join(__dirname, "callWS")));
 app.use("/js", express.static(path.join(__dirname, "js")));
+app.use(express.static(path.join(__dirname, 'html')));
+
 // Serve static files for the frontend
 const publicDirectory = path.join(__dirname, 'frontend'); // Adjust to your directory structure
 app.use(express.static(publicDirectory));
@@ -62,6 +64,10 @@ app.get('/filter-search', (req, res) => {
 
 app.get('/product-detail', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'Product_detail.html'));
+});
+
+app.get('/404', (req, res) => {
+    res.sendFile(path.join(__dirname, 'html', 'page not found.html'));
 });
     
 // Handle invalid paths

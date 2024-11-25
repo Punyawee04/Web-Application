@@ -39,16 +39,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Redirect to add-product.html with the product ID
                 window.location.href = `update-product?product_id=${productId}`;
             } 
-            // else if (target.classList.contains("delete-button")) {
-            //     if (confirm("Are you sure you want to delete this product?")) {
-            //         deleteProduct(productId);
-            //         alert("Product deleted successfully!");
-            //         location.reload(); // Reload the page to reflect changes
-            //     } if (error) {
-            //         console.error("Error deleting product:", error);
-            //         alert("Failed to delete the product.");
-            //     }
-            // }
         });
     }
 
