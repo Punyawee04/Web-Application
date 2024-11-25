@@ -7,7 +7,7 @@ GRANT ALL PRIVILEGES ON Bloom_db.* TO 'bloom'@'localhost';
 
 -- Table: LoginDetail
 CREATE TABLE LoginDetail (
-    login_id INT NOT NULL AUTO_INCREMENT,       -- Automatically incrementing ID
+    login_id VARCHAR(255) NOT NULL UNIQUE,       -- Automatically incrementing ID
     UserName VARCHAR(255) NOT NULL UNIQUE,     -- Unique username
     Password VARCHAR(255) NOT NULL,            -- Hashed password
     Email VARCHAR(255),                        -- Optional email
@@ -18,13 +18,15 @@ CREATE TABLE LoginDetail (
     PRIMARY KEY (login_id)                     -- Primary key on login_id
 ) ENGINE=InnoDB;
 
+
 -- Table: Administor
 CREATE TABLE Administor (
-    admin_id INT PRIMARY KEY,  -- Admin ID
+    admin_id INT PRIMARY KEY auto_increment,  -- Admin ID
     admin_name VARCHAR(100),   -- Admin Name
     login_Date DATE,           -- Login Date (Format: YYYY-MM-DD)
     login_Time TIME,           -- Login Time (Format: HH:MM)
-    login_id INT,              -- Foreign Key to LoginDetail
+    login_id VARCHAR(500) NOT NULL UNIQUE,              -- Foreign Key to LoginDetail
+    image_url  VARCHAR(500),
     FOREIGN KEY (login_id) REFERENCES LoginDetail(login_id)
 );
 
@@ -162,4 +164,14 @@ WHERE product_id = 'PD10';
 drop table product;
 select * from product;
 SHOW COLUMNS FROM Product;
+
+select * from Administor;
+select * from LoginDetail;
+
+drop table LoginDetail;
+drop table Administor;
+
+
+SELECT (LoginDetail.email) AS email,(Administor.image_url) AS img_url,(LoginDetail.UserName) AS userName FROM LoginDetail INNER JOIN Administor WHERE login_id != ? AND LoginDetail.login_id = Administor.login_id;
+
 
