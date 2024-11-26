@@ -6,6 +6,7 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
+
 const router = express.Router();
 
 
@@ -100,7 +101,7 @@ router.post('/login', (req, res) => {
 
     console.log('Login Request:', { username, password });
 
-    // ตรวจสอบว่า username และ password ถูกส่งมาหรือไม่
+    // Validate that both username and password are provided
     if (!username || !password) {
         return res.status(400).json({ message: 'Username and password are required.' });
     }
@@ -114,7 +115,7 @@ router.post('/login', (req, res) => {
 
         console.log('Database Results:', results);
 
-        // ตรวจสอบว่าเจอผู้ใช้งานหรือไม่
+        // Check if the user exists
         if (results.length === 0) {
             console.log('User not found:', username);
             return res.status(400).json({ message: 'Invalid username or password.' });
@@ -123,24 +124,24 @@ router.post('/login', (req, res) => {
         const user = results[0];
         console.log('Stored Password:', user.Password);
 
-        // ตรวจสอบ Password (ในกรณีนี้ยังไม่มีการใช้ bcrypt แต่ควรใช้ในระบบจริง)
+        // Validate the password
         if (password !== user.Password) {
             console.log('Passwords do not match!');
             return res.status(400).json({ message: 'Invalid username or password.' });
         }
 
-        // สร้าง JWT Token พร้อมกำหนดอายุ 1 ชั่วโมง
+        // Generate a JWT token (valid for 1 hour)
         const token = jwt.sign(
             { userId: user.login_id, username: user.UserName },
-            'blommpass', // เปลี่ยนเป็น `process.env.JWT_SECRET` ในระบบจริง
-            { expiresIn: '1h' } // กำหนดอายุ 1 ชั่วโมง
+            'blommpass', // Replace with `process.env.JWT_SECRET` in production
+            { expiresIn: '1h' } // Token expiration: 1 hour
         );
 
-        // ส่งกลับ Token และข้อความแจ้งเตือน
-        res.json({ 
-            message: 'Login successful!', 
+        // Send back the token and success message
+        res.json({
+            message: 'Login successful!',
             token,
-            expiresIn: 3600 // อายุของ Token เป็นวินาที (1 ชั่วโมง)
+            expiresIn: 3600 // Token lifespan in seconds (1 hour)
         });
     });
 });
