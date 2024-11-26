@@ -68,61 +68,61 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 // กด buy now research ไปหน้า detail 
-    const buyButtons = document.querySelectorAll(".btn-buy");
+    // const buyButtons = document.querySelectorAll(".btn-buy");
 
-    // Check if buttons are found
-    if (buyButtons.length === 0) {
-        console.warn("No buy buttons found!");
-        return;
-    }
+    // // Check if buttons are found
+    // if (buyButtons.length === 0) {
+    //     console.warn("No buy buttons found!");
+    //     return;
+    // }
     
-    console.log(`Found ${buyButtons.length} buy buttons`);
+    // console.log(`Found ${buyButtons.length} buy buttons`);
 
-    // Add event listeners to each button
-    buyButtons.forEach(button => {
-        button.addEventListener("click", async () => {
-            const productId = button.getAttribute("data-id");
-            console.log(`Button clicked with product ID: ${productId}`);
-            if (productId) {
-                // เปลี่ยนเส้นทางไปยัง Product_detail.html พร้อมแนบ product_id
-                window.location.href = `/product-detail?product_id=${productId}`;
-            }
-            if (!productId) {
-                console.error("Product ID not found!");
-                return;
-            }
+    // // Add event listeners to each button
+    // buyButtons.forEach(button => {
+    //     button.addEventListener("click", async () => {
+    //         const productId = button.getAttribute("data-id");
+    //         console.log(`Button clicked with product ID: ${productId}`);
+    //         if (productId) {
+    //             // เปลี่ยนเส้นทางไปยัง Product_detail.html พร้อมแนบ product_id
+    //             window.location.href = `/product-detail?product_id=${productId}`;
+    //         }
+    //         if (!productId) {
+    //             console.error("Product ID not found!");
+    //             return;
+    //         }
 
-            // Fetch product details
-            try {
-                const response = await fetch(`http://localhost:8080/api/product-detail/${productId}`);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+    //         // Fetch product details
+    //         try {
+    //             const response = await fetch(`http://localhost:8080/api/product-detail/${productId}`);
+    //             if (!response.ok) {
+    //                 throw new Error(`HTTP error! status: ${response.status}`);
+    //             }
 
-                const productData = await response.json();
-                console.log("Fetched product data:", productData);
+    //             const productData = await response.json();
+    //             console.log("Fetched product data:", productData);
 
-                // Save product data to localStorage
-                localStorage.setItem("selectedProductData", JSON.stringify(productData));
+    //             // Save product data to localStorage
+    //             localStorage.setItem("selectedProductData", JSON.stringify(productData));
 
-                // Redirect to product-detail page
-                window.location.href = "/product-detail";
-            } catch (error) {
-                console.error("Error fetching product details:", error);
-                alert("Failed to fetch product details. Please try again.");
-            }
-        });
-    });
+    //             // Redirect to product-detail page
+    //             window.location.href = "/product-detail";
+    //         } catch (error) {
+    //             console.error("Error fetching product details:", error);
+    //             alert("Failed to fetch product details. Please try again.");
+    //         }
+    //     });
+    // });
 
-    productContainer.addEventListener("click", function (event) {
-        if (event.target.classList.contains("btn-buy")) {
-            const productId = event.target.getAttribute("data-id");
-            if (productId) {
-                // เปลี่ยนเส้นทางไปยัง Product_detail.html พร้อมแนบ product_id
-                window.location.href = `/product-detail?product_id=${productId}`;
-            }
-        }
-    });
+    // productContainer.addEventListener("click", function (event) {
+    //     if (event.target.classList.contains("btn-buy")) {
+    //         const productId = event.target.getAttribute("data-id");
+    //         if (productId) {
+    //             // เปลี่ยนเส้นทางไปยัง Product_detail.html พร้อมแนบ product_id
+    //             window.location.href = `/product-detail?product_id=${productId}`;
+    //         }
+    //     }
+    // });
 
 });
 // Delete product for Admin pages
