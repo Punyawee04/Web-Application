@@ -259,4 +259,29 @@ router.get('/get-admin/:id', async (req, res) => {
         res.status(500).json({ message: 'Error fetching admin details.' });
     }
 });
+
+router.get('/account-details/:username', async (req, res) => {
+    const { username } = req.params;
+
+    try {
+        const sql = `
+            SELECT ld.UserName, ld.Email, a.admin_name, e.admin_email, a.image_url
+            FROM LoginDetail ld
+            JOIN Administrator a ON ld.login_id = a.login_id
+            JOIN Email e ON a.admin_id = e.admin_id
+            WHERE ld.UserName = ?
+        `;
+
+        const [results] = await db.query(sql, [username]);
+
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.json(results[0]); // Return the first result (unique user)
+    } catch (error) {
+        console.error('Error fetching account details:', error);
+        res.status(500).json({ message: 'Error fetching account details.' });
+    }
+});
 module.exports = router;

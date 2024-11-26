@@ -92,7 +92,6 @@ body {
   align-items: flex-start;
   gap: 14rem;
   /* padding: 20px; */
-  padding-bottom: 70px; /* ขยายขอบด้านล่าง */
   background-color:#f7f5f4;
   width:auto;
   margin-left: 12rem;
@@ -101,31 +100,6 @@ body {
 }
 
 
-.overview-text h3 {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #000000;
-  margin-bottom: 8px;
-}
-
-.overview-text p {
-  font-size: 1rem;
-  color: #666;
-}
-
-.overview-text a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.overview-details {
-  display: flex;
-  gap: 170px;
-  border: 1px solid #ddd;
-  padding: 15px 35px;
-  border-radius: 5px;
-  background-color: white;
-}
 
 .detail p:first-child {
   font-size: 20px;
@@ -155,7 +129,6 @@ body {
   font-size: 1.4rem;
   font-weight: bold;
   color: #000000;
-  margin-bottom: 8px;
   margin-top: 15px;
 }
 
@@ -206,7 +179,6 @@ body {
   font-size: 1.4rem;
   font-weight: bold;
   color: #000000;
-  margin-bottom: 8px;
   margin-right: auto;
 }
 
@@ -222,7 +194,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .action-button {

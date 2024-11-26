@@ -130,44 +130,44 @@
     <!-- detail-Product -->
     <script>
         // Load product details from URL parameter
-        document.addEventListener("DOMContentLoaded", function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const productId = urlParams.get("product_id");
-    
-            if (productId) {
-                // Fetch product details from the backend
-                fetch(`http://localhost:8080/api/products/${productId}`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Product not found.');
-                        }
-                        return response.json();
-                    })
-                    .then(product => {
-                        // Update HTML content with the product details
-                        document.querySelector(".product-image img").src = product.image_url;
-                        document.querySelector(".product-info h2").textContent = product.product_name;
-                        document.querySelector(".description p").textContent = product.description;
-                        document.querySelector("#price").textContent = product.price;
-                        document.querySelector("#stock").textContent = product.stock_quantity;
-                        document.querySelector("#brand-origin").textContent = product.origin;
-                        document.querySelector("#function").textContent = product.benefit;
-                        document.querySelector("#skin-type").textContent = product.skin_type;
-                        document.querySelector("#amount").textContent = product.quantity + "ml";
-                        document.querySelector("#des-2 p").innerHTML = ` <br>
-                            Place of Origin: ${product.origin} 
-                            Ingredients: ${product.ingredients}
-                        `;
-                    })
-                    .catch(error => {
-                        console.error("Error fetching product details:", error);
-                        document.getElementById("main").innerHTML = "<p>Product details not available.</p>";
-                    });
-            } else {
-                console.error("No product ID found in URL.");
-                document.getElementById("main").innerHTML = "<p>No product selected.</p>";
-            }
-        });
+document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get("product_id");
+
+    if (productId) {
+        // Fetch product details from the backend
+        fetch(`http://localhost:8080/api/products/${productId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Product not found.');
+                }
+                return response.json();
+            })
+            .then(product => {
+                // Update HTML content with the product details
+                document.querySelector(".product-image img").src = product.image_url;
+                document.querySelector(".product-info h2").textContent = product.product_name;
+                document.querySelector(".description p").textContent = product.description;
+                document.querySelector("#price").textContent = product.price;
+                document.querySelector("#stock").textContent = product.stock_quantity;
+                document.querySelector("#brand-origin").textContent = product.origin;
+                document.querySelector("#function").textContent = product.benefit;
+                document.querySelector("#skin-type").textContent = product.skin_type;
+                document.querySelector("#amount").textContent = product.quantity + "ml";
+                document.querySelector("#des-2 p").innerHTML = ` <br>
+                    Place of Origin: ${product.origin} 
+                    Ingredients: ${product.ingredients}
+                `;
+            })
+            .catch(error => {
+                console.error("Error fetching product details:", error);
+                document.getElementById("main").innerHTML = "<p>Product details not available.</p>";
+            });
+    } else {
+        console.error("No product ID found in URL.");
+        document.getElementById("main").innerHTML = "<p>No product selected.</p>";
+    }
+});
     </script>
     
     <!-- Footer -->

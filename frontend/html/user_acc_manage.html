@@ -137,22 +137,14 @@
             <div class="right-column">
                 <section class="account-owner">
                     <div class="account-owner1">
-                        <h2 class="account-owner-text">Account Owner</h2>
-                        <button class="action-button"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                fill="black" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                <path
-                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                <path fill-rule="evenodd"
-                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                            </svg></button>
+                        <h2 class="account-owner-text" style="margin-bottom: 0px;">Account Owner</h2>
                     </div>
                     <div class="account-owner-details">
                         <div class="owner-details">
-                            <img id="admin-profile" src="" alt="Admin User Profile">
+                            <img id="admin-profile" src="../src/Guest.jpg" alt="Admin User Profile" width="50">
                             <div class="info">
                                 <span id="admin-username" class="name"></span><br>
-                                <span id ="admin-email"></span><br>
-                            
+                                <span id="admin-email"></span><br>
                             </div>
                         </div>
                     </div>
@@ -341,6 +333,59 @@
         });
     });
     
+// Call Account detail 
+document.addEventListener('DOMContentLoaded', () => {
+    const username = localStorage.getItem('username'); // Get username from localStorage
+
+    console.log('Username from localStorage:', username);
+
+    if (username) {
+        fetchAccountDetails(username);
+    } else {
+        alert('No user logged in.');
+    }
+});
+
+async function fetchAccountDetails(username) {
+    try {
+        const response = await fetch(`http://localhost:8080/api/account-details/${username}`);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch account details for username: ${username}`);
+        }
+
+        const data = await response.json();
+        console.log('API Response:', data);
+
+        // Check if elements exist
+        const usernameElement = document.getElementById('admin-username');
+        const emailElement = document.getElementById('admin-email');
+        const profileElement = document.getElementById('admin-profile');
+
+        console.log('Elements in DOM:', { usernameElement, emailElement, profileElement });
+
+        if (usernameElement && emailElement && profileElement) {
+            // Update the Account Owner section
+            usernameElement.textContent = data.admin_name || 'N/A';
+            emailElement.textContent = data.admin_email || 'N/A';
+            profileElement.src = data.image_url || '../src/Guest.jpg';
+        } else {
+            console.error('One or more elements are missing in the DOM.');
+        }
+    } catch (error) {
+        console.error('Error fetching account details:', error);
+
+        // Provide fallback data
+        const usernameElement = document.getElementById('admin-username');
+        const emailElement = document.getElementById('admin-email');
+        const profileElement = document.getElementById('admin-profile');
+
+        if (usernameElement) usernameElement.textContent = 'Error loading data';
+        if (emailElement) emailElement.textContent = 'Error loading data';
+        if (profileElement) profileElement.src = '../src/Guest.jpg';
+    }
+}
+
+
 </script>
 <script src="js/callAdmin.js"></script>
 <script src="js/add-admin.js"></script>

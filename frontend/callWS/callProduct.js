@@ -125,6 +125,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
 });
+// Delete product for Admin pages
 async function deleteProduct(productId) {
     try {
         const response = await fetch(`http://localhost:8080/api/delete-product/${productId}`, {
@@ -142,7 +143,8 @@ async function deleteProduct(productId) {
         alert("Failed to delete the product.");
     }
 }
-// Define the reusable fetchProducts function
+
+// Define the reusable fetchProducts function 
 async function fetchProducts() {
     try {
         const response = await fetch("http://localhost:8080/api/products");

@@ -47,7 +47,7 @@ function openUpdatePopup(adminId) {
             // Pre-fill the form with fetched admin data
             document.getElementById('update_admin_id').value = adminId;
             document.getElementById('update_username').value = data.username;
-            document.getElementById('update_password').value = ''; // Leave password blank for security
+            document.getElementById('update_password').value = data.password; // Leave password blank for security
             document.getElementById('update_email').value = data.email;
             document.getElementById('update_status').value = data.status;
             document.getElementById('update_admin_name').value = data.admin_name;
@@ -124,6 +124,8 @@ async function deleteAdmin(adminId) {
         alert('Failed to delete admin.');
     }
 }
+
+
 
 // Function to close the popup
 function closePopup(popupId) {
