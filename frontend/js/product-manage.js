@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Please log in first.');
+        window.location.href = 'login.html';
+    }
     const tableBody = document.querySelector("tbody");
 
     const products = await fetchProducts();
@@ -52,3 +57,4 @@ document.addEventListener("DOMContentLoaded", async () => {
         location.reload(); // Refresh the page
     }
 });
+
