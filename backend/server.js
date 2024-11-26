@@ -37,6 +37,7 @@ app.get('/api/product-manage', authenticateToken, (req, res) => {
     res.json({ message: 'User Management Access Granted', user: req.user });
 });
 
+
 // Handle 404 Not Found
 app.use((req, res) => {
     res.status(404).json({ error: 'Endpoint not found' });
