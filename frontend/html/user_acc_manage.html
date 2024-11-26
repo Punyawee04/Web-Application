@@ -166,27 +166,16 @@
                             </tr>
                         </thead>
                         <tbody id="admin-list">
-          
                             <!-- Additional staff rows as needed -->
+                            <script src="js/search-admin.js"></script>
+                            <script src="js/callAdmin.js"></script>
+                            <script src="js/add-admin.js"></script>
                         </tbody>
                     </table>
                 </section>
             </div>
         </div>
     </main>
-    <!-- Delete Popup -->
- <!-- delete staff -->
- <div id="deletePopup" class="delete-overlay" style="display: none;">
-    <div class="popup">
-        <div class="close-btn" onclick="closePopup('deletePopup')">&times;</div>
-        <h2>Delete Staff Account?</h2>
-        <p>Are you sure you want to delete this account? This action cannot be undone.</p>
-        <div class="popup-buttons">
-            <button class="cancel-button" onclick="closePopup('deletePopup')">Cancel</button>
-            <button class="delete-button" id = "deleteAdminBTN">Delete</button>
-        </div>
-    </div>
-</div>
 
 
 <!-- Admin Update Popup -->
@@ -302,17 +291,6 @@
 
 
 <script>
-    // Function to open popup
-    function openPopup(popupId) {
-        console.log("Opening popup:", popupId);
-        document.getElementById(popupId).style.display = 'flex';
-    }
-
-    // Function to close popup
-    function closePopup(popupId) {
-        console.log("Closing popup:", popupId);
-        document.getElementById(popupId).style.display = 'none';
-    }
 
     document.addEventListener('DOMContentLoaded', () => {
         // Open popup when "Add staff" button is clicked
@@ -387,6 +365,5 @@ async function fetchAccountDetails(username) {
 
 
 </script>
-<script src="js/callAdmin.js"></script>
-<script src="js/add-admin.js"></script>
+
 

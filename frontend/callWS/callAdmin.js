@@ -126,7 +126,6 @@ async function deleteAdmin(adminId) {
 }
 
 
-
 // Function to close the popup
 function closePopup(popupId) {
     document.getElementById(popupId).style.display = 'none';

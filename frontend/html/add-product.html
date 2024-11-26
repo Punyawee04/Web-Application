@@ -120,10 +120,10 @@
                 </div>
 
                 <!-- Button Group -->
-                <div class="button-group">
-                    <button type="button" class="delete-button">Delete Product</button>
+                <div class="button-group" style="margin-bottom: 30px;">
                     <button type="submit" class="save" id="saveButton">Save</button>
                 </div>
+
             </form>
         </section>
     </div>
@@ -146,46 +146,7 @@
             reader.readAsDataURL(file); // Read the file as a data URL
         }
     });
-    document.getElementById('addProductForm').addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        const formData = new FormData();
-        formData.append('product_id', document.getElementById('product_id').value);
-        formData.append('product_name', document.getElementById('product_name').value);
-        formData.append('category_name', document.getElementById('category_name').value);
-        formData.append('price', document.getElementById('price').value);
-        formData.append('description', document.getElementById('description').value);
-        formData.append('product_rating', document.getElementById('product_rating').value);
-        formData.append('stock_quantity', document.getElementById('stock_quantity').value);
-        formData.append('origin', document.getElementById('origin').value);
-        formData.append('benefit', document.getElementById('benefit').value);
-        formData.append('skin_type', document.getElementById('skin_type').value);
-        formData.append('quantity', document.getElementById('quantity').value);
-        formData.append('ingredients', document.getElementById('ingredients').value);
-        formData.append('brand', document.getElementById('brand').value);
-
-        const fileInput = document.getElementById('imageUpload');
-        if (fileInput.files[0]) {
-            formData.append('image', fileInput.files[0]); // Append the image file
-        }
-
-        try {
-            const response = await fetch('http://localhost:8080/api/add-product', {
-                method: 'POST',
-                body: formData,
-            });
-
-            const data = await response.json();
-            if (response.ok) {
-                alert(data.message);
-            } else {
-                alert(`Error: ${data.message}`);
-            }
-        } catch (err) {
-            console.error('Error:', err);
-            alert('Failed to save the product.');
-        }
-    });
+    
     
 </script>
 <script src="/js/callProduct.js"></script>
