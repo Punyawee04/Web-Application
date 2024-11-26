@@ -198,49 +198,66 @@
 
 
 <!-- Admin Update Popup -->
-<!-- Popup Overlay -->
-<div id="popupOverlay" class="admin-overlay" style="display: none;">
+<div id="updateAdminPopup" class="popup-overlay" style="display: none;">
     <div class="popup">
-        <span class="close-btn" onclick="closePopup('popupOverlay')">&times;</span>
-        <h2 class="popup-header">Account owner</h2>
+        <span class="close-btn" onclick="closePopup('updateAdminPopup')">&times;</span>
+        <h2>Update Administrator</h2>
+        <form id="updateAdminForm">
+            <div class="form-grid">
 
-        <!-- Avatar and Buttons -->
-        <div class="avatar-section">
-            <div class="avatar-circle">
-                <span class="avatar-icon">T</span>
+            <input type="hidden" id="update_admin_id" name="admin_id" />
+            
+            <!-- Username -->
+            <div class="input-group">
+                <label for="update_username">Username</label>
+                <input type="text" id="update_username" name="username" placeholder="Enter username" required>
             </div>
-            <button class="photo-button upload-button">Upload photo</button>
-            <button class="photo-button delete-button">Delete photo</button>
-        </div>
 
-        <!-- Form Fields -->
-        <div class="form-row">
+            <!-- Password -->
             <div class="input-group">
-                <label for="first-name">First name</label>
-                <input type="text" id="first-name" placeholder="Admin First Name">
+                <label for="update_password">Password</label>
+                <input type="password" id="update_password" name="password" placeholder="Enter new password">
             </div>
-            <div class="input-group">
-                <label for="last-name">Last name</label>
-                <input type="text" id="last-name" placeholder="Admin Last Name">
-            </div>
-        </div>
 
-        <div class="form-row">
+            <!-- Email -->
             <div class="input-group">
-                <label for="email">Email</label>
-                <div class="email-section">
-                    <span>admin@bloom.com</span>
-                    <a href="#" class="change-email">Change email</a>
-                </div>
+                <label for="update_email">Email</label>
+                <input type="email" id="update_email" name="email" placeholder="Enter email" required>
             </div>
+
+            <!-- Status -->
             <div class="input-group">
-                <label for="phone">Phone (optional)</label>
-                <input type="text" id="phone" placeholder="">
+                <label for="update_status">Status</label>
+                <select id="update_status" name="status" required>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
             </div>
-        </div>
+
+            <!-- Admin Name -->
+            <div class="input-group">
+                <label for="update_admin_name">Admin Name</label>
+                <input type="text" id="update_admin_name" name="admin_name" placeholder="Enter admin name" required>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="input-group">
+                <label for="update_phone_number">Phone Number</label>
+                <input type="text" id="update_phone_number" name="phone_number" placeholder="Enter phone number" required>
+            </div>
+
+            <!-- Admin Email -->
+            <div class="input-group">
+                <label for="update_admin_email">Admin Email</label>
+                <input type="email" id="update_admin_email" name="admin_email" placeholder="Enter admin email" required>
+            </div>
+</div>
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Update Admin</button>
+            
+        </form>
     </div>
 </div>
-
 <!-- Add Admin Popup -->
 <div id="addAdminPopup" class="popup-overlay" style="display: none;">
     <div class="popup">

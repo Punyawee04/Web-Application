@@ -65,31 +65,6 @@ CREATE TABLE Product (
 -- ----------------------------------------------------------------------------------------------------------------
 
 
--- Insert data into LoginDetail table
-INSERT INTO LoginDetail (UserName, Password, Email, login_Time, logout_Time, login_Date, Status)
-VALUES 
-('admin1', '1111', 'admin1@example.com', '08:00', '16:00', '2024-11-01', 'Active'),
-('admin2', '2222', 'admin2@example.com', '09:00', '17:00', '2024-11-02', 'Inactive');
-
--- Insert data into Administor table
-INSERT INTO Administrator (admin_id, admin_name, login_Date, login_Time, login_id)
-VALUES 
-(1001, 'Alice Johnson', '2024-11-01', '08:00', 1),
-(1002, 'Bob Smith', '2024-11-02', '09:00', 2);
-
--- Insert data into Administor_phonenum table
-INSERT INTO Administrator_phonenum (admin_id, admin_phone_number)
-VALUES 
-(1001, '123-456-7890'),
-(1002, '987-654-3210');
-
-
--- Insert data into Email table
-INSERT INTO Email (admin_id, admin_email)
-VALUES 
-(1001, 'alice.johnson@example.com'),
-(1002, 'bob.smith@example.com');
-
 -- DO NOT insert FORM MySQL Insert from Web form
 INSERT INTO Product (product_id, product_rating, stock_quantity, price, description, origin, benefit, skin_type, quantity, ingredients, brand, product_name, category_name)
 VALUES 
@@ -146,14 +121,20 @@ SET image_url = 'http://localhost:8080/images/product10.jpg'
 WHERE product_id = 'PD10';
 
 
+DELETE FROM Email WHERE admin_id = 2;
+DELETE FROM Administrator_phonenum WHERE admin_id = 2;
+DELETE FROM Administrator WHERE admin_id = 2;
+DELETE FROM LoginDetail WHERE login_id = (SELECT login_id FROM Administrator WHERE admin_id = 2);
 
 
 select * from Administrator;
 select * from LoginDetail;
 
+-- Insert data into LoginDetail table
+-- user: admin1
+-- password 1111
 
 
-
-SELECT (LoginDetail.email) AS email,(Administrator.image_url) AS img_url,(LoginDetail.UserName) AS userName FROM LoginDetail INNER JOIN Administrator WHERE login_id != ? AND LoginDetail.login_id = Administrator.login_id;
-
+select*from LoginDetail;
+drop table Administrator,Email,Administrator_phonenum,LoginDetail;
 
