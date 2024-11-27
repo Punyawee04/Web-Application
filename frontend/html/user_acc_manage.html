@@ -363,6 +363,40 @@ async function fetchAccountDetails(username) {
     }
 }
 
+// Handle update form submission
+document.getElementById('updateAdminForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const adminId = document.getElementById('update_admin_id').value;
+    const updatedData = {
+        username: document.getElementById('update_username').value,
+        password: document.getElementById('update_password').value, // Optional: leave null if not updating
+        email: document.getElementById('update_email').value,
+        status: document.getElementById('update_status').value,
+        admin_name: document.getElementById('update_admin_name').value,
+        phone_number: document.getElementById('update_phone_number').value,
+        admin_email: document.getElementById('update_admin_email').value,
+    };
+
+    try {
+        const response = await fetch(`http://localhost:8080/api/update-admin/${adminId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatedData),
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to update admin');
+        }
+
+        alert('Admin updated successfully!');
+        document.getElementById('updateAdminPopup').style.display = 'none'; // Close popup
+        location.reload(); // Reload the page to reflect changes
+    } catch (error) {
+        console.error('Error updating admin:', error);
+        alert('Failed to update admin.');
+    }
+});
 
 </script>
 

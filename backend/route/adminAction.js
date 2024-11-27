@@ -190,7 +190,7 @@ router.put('/update-admin/:id', async (req, res) => {
         `;
         await connection.execute(loginDetailQuery, [
             username,
-            password || null, // Use null if password is not provided
+            password, // Use null if password is not provided
             email,
             status,
             login_id,
