@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        td .action-button{
+        td .action-button {
             background-color: #EC297B;
         }
+
         /* Basic styling for table and buttons */
         td .action-button {
             background-color: #EC297B;
@@ -39,30 +40,31 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-    
+
         .form-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
         }
-    
+
         .input-group {
             display: flex;
             flex-direction: column;
         }
-    
+
         label {
             font-weight: bold;
             margin-bottom: 5px;
         }
-    
-        input, select {
+
+        input,
+        select {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
         }
-    
+
         .submit-btn {
             margin-top: 20px;
             width: 100%;
@@ -74,16 +76,16 @@
             cursor: pointer;
             font-size: 16px;
         }
-    
+
         .submit-btn:hover {
             background-color: #e04772;
         }
-    
+
         h2 {
             text-align: center;
             margin-bottom: 20px;
         }
-    
+
         .close-btn {
             float: right;
             font-size: 20px;
@@ -105,9 +107,9 @@
             <ul class="menunav">
                 <div class="menu-1">
                     <a href="http://localhost:8081/user-manage" class="list-left active" style="
-            color: #EC297B;"><i
-                            class="bi bi-person-circle"></i>Account</a>
-                    <a href="http://localhost:8081/product-manage" class="list-left product-management"><i class="bi bi-box-seam"></i>Product
+            color: #EC297B;"><i class="bi bi-person-circle"></i>Account</a>
+                    <a href="http://localhost:8081/product-manage" class="list-left product-management"><i
+                            class="bi bi-box-seam"></i>Product
                         Management</a>
                 </div>
                 <div class="menu-2">
@@ -178,110 +180,127 @@
     </main>
 
 
-<!-- Admin Update Popup -->
-<div id="updateAdminPopup" class="popup-overlay" style="display: none;">
-    <div class="popup">
-        <span class="close-btn" onclick="closePopup('updateAdminPopup')">&times;</span>
-        <h2>Update Administrator</h2>
-        <form id="updateAdminForm">
-            <div class="form-grid">
+    <!-- Admin Update Popup -->
+    <div id="updateAdminPopup" class="popup-overlay" style="display: none;">
+        <div class="popup">
+            <span class="close-btn" onclick="closePopup('updateAdminPopup')">&times;</span>
+            <h2>Update Administrator</h2>
+            <form id="updateAdminForm">
+                <div class="form-grid">
 
-            <input type="hidden" id="update_admin_id" name="admin_id" />
-            
-            <!-- Username -->
-            <div class="input-group">
-                <label for="update_username">Username</label>
-                <input type="text" id="update_username" name="username" placeholder="Enter username" required>
-            </div>
+                    <input type="hidden" id="update_admin_id" name="admin_id" />
 
-            <!-- Password -->
-            <div class="input-group">
-                <label for="update_password">Password</label>
-                <input type="password" id="update_password" name="password" placeholder="Enter new password">
-            </div>
+                    <!-- Username -->
+                    <div class="input-group">
+                        <label for="update_username">Username</label>
+                        <input type="text" id="update_username" name="username" placeholder="Enter username" required>
+                    </div>
 
-            <!-- Email -->
-            <div class="input-group">
-                <label for="update_email">Email</label>
-                <input type="email" id="update_email" name="email" placeholder="Enter email" required>
-            </div>
+                    <!-- Password -->
+                    <div class="input-group">
+                        <label for="update_password">Password:</label>
+                        <input type="password" id="update_password" placeholder="Enter new password">
+                        <div style="display: flex; align-items: center;">
+                            <div>
+                                <input type="checkbox" id="toggle_password_visibility" onchange="togglePasswordVisibility()"
+                                style="margin-left: 8px; margin-top:8px">
+                            </div>
+                            <div>
+                                <label for="toggle_password_visibility"
+                                style="font-size: 12px; margin-left: 8px; margin-top:8px">Show Password</label>
+                            </div>
+                           
+                        </div>
 
-            <!-- Status -->
-            <div class="input-group">
-                <label for="update_status">Status</label>
-                <select id="update_status" name="status" required>
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                </select>
-            </div>
+                    </div>
 
-            <!-- Admin Name -->
-            <div class="input-group">
-                <label for="update_admin_name">Admin Name</label>
-                <input type="text" id="update_admin_name" name="admin_name" placeholder="Enter admin name" required>
-            </div>
+                    <!-- Email -->
+                    <div class="input-group">
+                        <label for="update_email">Email</label>
+                        <input type="email" id="update_email" name="email" placeholder="Enter email" required>
+                    </div>
 
-            <!-- Phone Number -->
-            <div class="input-group">
-                <label for="update_phone_number">Phone Number</label>
-                <input type="text" id="update_phone_number" name="phone_number" placeholder="Enter phone number" required>
-            </div>
+                    <!-- Status -->
+                    <div class="input-group">
+                        <label for="update_status">Status</label>
+                        <select id="update_status" name="status" required>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
 
-            <!-- Admin Email -->
-            <div class="input-group">
-                <label for="update_admin_email">Admin Email</label>
-                <input type="email" id="update_admin_email" name="admin_email" placeholder="Enter admin email" required>
-            </div>
-</div>
-            <!-- Submit Button -->
-            <button type="submit" class="submit-btn">Update Admin</button>
-            
-        </form>
+                    <!-- Admin Name -->
+                    <div class="input-group">
+                        <label for="update_admin_name">Admin Name</label>
+                        <input type="text" id="update_admin_name" name="admin_name" placeholder="Enter admin name"
+                            required>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="input-group">
+                        <label for="update_phone_number">Phone Number</label>
+                        <input type="text" id="update_phone_number" name="phone_number" placeholder="Enter phone number"
+                            required>
+                    </div>
+
+                    <!-- Admin Email -->
+                    <div class="input-group">
+                        <label for="update_admin_email">Admin Email</label>
+                        <input type="email" id="update_admin_email" name="admin_email" placeholder="Enter admin email"
+                            required>
+                    </div>
+                </div>
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">Update Admin</button>
+
+            </form>
+        </div>
     </div>
-</div>
-<!-- Add Admin Popup -->
-<div id="addAdminPopup" class="popup-overlay" style="display: none;">
-    <div class="popup">
-        <span class="close-btn" onclick="closePopup('addAdminPopup')">&times;</span>
-        <h2>Add Administrator</h2>
-        <form id="addAdminForm">
-            <div class="form-grid">
-                <div class="input-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Enter username" required>
+    <!-- Add Admin Popup -->
+    <div id="addAdminPopup" class="popup-overlay" style="display: none;">
+        <div class="popup">
+            <span class="close-btn" onclick="closePopup('addAdminPopup')">&times;</span>
+            <h2>Add Administrator</h2>
+            <form id="addAdminForm">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Enter username" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter password" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="status">Status</label>
+                        <select id="status" name="status" required>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="admin_name">Admin Name</label>
+                        <input type="text" id="admin_name" name="admin_name" placeholder="Enter admin name" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="phone_number">Phone Number</label>
+                        <input type="text" id="phone_number" name="phone_number" placeholder="Enter phone number"
+                            required>
+                    </div>
+                    <div class="input-group">
+                        <label for="admin_email">Admin Email</label>
+                        <input type="email" id="admin_email" name="admin_email" placeholder="Enter admin email"
+                            required>
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Enter password" required>
-                </div>
-                <div class="input-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Enter email" required>
-                </div>
-                <div class="input-group">
-                    <label for="status">Status</label>
-                    <select id="status" name="status" required>
-                        <option value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="admin_name">Admin Name</label>
-                    <input type="text" id="admin_name" name="admin_name" placeholder="Enter admin name" required>
-                </div>
-                <div class="input-group">
-                    <label for="phone_number">Phone Number</label>
-                    <input type="text" id="phone_number" name="phone_number" placeholder="Enter phone number" required>
-                </div>
-                <div class="input-group">
-                    <label for="admin_email">Admin Email</label>
-                    <input type="email" id="admin_email" name="admin_email" placeholder="Enter admin email" required>
-                </div>
-            </div>
-            <button type="submit" class="submit-btn">Add Admin</button>
-        </form>
+                <button type="submit" class="submit-btn">Add Admin</button>
+            </form>
+        </div>
     </div>
-</div>
 
 
 
@@ -296,12 +315,12 @@
         // Open popup when "Add staff" button is clicked
         const addStaffBtn = document.querySelector('.add-staff-btn');
         const addAdminPopup = document.getElementById('addAdminPopup');
-    
+
         addStaffBtn.addEventListener('click', () => {
             console.log('Add Staff Button Clicked'); // Debug log
             addAdminPopup.style.display = 'flex'; // Show popup
         });
-    
+
         // Close popup when close button is clicked
         const closeButtons = document.querySelectorAll('.close-btn');
         closeButtons.forEach((button) => {
@@ -310,94 +329,109 @@
             });
         });
     });
-    
-// Call Account detail 
-document.addEventListener('DOMContentLoaded', () => {
-    const username = localStorage.getItem('username'); // Get username from localStorage
 
-    console.log('Username from localStorage:', username);
+    // Call Account detail 
+    document.addEventListener('DOMContentLoaded', () => {
+        const username = localStorage.getItem('username'); // Get username from localStorage
 
-    if (username) {
-        fetchAccountDetails(username);
-    } else {
-        alert('No user logged in.');
-    }
-});
+        console.log('Username from localStorage:', username);
 
-async function fetchAccountDetails(username) {
-    try {
-        const response = await fetch(`http://localhost:8080/api/account-details/${username}`);
-        if (!response.ok) {
-            throw new Error(`Failed to fetch account details for username: ${username}`);
-        }
-
-        const data = await response.json();
-        console.log('API Response:', data);
-
-        // Check if elements exist
-        const usernameElement = document.getElementById('admin-username');
-        const emailElement = document.getElementById('admin-email');
-        const profileElement = document.getElementById('admin-profile');
-
-        console.log('Elements in DOM:', { usernameElement, emailElement, profileElement });
-
-        if (usernameElement && emailElement && profileElement) {
-            // Update the Account Owner section
-            usernameElement.textContent = data.admin_name || 'N/A';
-            emailElement.textContent = data.admin_email || 'N/A';
-            profileElement.src = data.image_url || '../src/Guest.jpg';
+        if (username) {
+            fetchAccountDetails(username);
         } else {
-            console.error('One or more elements are missing in the DOM.');
+            alert('No user logged in.');
         }
-    } catch (error) {
-        console.error('Error fetching account details:', error);
+    });
 
-        // Provide fallback data
-        const usernameElement = document.getElementById('admin-username');
-        const emailElement = document.getElementById('admin-email');
-        const profileElement = document.getElementById('admin-profile');
+    async function fetchAccountDetails(username) {
+        try {
+            const response = await fetch(`http://localhost:8080/api/account-details/${username}`);
+            if (!response.ok) {
+                throw new Error(`Failed to fetch account details for username: ${username}`);
+            }
 
-        if (usernameElement) usernameElement.textContent = 'Error loading data';
-        if (emailElement) emailElement.textContent = 'Error loading data';
-        if (profileElement) profileElement.src = '../src/Guest.jpg';
-    }
-}
+            const data = await response.json();
+            console.log('API Response:', data);
 
-// Handle update form submission
-document.getElementById('updateAdminForm').addEventListener('submit', async (event) => {
-    event.preventDefault();
+            // Check if elements exist
+            const usernameElement = document.getElementById('admin-username');
+            const emailElement = document.getElementById('admin-email');
+            const profileElement = document.getElementById('admin-profile');
 
-    const adminId = document.getElementById('update_admin_id').value;
-    const updatedData = {
-        username: document.getElementById('update_username').value,
-        password: document.getElementById('update_password').value, // Optional: leave null if not updating
-        email: document.getElementById('update_email').value,
-        status: document.getElementById('update_status').value,
-        admin_name: document.getElementById('update_admin_name').value,
-        phone_number: document.getElementById('update_phone_number').value,
-        admin_email: document.getElementById('update_admin_email').value,
-    };
+            console.log('Elements in DOM:', { usernameElement, emailElement, profileElement });
 
-    try {
-        const response = await fetch(`http://localhost:8080/api/update-admin/${adminId}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(updatedData),
-        });
+            if (usernameElement && emailElement && profileElement) {
+                // Update the Account Owner section
+                usernameElement.textContent = data.admin_name || 'N/A';
+                emailElement.textContent = data.admin_email || 'N/A';
+                profileElement.src = data.image_url || '../src/Guest.jpg';
+            } else {
+                console.error('One or more elements are missing in the DOM.');
+            }
+        } catch (error) {
+            console.error('Error fetching account details:', error);
 
-        if (!response.ok) {
-            throw new Error('Failed to update admin');
+            // Provide fallback data
+            const usernameElement = document.getElementById('admin-username');
+            const emailElement = document.getElementById('admin-email');
+            const profileElement = document.getElementById('admin-profile');
+
+            if (usernameElement) usernameElement.textContent = 'Error loading data';
+            if (emailElement) emailElement.textContent = 'Error loading data';
+            if (profileElement) profileElement.src = '../src/Guest.jpg';
         }
-
-        alert('Admin updated successfully!');
-        document.getElementById('updateAdminPopup').style.display = 'none'; // Close popup
-        location.reload(); // Reload the page to reflect changes
-    } catch (error) {
-        console.error('Error updating admin:', error);
-        alert('Failed to update admin.');
     }
-});
+
+    document.getElementById('updateAdminForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const adminId = document.getElementById('update_admin_id').value;
+
+        // Get the current password value
+        const currentPassword = document.getElementById('update_password').value;
+
+        // Retrieve the old password from the pre-filled data
+        const oldPassword = await fetch(`http://localhost:8080/api/get-admin/${adminId}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch admin data.');
+                }
+                return response.json();
+            })
+            .then((data) => data.password)
+            .catch((error) => {
+                console.error('Error fetching old password:', error);
+                return null; // Fallback if unable to fetch old password
+            });
+
+        const updatedData = {
+            username: document.getElementById('update_username').value,
+            password: currentPassword || oldPassword, // Use current value or fallback to old password
+            email: document.getElementById('update_email').value,
+            status: document.getElementById('update_status').value,
+            admin_name: document.getElementById('update_admin_name').value,
+            phone_number: document.getElementById('update_phone_number').value,
+            admin_email: document.getElementById('update_admin_email').value,
+        };
+
+        try {
+            const response = await fetch(`http://localhost:8080/api/update-admin/${adminId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to update admin');
+            }
+
+            alert('Admin updated successfully!');
+            document.getElementById('updateAdminPopup').style.display = 'none'; // Close popup
+            location.reload(); // Reload the page to reflect changes
+        } catch (error) {
+            console.error('Error updating admin:', error);
+            alert('Failed to update admin.');
+        }
+    });
 
 </script>
-
-

@@ -34,9 +34,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-// Function to open the update popup and pre-fill data
 function openUpdatePopup(adminId) {
-    fetch(`http://localhost:8080/api/get-admin/${adminId}`) // Adjust the backend route to fetch admin details
+    fetch(`http://localhost:8080/api/get-admin/${adminId}`)
         .then((response) => {
             if (!response.ok) {
                 throw new Error('Failed to fetch admin data.');
@@ -46,9 +45,14 @@ function openUpdatePopup(adminId) {
         .then((data) => {
             document.getElementById('update_admin_id').value = adminId;
             document.getElementById('update_username').value = data.username;
-            
-            // Handle password: display empty if backend doesn't send it
-            document.getElementById('update_password').value = data.password || '';
+
+            // Pre-fill the password field if available
+            const passwordField = document.getElementById('update_password');
+            if (data.password) {
+                passwordField.value = data.password;
+            } else {
+                passwordField.value = ''; // Optional: Default to empty if not provided
+            }
 
             document.getElementById('update_email').value = data.email;
             document.getElementById('update_status').value = data.status;
@@ -64,6 +68,14 @@ function openUpdatePopup(adminId) {
             alert('Failed to fetch admin details.');
         });
 }
+
+// Toggle password visibility
+function togglePasswordVisibility() {
+    const passwordField = document.getElementById('update_password');
+    const toggleCheckbox = document.getElementById('toggle_password_visibility');
+    passwordField.type = toggleCheckbox.checked ? 'text' : 'password';
+}
+
 
 // Edit Admin button handler
 function editAdmin(adminId) {

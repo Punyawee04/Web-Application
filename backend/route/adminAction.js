@@ -154,7 +154,7 @@ router.put('/update-admin/:id', async (req, res) => {
     const { id } = req.params; // `id` is the `admin_id`
     const {
         username,
-        password,
+        password, // This may be optional
         email,
         status,
         admin_name,
@@ -173,14 +173,19 @@ router.put('/update-admin/:id', async (req, res) => {
 
         // Step 1: Get `login_id` for the given `admin_id`
         const [loginResult] = await connection.execute(
-            `SELECT login_id FROM Administrator WHERE admin_id = ?`,
+            `SELECT login_id, Password FROM LoginDetail 
+             WHERE login_id = (SELECT login_id FROM Administrator WHERE admin_id = ?)`,
             [id]
         );
         const login_id = loginResult[0]?.login_id;
+        const currentPassword = loginResult[0]?.Password;
 
         if (!login_id) {
             throw new Error('Administrator not found.');
         }
+
+        // Use current password if `password` is not provided
+        const newPassword = password !== undefined && password !== null ? password : currentPassword;
 
         // Step 2: Update `LoginDetail`
         const loginDetailQuery = `
@@ -190,7 +195,7 @@ router.put('/update-admin/:id', async (req, res) => {
         `;
         await connection.execute(loginDetailQuery, [
             username,
-            password, // Use null if password is not provided
+            newPassword,
             email,
             status,
             login_id,
@@ -231,15 +236,16 @@ router.put('/update-admin/:id', async (req, res) => {
     }
 });
 
+
 // Get admin details by ID
 router.get('/get-admin/:id', async (req, res) => {
     const { id } = req.params;
 
     try {
         const [rows] = await db.query(
-            `SELECT LoginDetail.UserName AS username, LoginDetail.Email AS email, 
-                    LoginDetail.Status AS status, Administrator.admin_name, 
-                    Administrator_phonenum.admin_phone_number AS phone_number, 
+            `SELECT LoginDetail.UserName AS username, LoginDetail.Password AS password, 
+                    LoginDetail.Email AS email, LoginDetail.Status AS status, 
+                    Administrator.admin_name, Administrator_phonenum.admin_phone_number AS phone_number, 
                     Email.admin_email 
              FROM LoginDetail 
              JOIN Administrator ON LoginDetail.login_id = Administrator.login_id 
@@ -253,12 +259,13 @@ router.get('/get-admin/:id', async (req, res) => {
             return res.status(404).json({ message: 'Admin not found.' });
         }
 
-        res.json(rows[0]); // Return the admin details
+        res.json(rows[0]); // Return the admin details, including the password
     } catch (error) {
         console.error('Error fetching admin details:', error);
         res.status(500).json({ message: 'Error fetching admin details.' });
     }
 });
+
 
 router.get('/account-details/:username', async (req, res) => {
     const { username } = req.params;
