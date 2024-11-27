@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const adminList = document.querySelector("#admin-list"); // Table body for admins
-    const searchBar = document.querySelector(".search-bar"); // Search input
-    const showAllButton = document.getElementById("show-all-button"); // Optional "Show All" button
-
+    const adminList = document.querySelector("#admin-list");
+    const searchBar = document.querySelector(".search-bar");
+    const showAllButton = document.getElementById("show-all-button");
+    // เก็บรายชื่อผู้ดูแลระบบทั้งหมด
     let allAdmins = [];
 
-    // Fetch admins from the server
+    // ดึงข้อมูลผู้ดูแลระบบจากเซิร์ฟเวอร์
     async function fetchAdmins() {
         try {
             const response = await fetch("http://localhost:8080/api/admins"); // Replace with your API URL
@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-    // Display admins in the table
+    // แสดงรายชื่อผู้ดูแลระบบในตาราง
     function displayAdmins(admins) {
-        adminList.innerHTML = ""; // Clear previous rows
+        adminList.innerHTML = "";
         admins.forEach((admin) => {
             const row = document.createElement("tr");
             row.innerHTML = `
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // Search functionality
+    // ฟังก์ชันค้นหาผู้ดูแลระบบ
     searchBar.addEventListener("input", () => {
         const query = searchBar.value.toLowerCase();
         const filteredAdmins = allAdmins.filter((admin) =>
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         displayAdmins(filteredAdmins);
     });
 
-    // Optional: Show all admins when "Show All" button is clicked
+    // ฟังก์ชันสำหรับปุ่ม "แสดงทั้งหมด" (ถ้ามี)
     if (showAllButton) {
         showAllButton.addEventListener("click", () => {
             searchBar.value = "";
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // Fetch and display all admins on page load
+    // ดึงข้อมูลผู้ดูแลระบบและแสดงในตารางเมื่อโหลดหน้า
     allAdmins = await fetchAdmins();
     displayAdmins(allAdmins);
 });

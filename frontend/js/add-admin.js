@@ -1,21 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Open Popup
+    // เปิด Popup เมื่อคลิกปุ่ม "Add Staff"
     document.querySelector('.add-staff-btn').addEventListener('click', () => {
         document.getElementById('addAdminPopup').style.display = 'flex';
     });
 
-    // Close Popup
+    // ฟังก์ชันปิด Popup
     function closePopup(popupId) {
         document.getElementById(popupId).style.display = 'none';
     }
-
+    // เปิดใช้งานฟังก์ชันปิด Popup สำหรับ inline `onclick`
     window.closePopup = closePopup; // Expose to inline `onclick`
 
-    // Handle Form Submission
+    // การจัดการเมื่อส่งฟอร์ม
     document.getElementById('addAdminForm').addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        // Gather Form Data
+        // รวบรวมข้อมูลจากฟอร์ม
         const formData = {
             username: document.getElementById('username').value,
             password: document.getElementById('password').value,
@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const result = await response.json();
             alert(result.message);
-            closePopup('addAdminPopup'); // Close the popup
-            document.getElementById('addAdminForm').reset(); // Reset form
+            closePopup('addAdminPopup');
+            document.getElementById('addAdminForm').reset();
         } catch (error) {
             console.error('Error adding admin:', error);
             alert('Failed to add admin.');

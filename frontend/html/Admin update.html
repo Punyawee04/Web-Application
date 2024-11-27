@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +9,18 @@
         rel="stylesheet">
     <title>Add Staff Account Popup</title>
 </head>
+
 <body>
     <button onclick="openPopup()" class="open-popup-button">Account Owner</button>
 
     <!-- Popup Overlay -->
     <div id="popupOverlay" class="overlay" style="display: none;">
         <div class="popup">
+            <!-- ปุ่มปิด Popup -->
             <span class="close-btn" onclick="closePopup()">&times;</span>
             <h2 class="popup-header">Account owner</h2>
 
-            <!-- Avatar and Buttons -->
+            <!-- ส่วน Avatar และปุ่ม Upload/Delete -->
             <div class="avatar-section">
                 <div class="avatar-circle">
                     <span class="avatar-icon">T</span>
@@ -26,7 +29,7 @@
                 <button class="photo-button delete-button">Delete photo</button>
             </div>
 
-            <!-- Form Fields -->
+            <!-- ฟิลด์กรอกข้อมูล -->
             <div class="form-row">
                 <div class="input-group">
                     <label for="first-name">First name</label>
@@ -42,7 +45,9 @@
                 <div class="input-group">
                     <label for="email">Email</label>
                     <div class="email-section">
+                        <!-- อีเมลแสดงผล -->
                         <span>admin@bloom.com</span>
+                        <!-- ลิงก์สำหรับเปลี่ยนอีเมล -->
                         <a href="#" class="change-email">Change email</a>
                     </div>
                 </div>
@@ -55,7 +60,7 @@
     body {
         font-family: 'Inter', sans-serif;
     }
-    
+
     /* Overlay */
     .overlay {
         width: 100%;
@@ -70,7 +75,7 @@
     }
 
     .popup {
-        width: 768px;  
+        width: 768px;
         padding: 30px;
         border-radius: 5px;
         border: 0.5px solid #746D6D;
@@ -79,7 +84,7 @@
         position: relative;
     }
 
-    /* Close button */
+    /* ปุ่มปิด Popup */
     .close-btn {
         position: absolute;
         top: 20px;
@@ -96,7 +101,6 @@
         margin-bottom: 20px;
     }
 
-    /* Avatar Section */
     .avatar-section {
         display: flex;
         align-items: center;
@@ -140,7 +144,7 @@
         color: rgba(0, 0, 0, 0.5);
     }
 
-    
+
     .form-row {
         display: flex;
         gap: 20px;
@@ -169,7 +173,6 @@
         box-sizing: border-box;
     }
 
-    /* Email Section */
     .email-section {
         display: flex;
         justify-content: left;
@@ -180,21 +183,23 @@
         color: #3DABFB;
         font-size: 14px;
         text-decoration: none;
-        margin-left: 15px; 
+        margin-left: 15px;
     }
 
     .change-email:hover {
         text-decoration: underline;
     }
 </style>
+
 </html>
 
 <script>
+    // ฟังก์ชันเปิด Popup
     function openPopup() {
         document.getElementById("popupOverlay").style.display = "flex";
     }
-
+    // ฟังก์ชันปิด Popup
     function closePopup() {
-        document.getElementById("popupOverlay").style.display = "none"; 
+        document.getElementById("popupOverlay").style.display = "none";
     }
 </script>

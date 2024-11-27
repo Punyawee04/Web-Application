@@ -1,10 +1,13 @@
-
+// นำเข้าโมดูลที่จำเป็น
 const express = require('express');
 const db = require('../config/db');
 const multer = require('multer');
 const path = require('path');
+// ใช้สำหรับการแฮชรหัสผ่าน
 const bcrypt = require('bcryptjs');
+// ใช้สำหรับสร้างและตรวจสอบ JWT
 const jwt = require('jsonwebtoken');
+// ใช้จัดการไฟล์ในระบบไฟล์
 const fs = require('fs');
 
 const router = express.Router();
@@ -12,7 +15,7 @@ const router = express.Router();
 
 
 
-// Route to fetch data from the LoginDetail table
+//GET: ดึงข้อมูลจากตาราง LoginDetail
 router.get('/loginDetails', (req, res) => {
     db.query('SELECT * FROM LoginDetail', (err, results) => {
         if (err) {
@@ -22,16 +25,16 @@ router.get('/loginDetails', (req, res) => {
     });
 });
 
-// Route to insert a new user into the LoginDetail table
+//POST: เพิ่มผู้ใช้ใหม่ในตาราง LoginDetail พร้อมแฮชรหัสผ่าน
 router.post('/addLoginDetail', async (req, res) => {
     const { username, password } = req.body;
-
+    // ตรวจสอบว่ามีการส่งข้อมูลครบถ้วนหรือไม่
     if (!username || !password) {
         return res.status(400).json({ error: 'Username and password are required.' });
     }
 
     try {
-        // Hash the password before storing it
+        // แฮชรหัสผ่านก่อนบันทึก
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const sql = 'INSERT INTO LoginDetail (UserName, Password) VALUES (?, ?)';
@@ -46,7 +49,7 @@ router.post('/addLoginDetail', async (req, res) => {
     }
 });
 
-// API to fetch Administrator data
+//GET: ดึงข้อมูลจากตาราง Administrator
 router.get('/admins', (req, res) => {
     const query = `
         SELECT 
@@ -70,17 +73,16 @@ router.get('/admins', (req, res) => {
     });
 });
 
-
-
-// Register
+//POST: ลงทะเบียนผู้ใช้ใหม่
 router.post('/register', async (req, res) => {
     const { username, password, email } = req.body;
-
+    // ตรวจสอบว่ามีข้อมูลครบถ้วนหรือไม่
     if (!username || !password) {
         return res.status(400).json({ message: 'Username and password are required.' });
     }
 
     try {
+        // แฮชรหัสผ่านก่อนบันทึก
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const sql = 'INSERT INTO LoginDetail (UserName, Password, Email, login_Time, logout_Time, login_Date, Status) VALUES (?, ?, ?, "00:00", "00:00", CURDATE(), "Active")';
@@ -95,13 +97,14 @@ router.post('/register', async (req, res) => {
         res.status(500).json({ message: 'Error hashing password.' });
     }
 });
-// Login endpoint
+
+//POST: เข้าสู่ระบบ
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
 
     console.log('Login Request:', { username, password });
 
-    // Validate that both username and password are provided
+    // ตรวจสอบว่ามีการส่งข้อมูลครบถ้วนหรือไม่
     if (!username || !password) {
         return res.status(400).json({ message: 'Username and password are required.' });
     }
@@ -115,7 +118,7 @@ router.post('/login', (req, res) => {
 
         console.log('Database Results:', results);
 
-        // Check if the user exists
+        // ตรวจสอบว่าพบผู้ใช้หรือไม่
         if (results.length === 0) {
             console.log('User not found:', username);
             return res.status(400).json({ message: 'Invalid username or password.' });
@@ -124,24 +127,23 @@ router.post('/login', (req, res) => {
         const user = results[0];
         console.log('Stored Password:', user.Password);
 
-        // Validate the password
+        // ตรวจสอบรหัสผ่านที่รับมาว่าตรงกับรหัสผ่านที่เก็บในฐานข้อมูลหรือไม่
         if (password !== user.Password) {
             console.log('Passwords do not match!');
             return res.status(400).json({ message: 'Invalid username or password.' });
         }
-
-        // Generate a JWT token (valid for 1 hour)
+        // สร้าง JWT Token เมื่อการตรวจสอบสำเร็จ
         const token = jwt.sign(
             { userId: user.login_id, username: user.UserName },
-            'blommpass', // Replace with `process.env.JWT_SECRET` in production
-            { expiresIn: '1h' } // Token expiration: 1 hour
+            'blommpass',
+            { expiresIn: '1h' }  // Token หมดอายุใน 1 ชั่วโมง
         );
 
-        // Send back the token and success message
+
         res.json({
             message: 'Login successful!',
             token,
-            expiresIn: 3600 // Token lifespan in seconds (1 hour)
+            expiresIn: 3600 // อายุการใช้งานของ Token (หน่วยเป็นวินาที)
         });
     });
 });

@@ -15,7 +15,7 @@
 
 <body>
     <div class="container">
-        <!-- Navbar Section -->
+        <!-- ส่วนของ Navigation Bar -->
         <div id="nav-header">
             <div class="logo">
                 <img src="..\src\bloom logo.png" alt="Logo" />
@@ -23,7 +23,7 @@
         </div>
 
         <section>
-            <!-- Header Section -->
+            <!-- ส่วนของ Header -->
             <div class="header">
                 <a href="http://localhost:8081/product-manage" class="back-button">
                     <i class="bi bi-arrow-left-square"></i>
@@ -31,11 +31,11 @@
                 <h1>Add Products</h1>
             </div>
 
-            <!-- Form Section -->
+            <!-- ส่วนของ Form -->
             <form id="updateProductForm">
 
                 <div class="form">
-                    <!-- Left Side Form Fields -->
+                    <!-- ส่วนแบบฟอร์มด้านซ้าย -->
                     <div class="form-left">
                         <div class="form-group">
                             <label for="product_id">Product ID</label>
@@ -48,7 +48,6 @@
                         </div>
                         <div class="form-group">
                             <label for="category_name">Category Name</label>
-                            <!-- <input type="text" id="category_name" placeholder="e.g., Body"> -->
                             <select id="category_name" name="category_name">
                                 <option value="Default">Default</option>
                                 <option value="Body">Body</option>
@@ -83,7 +82,7 @@
                         </div>
                     </div>
 
-                    <!-- Right Side Form Fields -->
+                    <!-- ส่วนแบบฟอร์มด้านขวา -->
                     <div class="form-right">
                         <div class="form-group">
                             <label for="stock_quantity">Stock Quantity</label>
@@ -122,7 +121,6 @@
                     </div>
                 </div>
 
-                <!-- Button Group -->
                 <div class="button-group" style="margin-bottom: 30px;">
                     <button type="submit" class="save" id="saveButton">Save</button>
                 </div>
@@ -140,8 +138,7 @@
 </html>
 
 <script>
-
-
+    // ฟังก์ชันแสดงตัวอย่างภาพเมื่ออัปโหลด
     document.getElementById('imageUpload').addEventListener('change', function (event) {
         const file = event.target.files[0]; // Get the selected file
         if (file) {
@@ -155,7 +152,7 @@
         }
     });
 
-    // For update product
+    // ฟังก์ชันโหลดข้อมูลสินค้าเพื่อแก้ไข
     document.addEventListener("DOMContentLoaded", async () => {
         const form = document.getElementById("updateProductForm");
         const params = new URLSearchParams(window.location.search);
@@ -193,15 +190,14 @@
             }
 
             if (productId) {
-                // Update the product
                 await updateProduct(formData, productId);
             }
 
-            window.location.href = "/product-manage"; // Redirect to product management page
+            window.location.href = "/product-manage";
         });
     });
 
-    // Fetch product details for editing
+    // ดึงข้อมูลสินค้าจาก API
     async function fetchProduct(productId) {
         try {
             const response = await fetch(`http://localhost:8080/api/products/${productId}`);
@@ -216,7 +212,7 @@
         }
     }
 
-    // Populate the form with fetched product data
+    // เติมข้อมูลสินค้าลงในแบบฟอร์ม
     function populateForm(product) {
         document.getElementById("product_id").value = product.product_id || "";
         document.getElementById("product_name").value = product.product_name || "";
@@ -232,7 +228,6 @@
         document.getElementById("ingredients").value = product.ingredients || "";
         document.getElementById("brand").value = product.brand || "";
 
-        // Populate image preview if available
         if (product.image_url) {
             const preview = document.getElementById("imagePreview");
             preview.src = product.image_url;
@@ -240,37 +235,36 @@
         }
     }
 
-    // Update product data in the backend
+    // อัปเดตข้อมูลสินค้าในระบบ
     async function updateProduct(formData, productId) {
         try {
             const response = await fetch(`http://localhost:8080/api/products/${productId}`, {
-                method: "PUT", // Use PUT for updating
-                body: formData, // Send FormData directly
+                method: "PUT",
+                body: formData,
             });
 
             const result = await response.json();
             if (response.ok) {
-                // alert("Product updated successfully!");
             } else {
                 alert(`Error updating product: ${result.message}`);
             }
         } catch (error) {
             console.error("Error updating product:", error);
-            // alert("Failed to update the product.");
         }
     }
 
 
+    // ฟังก์ชันสำหรับจัดการข้อมูลในหน้าเมื่อโหลดเสร็จสมบูรณ์
     document.addEventListener("DOMContentLoaded", async () => {
         const tableBody = document.querySelector("tbody");
         const searchBar = document.querySelector(".search-bar");
         const showAllButton = document.getElementById("show-all-button");
 
         let allProducts = [];
-
-        // Fetch products
+        // ฟังก์ชันสำหรับดึงข้อมูลสินค้าจาก API
         async function fetchProducts() {
             try {
+                // เรียก API เพื่อดึงข้อมูลสินค้าทั้งหมด
                 const response = await fetch("http://localhost:8080/api/products");
                 if (!response.ok) throw new Error("Failed to fetch products");
                 return await response.json();
@@ -279,11 +273,11 @@
                 return [];
             }
         }
-
-        // Display products
+        // ฟังก์ชันสำหรับแสดงข้อมูลสินค้าในตาราง
         function displayProducts(products) {
             tableBody.innerHTML = "";
             products.forEach((product) => {
+                // สร้างแถวใหม่ในตารางสำหรับแต่ละสินค้า
                 const row = document.createElement("tr");
                 row.innerHTML = `
                 <td><img src="${product.image_url}" alt="${product.product_name}" style="width: 50px; height: 50px;"></td>
@@ -299,26 +293,24 @@
                 </td>`;
                 tableBody.appendChild(row);
             });
-            // addEventListenersToButtons();
         }
-
-        // Search functionality
+        // ฟังก์ชันการค้นหาสินค้า
         searchBar.addEventListener("input", () => {
             const query = searchBar.value.toLowerCase();
             const filteredProducts = allProducts.filter((product) =>
+                // กรองสินค้าตามเงื่อนไข (ชื่อสินค้า, รหัสสินค้า, หรือแบรนด์)
                 product.product_name.toLowerCase().includes(query) ||
                 product.product_id.toLowerCase().includes(query) ||
                 product.brand?.toLowerCase().includes(query)
             );
             displayProducts(filteredProducts);
         });
-
-        // Show all products
+        // ฟังก์ชันสำหรับแสดงสินค้าทั้งหมด
         showAllButton.addEventListener("click", () => {
             searchBar.value = "";
             displayProducts(allProducts);
         });
-
+        // ดึงข้อมูลสินค้าทั้งหมดจาก API และแสดงในตาราง
         allProducts = await fetchProducts();
         displayProducts(allProducts);
     });

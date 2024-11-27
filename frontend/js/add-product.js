@@ -8,10 +8,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         const product = await fetchProduct(productId);
         populateForm(product);
     }
-
+    // จัดการการส่งฟอร์ม
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
-
+        // รวบรวมข้อมูลจากฟอร์ม
         const formData = {
             product_id: document.getElementById("product_id").value,
             product_name: document.getElementById("product_name").value,
@@ -22,21 +22,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
 
         if (productId) {
-            // Update product
+            // หากมี `product_id` ให้แก้ไขสินค้า
             await updateProduct(formData);
         } else {
-            // Add new product
+            // หากไม่มี `product_id` ให้เพิ่มสินค้าใหม่
             await addProduct(formData);
         }
-
+        // เปลี่ยนเส้นทางกลับไปยังหน้ารายการสินค้า
         window.location.href = "product-manage"; // Redirect back to product list
     });
 
+    // ฟังก์ชันดึงข้อมูลสินค้า
     async function fetchProduct(productId) {
         const response = await fetch(`http://localhost:8080/api/products/${productId}`);
         return await response.json();
     }
-
+    // ฟังก์ชันเติมข้อมูลสินค้าในฟอร์ม
     function populateForm(product) {
         document.getElementById("product_id").value = product.product_id;
         document.getElementById("product_name").value = product.product_name;
@@ -46,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("stock_quantity").value = product.stock_quantity;
     }
 
-
+    // ฟังก์ชันเพิ่มสินค้าใหม่
     async function addProduct(product) {
         await fetch("http://localhost:8080/api/products", {
             method: "POST",

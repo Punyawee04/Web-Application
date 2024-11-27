@@ -1,19 +1,18 @@
+// เมื่อหน้าเว็บโหลดเสร็จสิ้น (DOMContentLoaded)
 document.addEventListener('DOMContentLoaded', async () => {
     try {
+        // ส่งคำขอไปยัง API เพื่อดึงข้อมูลผู้ดูแลระบบ
         const response = await fetch('http://localhost:8080/api/admins'); // Replace with your API URL
         if (!response.ok) {
             throw new Error('Failed to fetch administrator data.');
         }
 
         const admins = await response.json();
-
-        // Get the table body
+        // เลือกส่วน table body ที่จะแสดงข้อมูลผู้ดูแลระบบ
         const adminList = document.getElementById('admin-list');
 
-        // Clear existing rows
         adminList.innerHTML = '';
-
-        // Populate rows
+        // เติมข้อมูลผู้ดูแลระบบในตาราง
         admins.forEach(admin => {
             const row = document.createElement('tr');
 
@@ -33,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         alert('Failed to load administrator data. Please try again.');
     }
 });
-
+// เปิดหน้าต่าง Popup สำหรับอัปเดตข้อมูลผู้ดูแลระบบ
 function openUpdatePopup(adminId) {
     fetch(`http://localhost:8080/api/get-admin/${adminId}`)
         .then((response) => {
@@ -43,10 +42,11 @@ function openUpdatePopup(adminId) {
             return response.json();
         })
         .then((data) => {
+            // เติมข้อมูลลงในฟอร์มอัปเดต
             document.getElementById('update_admin_id').value = adminId;
             document.getElementById('update_username').value = data.username;
 
-            // Pre-fill the password field if available
+            // ตรวจสอบและเติมรหัสผ่านถ้ามี
             const passwordField = document.getElementById('update_password');
             if (data.password) {
                 passwordField.value = data.password;
@@ -60,7 +60,7 @@ function openUpdatePopup(adminId) {
             document.getElementById('update_phone_number').value = data.phone_number;
             document.getElementById('update_admin_email').value = data.admin_email;
 
-            // Display the update popup
+            // แสดงหน้าต่าง Popup
             document.getElementById('updateAdminPopup').style.display = 'flex';
         })
         .catch((error) => {
@@ -69,26 +69,23 @@ function openUpdatePopup(adminId) {
         });
 }
 
-// Toggle password visibility
+// ฟังก์ชันสำหรับเปิด/ปิดการแสดงรหัสผ่าน
 function togglePasswordVisibility() {
     const passwordField = document.getElementById('update_password');
     const toggleCheckbox = document.getElementById('toggle_password_visibility');
     passwordField.type = toggleCheckbox.checked ? 'text' : 'password';
 }
 
-
-// Edit Admin button handler
+// ฟังก์ชันสำหรับกดปุ่มแก้ไข (Edit Admin)
 function editAdmin(adminId) {
     console.log(`Editing admin with ID: ${adminId}`);
     openUpdatePopup(adminId);
 }
 
-
-
-
-// Delete admin
+// ฟังก์ชันสำหรับลบผู้ดูแลระบบ
 async function deleteAdmin(adminId) {
     try {
+        // ส่งคำขอ DELETE ไปยัง API
         const response = await fetch(`http://localhost:8080/api/delete-admin/${adminId}`, {
             method: 'DELETE',
         });
@@ -105,9 +102,7 @@ async function deleteAdmin(adminId) {
     }
 }
 
-
-
-// Function to close the popup
+// ฟังก์ชันสำหรับปิดหน้าต่าง Popup
 function closePopup(popupId) {
     document.getElementById(popupId).style.display = 'none';
 }

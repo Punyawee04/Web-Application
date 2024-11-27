@@ -12,52 +12,53 @@
     <link rel="icon" href="../src/icon bloom.png" sizes="180x180">
 
     <style>
-    
         .product-container {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-           margin-top: 20px;
+            margin-top: 20px;
         }
-            .product{
-                background-color: #ffffff;
-            }
-            .card {
-                
-                border: 1px solid #ddd;
-                border-radius: 8px;
-                padding: 16px;
-                width: 200px;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-                text-align: center;
-  
-            }
-            
-            .product-image {
-                width: 100%;
-                height: auto;
-                border-radius: 8px;
-            }
-            
-            .product-name {
-                font-size: 16px;
-                margin: 10px 0;
-            }
-            
-            .product-price {
-                color: rgb(220, 53, 69);
-                font-weight: bold;
-            }
-            
-            .btn-buy {
-                background-color: #EC297B;
-                color: white;
-                padding: 8px 16px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-            
+
+        .product {
+            background-color: #ffffff;
+        }
+
+        .card {
+
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            width: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .product-price {
+            color: rgb(220, 53, 69);
+            font-weight: bold;
+        }
+
+        .btn-buy {
+            background-color: #EC297B;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
         * {
             font-family: 'Poppins';
             margin: 0;
@@ -135,6 +136,7 @@
         .product p {
             margin: 5px 0;
         }
+
         body {
             margin: 0;
             padding: 0;
@@ -283,7 +285,7 @@
 </head>
 
 <body>
-    
+
     <div class="header">
         <div class="search-container">
             <div class="logo">
@@ -294,7 +296,7 @@
                 <a href="http://localhost:8081/search-all" id="searchIcon" style="color: black;">
                     <i class="bi bi-ui-checks-grid"></i>
                 </a>
-                
+
 
                 <!-- ฟอร์มค้นหาใหม่ -->
                 <form id="searchForm" style="flex: 1; display: flex; align-items: center; margin-left: 10px;">
@@ -304,7 +306,7 @@
                         <i class="bi bi-search"></i>
                     </button>
                 </form>
-                
+
 
                 <!-- ไอคอนฟิลเตอร์ -->
                 <i class="bi bi-funnel" id="filterIcon" style="margin-left: 10px; cursor: pointer;"></i>
@@ -314,25 +316,25 @@
             <a href="http://localhost:8081/" class="cancel-button">Cancel</a>
         </div>
     </div>
-
+    <!-- ฟิลเตอร์ -->
     <div class="filter-section" id="filterSection">
         <div class="filter-group inline">
             <label>Brand</label>
             <input type="text" id="brandInput" placeholder="search by brand">
         </div>
-
+        <!-- ฟิลเตอร์หมวดหมู่ -->
         <div class="filter-group">
             <label>Category</label>
             <div class="category-buttons">
                 <button class="category-button" data-category="Body">Body</button>
-                <button class="category-button "data-category="serum">Serum</button>
-                <button class="category-button"data-category="moisturizer">Moisturizer</button>
-                <button class="category-button"data-category="Sunscreen">Sunscreen</button>
-                <button class="category-button"data-category="Cleanser">Cleanser</button>
-                <button class="category-button"data-category="Mask">Mask</button>
+                <button class="category-button " data-category="serum">Serum</button>
+                <button class="category-button" data-category="moisturizer">Moisturizer</button>
+                <button class="category-button" data-category="Sunscreen">Sunscreen</button>
+                <button class="category-button" data-category="Cleanser">Cleanser</button>
+                <button class="category-button" data-category="Mask">Mask</button>
             </div>
         </div>
-
+        <!-- ฟิลเตอร์ราคา -->
         <div class="filter-group inline">
             <label>Price</label>
             <div class="price-inputs">
@@ -341,18 +343,17 @@
                 <input type="text" id="priceMax" placeholder="Max price ฿">
             </div>
         </div>
-<!-- search filter -->
-        
-    <button id="searchButton">Search</button>
-        
-    </div>
 
+        <!-- search filter -->
+        <button id="searchButton">Search</button>
+    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // ดึงไอคอนฟิลเตอร์และส่วนฟิลเตอร์จาก DOM
             const filterIcon = document.getElementById('filterIcon');
             const filterSection = document.getElementById('filterSection');
-
+            // Event Listener สำหรับการเปิด/ปิดฟิลเตอร์
             filterIcon.addEventListener('click', function () {
                 if (filterSection.style.display === 'none' || filterSection.style.display === '') {
                     filterSection.style.display = 'block';
@@ -360,51 +361,48 @@
                     filterSection.style.display = 'none';
                 }
             });
-
-            // Add click event listeners to category buttons
+            // กำหนด Event Listener สำหรับปุ่มหมวดหมู่สินค้า
             const categoryButtons = document.querySelectorAll('.category-button');
             categoryButtons.forEach(button => {
                 button.addEventListener('click', function () {
+                    // ลบสถานะ active ออกจากปุ่มทั้งหมด
                     categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    // เพิ่มสถานะ active ให้ปุ่มที่ถูกคลิก
                     this.classList.add('active');
                 });
             });
 
-            
+
         });
-        //  search filter --
+        // ฟังก์ชันสำหรับค้นหาด้วยฟิลเตอร์
         document.getElementById('searchButton').addEventListener('click', async () => {
-    const brand = document.getElementById('brandInput')?.value || '';
-    const priceMin = document.getElementById('priceMin')?.value || '';
-    const priceMax = document.getElementById('priceMax')?.value || '';
-    const selectedCategoryButton = document.querySelector('.category-button.active');
-    const category = selectedCategoryButton ? selectedCategoryButton.dataset.category : '';
+            const brand = document.getElementById('brandInput')?.value || '';
+            const priceMin = document.getElementById('priceMin')?.value || '';
+            const priceMax = document.getElementById('priceMax')?.value || '';
+            const selectedCategoryButton = document.querySelector('.category-button.active');
+            const category = selectedCategoryButton ? selectedCategoryButton.dataset.category : '';
 
-    // Debugging parameters
-    console.log('Brand:', brand);
-    console.log('Category:', category);
-    console.log('Price Min:', priceMin);
-    console.log('Price Max:', priceMax);
+            console.log('Brand:', brand);
+            console.log('Category:', category);
+            console.log('Price Min:', priceMin);
+            console.log('Price Max:', priceMax);
 
-    const searchParams = { brand, category, priceMin, priceMax };
+            // สร้างออบเจ็กต์เก็บค่าฟิลเตอร์
+            const searchParams = { brand, category, priceMin, priceMax };
 
-    try {
-        console.log('Fetching filtered results...');
-        const results = await fetchFilteredResults(searchParams);
+            try {
+                console.log('Fetching filtered results...');
+                const results = await fetchFilteredResults(searchParams);
 
-        // Debugging API response
-        console.log('Search Results:', results);
+                console.log('Search Results:', results);
 
-        // Redirect to the results page
-        window.location.href = '/search-result';
-    } catch (error) {
-        console.error('Error during search:', error);
-    }
-});
-       
-
+                // เปลี่ยนเส้นทางไปยังหน้าผลลัพธ์
+                window.location.href = '/search-result';
+            } catch (error) {
+                console.error('Error during search:', error);
+            }
+        });
     </script>
-
 
     <div class="container">
         <!-- Search Bar -->
@@ -412,7 +410,7 @@
             <div style="margin-bottom: 10px; margin-top: 10px;">
                 <h3>Results for Search : All</h3>
             </div>
-    
+
         </div>
         <!-- Filters -->
         <div id="section-2">
@@ -423,41 +421,43 @@
                 </div>
                 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-                <script>document.addEventListener("DOMContentLoaded", function () {
-                    const searchResults = JSON.parse(localStorage.getItem('searchResults')) || [];
-                    const productContainer = document.getElementById('product-container');
-                    
+                <script>
+                    // ส่วนจัดการผลลัพธ์การค้นหา
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const searchResults = JSON.parse(localStorage.getItem('searchResults')) || [];
+                        const productContainer = document.getElementById('product-container');
 
-                    if (searchResults.length === 0) {
-                        productContainer.innerHTML = "<p>No products found.</p>";
-                        return;
-                    }
 
-                    searchResults.forEach((product) => {
-                        const productCard = document.createElement('div');
-                        productCard.className = 'card';
+                        if (searchResults.length === 0) {
+                            productContainer.innerHTML = "<p>No products found.</p>";
+                            return;
+                        }
 
-                        productCard.innerHTML = `
+                        searchResults.forEach((product) => {
+                            const productCard = document.createElement('div');
+                            productCard.className = 'card';
+
+                            productCard.innerHTML = `
             <img src="${product.image_url}" alt="${product.product_name}" class="product-image">
             <div class="product-name">${product.product_name}</div>
             <div class="product-price">฿${product.price}</div>
             <button class="btn-buy" data-id="${product.product_id} ">Buy now</button>
         `;
 
-                        productContainer.appendChild(productCard);
-                    });
+                            productContainer.appendChild(productCard);
+                        });
 
-                    // เพิ่ม Event Listener สำหรับปุ่ม Buy now
-                    productContainer.addEventListener("click", function (event) {
-                        if (event.target.classList.contains("btn-buy")) {
-                            const productId = event.target.getAttribute("data-id");
-                            if (productId) {
-                                // เปลี่ยนเส้นทางไปยัง Product_detail.html พร้อมแนบ product_id
-                                window.location.href = `/product-detail?product_id=${productId}`;
+                        // เพิ่ม Event Listener สำหรับปุ่ม Buy now
+                        productContainer.addEventListener("click", function (event) {
+                            if (event.target.classList.contains("btn-buy")) {
+                                const productId = event.target.getAttribute("data-id");
+                                if (productId) {
+                                    // เปลี่ยนเส้นทางไปยัง Product_detail.html พร้อมแนบ product_id
+                                    window.location.href = `/product-detail?product_id=${productId}`;
+                                }
                             }
-                        }
-                    });
-                });</script> <!-- ลิงค์ไฟล์ JavaScript -->
+                        });
+                    });</script> <!-- ลิงค์ไฟล์ JavaScript -->
 
 
             </section>

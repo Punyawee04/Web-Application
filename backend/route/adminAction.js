@@ -1,12 +1,15 @@
+// นำเข้าโมดูล express เพื่อใช้สร้าง API และ router
 const express = require('express');
+// สร้าง Router สำหรับจัดการเส้นทาง API
 const router = express.Router();
-
-const mysql = require('mysql2/promise'); // Use promise-based MySQL
+// นำเข้า mysql2/promise เพื่อจัดการการเชื่อมต่อฐานข้อมูลแบบ asynchronous
+const mysql = require('mysql2/promise');
+// นำเข้า dotenv เพื่อโหลดตัวแปรสภาพแวดล้อมจากไฟล์ .env
 const dotenv = require('dotenv');
 
 dotenv.config();
 
-// Database pool connection
+// การตั้งค่าการเชื่อมต่อฐานข้อมูลแบบ pool เพื่อเพิ่มประสิทธิภาพ
 const db = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -17,18 +20,18 @@ const db = mysql.createPool({
     queueLimit: 0,
 });
 
-// Add a new admin
+// API สำหรับเพิ่มข้อมูลผู้ดูแลระบบ
 router.post('/add-admin', async (req, res) => {
     const {
         username,
         password,
         email,
-        status = 'Active', // Default status
+        status = 'Active',
         admin_name,
         phone_number,
         admin_email,
     } = req.body;
-
+    // ตรวจสอบว่าข้อมูลที่จำเป็นครบถ้วนหรือไม่
     if (!username || !password || !email || !admin_name || !phone_number || !admin_email) {
         return res.status(400).json({ message: 'All fields are required.' });
     }
@@ -39,11 +42,12 @@ router.post('/add-admin', async (req, res) => {
 
         await connection.beginTransaction();
 
-        // Insert into LoginDetail
+        // เพิ่มข้อมูลในตาราง LoginDetail
         const loginDetailQuery = `
             INSERT INTO LoginDetail (UserName, Password, Email, login_Time, logout_Time, login_Date, Status)
             VALUES (?, ?, ?, "00:00", "00:00", CURDATE(), ?)
         `;
+
         const [loginResult] = await connection.execute(loginDetailQuery, [
             username,
             password,
@@ -53,7 +57,7 @@ router.post('/add-admin', async (req, res) => {
 
         const login_id = loginResult.insertId;
 
-        // Insert into Administrator
+        // เพิ่มข้อมูลในตาราง Administrator
         const adminQuery = `
             INSERT INTO Administrator (admin_id, admin_name, login_Date, login_Time, login_id)
             VALUES (NULL, ?, CURDATE(), "00:00", ?)
@@ -64,15 +68,13 @@ router.post('/add-admin', async (req, res) => {
         ]);
 
         const admin_id = adminResult.insertId;
-
-        // Insert into Administrator_phonenum
+        // เพิ่มหมายเลขโทรศัพท์ในตาราง Administrator_phonenum
         const phoneQuery = `
             INSERT INTO Administrator_phonenum (admin_id, admin_phone_number)
             VALUES (?, ?)
         `;
         await connection.execute(phoneQuery, [admin_id, phone_number]);
-
-        // Insert into Email
+        // เพิ่มอีเมลในตาราง Email
         const emailQuery = `
             INSERT INTO Email (admin_id, admin_email)
             VALUES (?, ?)
@@ -91,8 +93,9 @@ router.post('/add-admin', async (req, res) => {
     }
 });
 
+//  DELETE สำหรับลบผู้ดูแลระบบ
 router.delete('/delete-admin/:id', async (req, res) => {
-    const { id } = req.params; // `id` is the `admin_id`
+    const { id } = req.params;
 
     if (!id) {
         return res.status(400).json({ message: 'Admin ID is required.' });
@@ -102,9 +105,8 @@ router.delete('/delete-admin/:id', async (req, res) => {
     try {
         connection = await db.getConnection();
 
-        await connection.beginTransaction(); // Start the transaction
+        await connection.beginTransaction();
 
-        // Step 1: Get `login_id` for the given `admin_id`
         const [loginResult] = await connection.execute(
             `SELECT login_id FROM Administrator WHERE admin_id = ?`,
             [id]
@@ -114,54 +116,51 @@ router.delete('/delete-admin/:id', async (req, res) => {
         if (!login_id) {
             throw new Error('Administrator not found.');
         }
-
-        // Step 2: Delete from `Administrator_phonenum`
+        // ลบข้อมูลในตารางต่าง ๆ ที่เกี่ยวข้องกับ admin_id
         await connection.execute(
             `DELETE FROM Administrator_phonenum WHERE admin_id = ?`,
             [id]
         );
 
-        // Step 3: Delete from `Email`
         await connection.execute(
             `DELETE FROM Email WHERE admin_id = ?`,
             [id]
         );
 
-        // Step 4: Delete from `Administrator`
         await connection.execute(
             `DELETE FROM Administrator WHERE admin_id = ?`,
             [id]
         );
 
-        // Step 5: Delete from `LoginDetail`
         await connection.execute(
             `DELETE FROM LoginDetail WHERE login_id = ?`,
             [login_id]
         );
 
-        await connection.commit(); // Commit the transaction
+        await connection.commit();
         res.status(200).json({ message: 'Admin deleted successfully!' });
     } catch (error) {
-        if (connection) await connection.rollback(); // Rollback transaction on error
+        if (connection) await connection.rollback();
         console.error('Delete Transaction Error:', error.message);
         res.status(500).json({ message: 'Failed to delete admin.', error: error.message });
     } finally {
-        if (connection) connection.release(); // Release the connection
+        if (connection) connection.release();
     }
 });
 
+// PUT สำหรับแก้ไขข้อมูลผู้ดูแลระบบ
 router.put('/update-admin/:id', async (req, res) => {
-    const { id } = req.params; // `id` is the `admin_id`
+    const { id } = req.params;
     const {
         username,
-        password, // This may be optional
+        password,
         email,
         status,
         admin_name,
         phone_number,
         admin_email,
     } = req.body;
-
+    // ตรวจสอบว่าข้อมูลที่จำเป็นครบถ้วนหรือไม่
     if (!username || !email || !admin_name || !phone_number || !admin_email) {
         return res.status(400).json({ message: 'All fields are required.' });
     }
@@ -171,7 +170,6 @@ router.put('/update-admin/:id', async (req, res) => {
         connection = await db.getConnection();
         await connection.beginTransaction();
 
-        // Step 1: Get `login_id` for the given `admin_id`
         const [loginResult] = await connection.execute(
             `SELECT login_id, Password FROM LoginDetail 
              WHERE login_id = (SELECT login_id FROM Administrator WHERE admin_id = ?)`,
@@ -183,11 +181,9 @@ router.put('/update-admin/:id', async (req, res) => {
         if (!login_id) {
             throw new Error('Administrator not found.');
         }
-
-        // Use current password if `password` is not provided
+        // ใช้รหัสผ่านเดิมหากไม่มีการส่งรหัสผ่านใหม่
         const newPassword = password !== undefined && password !== null ? password : currentPassword;
 
-        // Step 2: Update `LoginDetail`
         const loginDetailQuery = `
             UPDATE LoginDetail
             SET UserName = ?, Password = ?, Email = ?, Status = ?
@@ -200,8 +196,7 @@ router.put('/update-admin/:id', async (req, res) => {
             status,
             login_id,
         ]);
-
-        // Step 3: Update `Administrator`
+        // อัปเดตข้อมูลในตาราง
         const adminQuery = `
             UPDATE Administrator
             SET admin_name = ?
@@ -209,7 +204,6 @@ router.put('/update-admin/:id', async (req, res) => {
         `;
         await connection.execute(adminQuery, [admin_name, id]);
 
-        // Step 4: Update `Administrator_phonenum`
         const phoneQuery = `
             UPDATE Administrator_phonenum
             SET admin_phone_number = ?
@@ -217,7 +211,7 @@ router.put('/update-admin/:id', async (req, res) => {
         `;
         await connection.execute(phoneQuery, [phone_number, id]);
 
-        // Step 5: Update `Email`
+
         const emailQuery = `
             UPDATE Email
             SET admin_email = ?
@@ -236,8 +230,7 @@ router.put('/update-admin/:id', async (req, res) => {
     }
 });
 
-
-// Get admin details by ID
+// GET สำหรับดึงข้อมูลผู้ดูแลระบบตาม ID
 router.get('/get-admin/:id', async (req, res) => {
     const { id } = req.params;
 
@@ -254,23 +247,24 @@ router.get('/get-admin/:id', async (req, res) => {
              WHERE Administrator.admin_id = ?`,
             [id]
         );
-
+        // ตรวจสอบว่าพบข้อมูลหรือไม่
         if (rows.length === 0) {
             return res.status(404).json({ message: 'Admin not found.' });
         }
 
-        res.json(rows[0]); // Return the admin details, including the password
+        res.json(rows[0]);
     } catch (error) {
         console.error('Error fetching admin details:', error);
         res.status(500).json({ message: 'Error fetching admin details.' });
     }
 });
 
-
+// GET สำหรับดึงรายละเอียดบัญชีโดยใช้ชื่อผู้ใช้ (username)
 router.get('/account-details/:username', async (req, res) => {
     const { username } = req.params;
 
     try {
+        // ดึงข้อมูลบัญชีที่เกี่ยวข้องกับ username
         const sql = `
             SELECT ld.UserName, ld.Email, a.admin_name, e.admin_email, a.image_url
             FROM LoginDetail ld
@@ -280,12 +274,12 @@ router.get('/account-details/:username', async (req, res) => {
         `;
 
         const [results] = await db.query(sql, [username]);
-
+        // ตรวจสอบว่าพบข้อมูลหรือไม่
         if (results.length === 0) {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        res.json(results[0]); // Return the first result (unique user)
+        res.json(results[0]);
     } catch (error) {
         console.error('Error fetching account details:', error);
         res.status(500).json({ message: 'Error fetching account details.' });

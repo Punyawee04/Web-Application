@@ -4,15 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (loginButton) {
         loginButton.addEventListener('click', async () => {
-            // Get the values from the input fields
+            // ดึงค่าจากฟิลด์อินพุต
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // Clear previous messages
+            // ลบข้อความเก่าใน messageDiv
             messageDiv.textContent = '';
 
             try {
-                // Send login request to backend
+                // ส่งคำขอล็อกอินไปยัง backend
                 const response = await fetch('http://localhost:8080/api/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -22,16 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (response.ok) {
-                    // Save the JWT token and username to local storage
+                    // หากล็อกอินสำเร็จ ให้บันทึก JWT token และ username ลงใน localStorage
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('username', username); // Save username
                     messageDiv.textContent = 'Login successful!';
                     messageDiv.style.color = 'green';
 
-                    // Redirect to the user management page
+                    // เปลี่ยนเส้นทางไปยังหน้าจัดการผู้ใช้
                     window.location.href = '/user-manage';
                 } else {
-                    // Show error message
+                    // หากล็อกอินไม่สำเร็จ แสดงข้อความข้อผิดพลาด
                     messageDiv.textContent = data.message || 'Login failed';
                     messageDiv.style.color = 'red';
                 }
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Fetch the logged-in username from localStorage
+    // ตรวจสอบว่ามีผู้ใช้ล็อกอินอยู่หรือไม่จาก localStorage
     const username = localStorage.getItem('username');
 
     if (username) {

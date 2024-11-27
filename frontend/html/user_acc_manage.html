@@ -14,12 +14,10 @@
             background-color: #EC297B;
         }
 
-        /* Basic styling for table and buttons */
         td .action-button {
             background-color: #EC297B;
         }
 
-        /* Popup styling */
         .popup-overlay {
             display: none;
             position: fixed;
@@ -129,9 +127,6 @@
             </div>
         </section>
 
-
-
-
         <div class="Account-permissions">
             <div class="permissions-text">
                 <h3>Account and permissions</h3>
@@ -168,7 +163,7 @@
                             </tr>
                         </thead>
                         <tbody id="admin-list">
-                            <!-- Additional staff rows as needed -->
+
                             <script src="js/search-admin.js"></script>
                             <script src="js/callAdmin.js"></script>
                             <script src="js/add-admin.js"></script>
@@ -180,7 +175,6 @@
     </main>
 
 
-    <!-- Admin Update Popup -->
     <div id="updateAdminPopup" class="popup-overlay" style="display: none;">
         <div class="popup">
             <span class="close-btn" onclick="closePopup('updateAdminPopup')">&times;</span>
@@ -202,14 +196,14 @@
                         <input type="password" id="update_password" placeholder="Enter new password">
                         <div style="display: flex; align-items: center;">
                             <div>
-                                <input type="checkbox" id="toggle_password_visibility" onchange="togglePasswordVisibility()"
-                                style="margin-left: 8px; margin-top:8px">
+                                <input type="checkbox" id="toggle_password_visibility"
+                                    onchange="togglePasswordVisibility()" style="margin-left: 8px; margin-top:8px">
                             </div>
                             <div>
                                 <label for="toggle_password_visibility"
-                                style="font-size: 12px; margin-left: 8px; margin-top:8px">Show Password</label>
+                                    style="font-size: 12px; margin-left: 8px; margin-top:8px">Show Password</label>
                             </div>
-                           
+
                         </div>
 
                     </div>
@@ -256,7 +250,7 @@
             </form>
         </div>
     </div>
-    <!-- Add Admin Popup -->
+    <!-- เพิ่ม Admin Popup -->
     <div id="addAdminPopup" class="popup-overlay" style="display: none;">
         <div class="popup">
             <span class="close-btn" onclick="closePopup('addAdminPopup')">&times;</span>
@@ -302,38 +296,33 @@
         </div>
     </div>
 
-
-
 </body>
 
 </html>
 
 
 <script>
-
+    // เมื่อเอกสารโหลดเสร็จ
     document.addEventListener('DOMContentLoaded', () => {
-        // Open popup when "Add staff" button is clicked
+        // เมื่อคลิกปุ่ม "Add staff" ให้เปิดป๊อปอัพ
         const addStaffBtn = document.querySelector('.add-staff-btn');
         const addAdminPopup = document.getElementById('addAdminPopup');
 
         addStaffBtn.addEventListener('click', () => {
-            console.log('Add Staff Button Clicked'); // Debug log
-            addAdminPopup.style.display = 'flex'; // Show popup
+            console.log('Add Staff Button Clicked');
+            addAdminPopup.style.display = 'flex';
         });
-
-        // Close popup when close button is clicked
+        // เมื่อคลิกปุ่มปิด ให้ซ่อนป๊อปอัพ
         const closeButtons = document.querySelectorAll('.close-btn');
         closeButtons.forEach((button) => {
             button.addEventListener('click', () => {
-                addAdminPopup.style.display = 'none'; // Hide popup
+                addAdminPopup.style.display = 'none';
             });
         });
     });
-
-    // Call Account detail 
+    // เรียกข้อมูลบัญชีจาก localStorage
     document.addEventListener('DOMContentLoaded', () => {
-        const username = localStorage.getItem('username'); // Get username from localStorage
-
+        const username = localStorage.getItem('username');
         console.log('Username from localStorage:', username);
 
         if (username) {
@@ -342,7 +331,7 @@
             alert('No user logged in.');
         }
     });
-
+    // ฟังก์ชันสำหรับดึงรายละเอียดบัญชีจาก API
     async function fetchAccountDetails(username) {
         try {
             const response = await fetch(`http://localhost:8080/api/account-details/${username}`);
@@ -353,7 +342,6 @@
             const data = await response.json();
             console.log('API Response:', data);
 
-            // Check if elements exist
             const usernameElement = document.getElementById('admin-username');
             const emailElement = document.getElementById('admin-email');
             const profileElement = document.getElementById('admin-profile');
@@ -361,7 +349,6 @@
             console.log('Elements in DOM:', { usernameElement, emailElement, profileElement });
 
             if (usernameElement && emailElement && profileElement) {
-                // Update the Account Owner section
                 usernameElement.textContent = data.admin_name || 'N/A';
                 emailElement.textContent = data.admin_email || 'N/A';
                 profileElement.src = data.image_url || '../src/Guest.jpg';
@@ -371,7 +358,6 @@
         } catch (error) {
             console.error('Error fetching account details:', error);
 
-            // Provide fallback data
             const usernameElement = document.getElementById('admin-username');
             const emailElement = document.getElementById('admin-email');
             const profileElement = document.getElementById('admin-profile');
@@ -381,16 +367,11 @@
             if (profileElement) profileElement.src = '../src/Guest.jpg';
         }
     }
-
+    // ฟังก์ชันสำหรับอัปเดตข้อมูลผู้ดูแลระบบ
     document.getElementById('updateAdminForm').addEventListener('submit', async (event) => {
         event.preventDefault();
-
         const adminId = document.getElementById('update_admin_id').value;
-
-        // Get the current password value
         const currentPassword = document.getElementById('update_password').value;
-
-        // Retrieve the old password from the pre-filled data
         const oldPassword = await fetch(`http://localhost:8080/api/get-admin/${adminId}`)
             .then((response) => {
                 if (!response.ok) {
@@ -401,12 +382,12 @@
             .then((data) => data.password)
             .catch((error) => {
                 console.error('Error fetching old password:', error);
-                return null; // Fallback if unable to fetch old password
+                return null;
             });
 
         const updatedData = {
             username: document.getElementById('update_username').value,
-            password: currentPassword || oldPassword, // Use current value or fallback to old password
+            password: currentPassword || oldPassword,
             email: document.getElementById('update_email').value,
             status: document.getElementById('update_status').value,
             admin_name: document.getElementById('update_admin_name').value,
@@ -427,7 +408,7 @@
 
             alert('Admin updated successfully!');
             document.getElementById('updateAdminPopup').style.display = 'none'; // Close popup
-            location.reload(); // Reload the page to reflect changes
+            location.reload();
         } catch (error) {
             console.error('Error updating admin:', error);
             alert('Failed to update admin.');
