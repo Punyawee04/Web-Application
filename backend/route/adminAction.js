@@ -18,6 +18,18 @@ const db = mysql.createPool({
 });
 
 // Add a new admin
+// Testing: Add a new admin
+// method: POST
+// URL: http://localhost:8080/api/add-admin
+// body: raw JSON
+// {
+//     "username": "admin4",
+//     "password": "4444",
+//     "email": "admin4@gmail.com",
+//     "admin_name": "Test Admin",
+//     "phone_number": "111-111-1111",
+//     "admin_email": "admin4@gmail.com"
+// }
 router.post('/add-admin', async (req, res) => {
     const {
         username,
@@ -91,6 +103,11 @@ router.post('/add-admin', async (req, res) => {
     }
 });
 
+
+// Testing: delete-admin/:id
+// method: DELETE
+// URL: http://localhost:8080/api/delete-admin/1003
+// body: 
 router.delete('/delete-admin/:id', async (req, res) => {
     const { id } = req.params; // `id` is the `admin_id`
 
@@ -150,6 +167,20 @@ router.delete('/delete-admin/:id', async (req, res) => {
     }
 });
 
+
+// Testing: update-admin/:id
+// method: PUT
+// URL: http://localhost:8080/api/update-admin/1002
+// body: raw JSON
+// {
+//     "username": "Admin2",
+//     "password": "2222",
+//     "email": "admin3@gmail.com",
+//     "status": "Active",
+//     "admin_name": "Bob Smith",
+//     "phone_number": "0987654321",
+//     "admin_email": "admin2@gmail.com"
+// }
 router.put('/update-admin/:id', async (req, res) => {
     const { id } = req.params; // `id` is the `admin_id`
     const {
@@ -238,6 +269,10 @@ router.put('/update-admin/:id', async (req, res) => {
 
 
 // Get admin details by ID
+// Testing: get-admin/:id
+// method: GET
+// URL: http://localhost:8080/api/get-admin/1001
+// body:
 router.get('/get-admin/:id', async (req, res) => {
     const { id } = req.params;
 
@@ -266,6 +301,11 @@ router.get('/get-admin/:id', async (req, res) => {
     }
 });
 
+
+// Testing: account-details/:username
+// method: GET
+// URL: http://localhost:8080/api/account-details/admin1
+// body:
 
 router.get('/account-details/:username', async (req, res) => {
     const { username } = req.params;

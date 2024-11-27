@@ -13,6 +13,11 @@ const router = express.Router();
 
 
 // Route to fetch data from the LoginDetail table
+
+// Testing: loginDetails
+// method: GET
+// URL: http://localhost:8080/api/loginDetails
+// body:
 router.get('/loginDetails', (req, res) => {
     db.query('SELECT * FROM LoginDetail', (err, results) => {
         if (err) {
@@ -23,6 +28,14 @@ router.get('/loginDetails', (req, res) => {
 });
 
 // Route to insert a new user into the LoginDetail table
+// Testing: addLoginDetail
+// method: POST
+// URL: http://localhost:8080/api/addLoginDetail
+// body: raw JSON
+// {
+//   "username": "admin3",
+//   "password": "3333"
+// }
 router.post('/addLoginDetail', async (req, res) => {
     const { username, password } = req.body;
 
@@ -47,6 +60,10 @@ router.post('/addLoginDetail', async (req, res) => {
 });
 
 // API to fetch Administrator data
+// Testing: /admins
+// method: GET
+// URL: http://localhost:8080/api/admins
+// body:
 router.get('/admins', (req, res) => {
     const query = `
         SELECT 
@@ -72,30 +89,41 @@ router.get('/admins', (req, res) => {
 
 
 
-// Register
-router.post('/register', async (req, res) => {
-    const { username, password, email } = req.body;
+// // Register
+// router.post('/register', async (req, res) => {
+//     const { username, password, email } = req.body;
 
-    if (!username || !password) {
-        return res.status(400).json({ message: 'Username and password are required.' });
-    }
+//     if (!username || !password) {
+//         return res.status(400).json({ message: 'Username and password are required.' });
+//     }
 
-    try {
-        const hashedPassword = await bcrypt.hash(password, 10);
+//     try {
+//         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const sql = 'INSERT INTO LoginDetail (UserName, Password, Email, login_Time, logout_Time, login_Date, Status) VALUES (?, ?, ?, "00:00", "00:00", CURDATE(), "Active")';
-        db.query(sql, [username, hashedPassword, email], (err, result) => {
-            if (err) {
-                console.error('Database Error:', err);
-                return res.status(500).json({ message: 'Database error.' });
-            }
-            res.status(201).json({ message: 'User registered successfully!' });
-        });
-    } catch (error) {
-        res.status(500).json({ message: 'Error hashing password.' });
-    }
-});
+//         const sql = 'INSERT INTO LoginDetail (UserName, Password, Email, login_Time, logout_Time, login_Date, Status) VALUES (?, ?, ?, "00:00", "00:00", CURDATE(), "Active")';
+//         db.query(sql, [username, hashedPassword, email], (err, result) => {
+//             if (err) {
+//                 console.error('Database Error:', err);
+//                 return res.status(500).json({ message: 'Database error.' });
+//             }
+//             res.status(201).json({ message: 'User registered successfully!' });
+//         });
+//     } catch (error) {
+//         res.status(500).json({ message: 'Error hashing password.' });
+//     }
+// });
+
+
+
 // Login endpoint
+// Testing: /login
+// method: POST
+// URL: http://localhost:8080/api/login
+// body: raw JSON
+// {
+//   "username": "admin2",
+//   "password": "2222"
+// }
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
 
