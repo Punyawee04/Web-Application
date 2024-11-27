@@ -11,19 +11,23 @@
 </head>
 
 <body>
+  <!-- Popup สำหรับลบบัญชี -->
   <div class="popup-overlay" id="popupOverlay">
     <div class="popup" role="dialog" aria-labelledby="popupHeader" aria-describedby="popupMessage">
+      <!-- ปุ่มปิด Popup -->
       <div class="close-btn" onclick="closePopup()" aria-label="Close">&times;</div>
+      <!-- หัวข้อ Popup -->
       <div class="popup-header" id="popupHeader">Delete Staff Account?</div>
+      <!-- ข้อความ Popup -->
       <div class="popup-message" id="popupMessage">Are you sure you want to delete this account? This action cannot be
         undone.</div>
+      <!-- ปุ่ม Cancel และ Delete -->
       <div class="popup-buttons">
         <button class="cancel-button" onclick="closePopup()">Cancel</button>
         <button class="delete-button" onclick="confirmDelete()">Delete</button>
       </div>
     </div>
   </div>
-
 
   <button onclick="openPopup()">Delete Staff Account</button>
 </body>
@@ -108,7 +112,6 @@
     background-color: #d81b60;
   }
 
-  /* Close button (X icon) */
   .close-btn {
     position: absolute;
     top: 15px;
@@ -123,7 +126,6 @@
   }
 
 
-  /* Animations */
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -147,21 +149,23 @@
   }
 </style>
 <script>
+  // ฟังก์ชันเปิด Popup
   function openPopup() {
     document.getElementById("popupOverlay").style.display = "flex";
     document.addEventListener("keydown", closeOnEscape);
   }
+  // ฟังก์ชันปิด Popup
   function closePopup() {
     document.getElementById("popupOverlay").style.display = "none";
     document.removeEventListener("keydown", closeOnEscape);
   }
-
+  // ฟังก์ชันปิด Popup เมื่อกดปุ่ม Escape
   function closeOnEscape(event) {
     if (event.key === "Escape") {
       closePopup();
     }
   }
-
+  // ฟังก์ชันยืนยันการลบ
   function confirmDelete() {
     closePopup();
     alert("Account has been deleted successfully.");

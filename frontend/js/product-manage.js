@@ -1,18 +1,20 @@
 document.addEventListener("DOMContentLoaded", async () => {
+    // ดึง token จาก localStorage เพื่อเช็คการ login
     const token = localStorage.getItem('token');
     if (!token) {
         alert('Please log in first.');
+        // เปลี่ยนเส้นทางไปหน้า login
         window.location.href = 'login.html';
     }
     const tableBody = document.querySelector("tbody");
-
+    // ดึงข้อมูลสินค้าจาก API
     const products = await fetchProducts();
     renderProducts(products);
-
+    // ฟังก์ชันแสดงข้อมูลสินค้าในตาราง
     function renderProducts(products) {
         if (!tableBody) return;
 
-        tableBody.innerHTML = ""; // Clear the table body
+        tableBody.innerHTML = "";
 
         products.forEach((product) => {
             const row = document.createElement("tr");
@@ -33,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             tableBody.appendChild(row);
         });
-
+        // เพิ่ม event listener ให้ปุ่ม edit และ delete
         tableBody.addEventListener("click", (event) => {
             const target = event.target.closest("button");
             if (!target) return;
@@ -41,20 +43,20 @@ document.addEventListener("DOMContentLoaded", async () => {
             const productId = target.getAttribute("data-id");
 
             if (target.classList.contains("edit-button")) {
-                // Redirect to add-product.html with the product ID
+                // ถ้าคลิกปุ่ม Edit ให้เปลี่ยนเส้นทางไปที่ update-product พร้อมแนบ product_id
                 window.location.href = `update-product?product_id=${productId}`;
-            } 
+            }
         });
     }
-
+    // ฟังก์ชันดึงข้อมูลสินค้า
     async function fetchProducts() {
         const response = await fetch("http://localhost:8080/api/products");
         return await response.json();
     }
-
+    // ฟังก์ชันลบสินค้า
     async function deleteProduct(productId) {
         await fetch(`http://localhost:8080/api/products/${productId}`, { method: "DELETE" });
-        location.reload(); // Refresh the page
+        location.reload();
     }
 });
 

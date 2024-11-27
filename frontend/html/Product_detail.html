@@ -17,13 +17,13 @@
 </head>
 
 <body>
-    <!-- Announcement Banner -->
+    <!-- แบนเนอร์ประกาศ -->
     <div class="announcement" id="announcement">
         Free shipping on orders over 499 THB!
     </div>
 
-     <!-- Nav -->
-     <nav>
+    <!-- Nav -->
+    <nav>
         <!-- Logo -->
         <div class="logo">
             <a href="http://localhost:8081/"><img src="../src/bloom logo.png " alt="Logo"></a>
@@ -37,43 +37,46 @@
         </ul>
 
 
-        <!-- action -->
+        <!--ค้นหาและตะกร้าสินค้า -->
         <div class="user-cart">
             <a href="http://localhost:8081/search"><i class="bi bi-search"></i></a>
             <a href="http://localhost:8081/login"><i class="bi bi-person" style="font-size: 25px;"></i></a>
             <a href="http://localhost:8081/404"><i class="bi bi-cart3" style="font-size: 22px;"></i></a>
         </div>
     </nav>
-
+    <!-- ส่วนรายละเอียดสินค้า -->
     <div id="main">
-        <!-- Section-1 -->
         <div class="Top-Container">
             <div>
                 <div class="product-image"><img src="../src/product image/example-product.png" alt=""> </div>
 
-                <p style="font-size:14px;">source: <a href="https://www.konvy.com/">Konvy</a> & <a href="https://www.watsons.co.th/th/">Watsons</a></p>
+                <p style="font-size:14px;">source: <a href="https://www.konvy.com/">Konvy</a> & <a
+                        href="https://www.watsons.co.th/th/">Watsons</a></p>
 
             </div>
-            
+            <!-- ข้อมูลสินค้า -->
             <div class="product-info">
                 <div id="preview-detail">
                     <h2> [Product Name] </h2>
 
                     <h1>฿ <span id="price"> 35</span></h1>
-                    
-                    <div class="description"><p>Description Here</p></div>
+
+                    <div class="description">
+                        <p>Description Here</p>
+                    </div>
                     <hr>
                     <p style="color: #666; font-size:small;">Availability: <span id="stock">120 </span> in stock </p>
                 </div>
-
+                <!-- ปุ่มสำหรับเพิ่มลงในตะกร้าหรือซื้อทันที -->
                 <div id="action">
                     <button class="add-to-cart-btn">ADD TO CART</button>
-                    <button class="buy-now-btn" >BUY NOW</button>
+                    <button class="buy-now-btn">BUY NOW</button>
                 </div>
-                <p><i class="bi bi-truck" ></i> Free shipping on orders over 499 THB!</p>
+                <p><i class="bi bi-truck"></i> Free shipping on orders over 499 THB!</p>
 
+                <!-- ข้อมูลเพิ่มเติมเกี่ยวกับสินค้า -->
                 <div id="inside-des" style="margin-top: 20px;">
-                
+
                     <div id="des-1">
                         <p> <i class="bi bi-globe-central-south-asia"></i> &nbsp; Brand Origin: <span
                                 id="brand-origin">Here</span>
@@ -88,16 +91,16 @@
                         </p>
                         <div id="des-2">
                             <p style="font-size:14px">Description <br>
-        
-                               
+
+
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
-            
+
         </div>
-        
+
 
     </div>
 
@@ -131,49 +134,47 @@
         </div>
     </div>
 
-    <!-- detail-Product -->
     <script>
-        // Load product details from URL parameter
-document.addEventListener("DOMContentLoaded", function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get("product_id");
+        // โหลดข้อมูลสินค้าเมื่อเปิดหน้า
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get("product_id");
 
-    if (productId) {
-        // Fetch product details from the backend
-        fetch(`http://localhost:8080/api/products/${productId}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Product not found.');
-                }
-                return response.json();
-            })
-            .then(product => {
-                // Update HTML content with the product details
-                document.querySelector(".product-image img").src = product.image_url;
-                document.querySelector(".product-info h2").textContent = product.product_name;
-                document.querySelector(".description p").textContent = product.description;
-                document.querySelector("#price").textContent = product.price;
-                document.querySelector("#stock").textContent = product.stock_quantity;
-                document.querySelector("#brand-origin").textContent = product.origin;
-                document.querySelector("#function").textContent = product.benefit;
-                document.querySelector("#skin-type").textContent = product.skin_type;
-                document.querySelector("#amount").textContent = product.quantity + "ml";
-                document.querySelector("#des-2 p").innerHTML = ` <br>
+            if (productId) {
+                fetch(`http://localhost:8080/api/products/${productId}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Product not found.');
+                        }
+                        return response.json();
+                    })
+                    .then(product => {
+                        // อัปเดตข้อมูลสินค้าในหน้าเว็บ
+                        document.querySelector(".product-image img").src = product.image_url;
+                        document.querySelector(".product-info h2").textContent = product.product_name;
+                        document.querySelector(".description p").textContent = product.description;
+                        document.querySelector("#price").textContent = product.price;
+                        document.querySelector("#stock").textContent = product.stock_quantity;
+                        document.querySelector("#brand-origin").textContent = product.origin;
+                        document.querySelector("#function").textContent = product.benefit;
+                        document.querySelector("#skin-type").textContent = product.skin_type;
+                        document.querySelector("#amount").textContent = product.quantity + "ml";
+                        document.querySelector("#des-2 p").innerHTML = ` <br>
                     Place of Origin: ${product.origin} 
                     Ingredients: ${product.ingredients}
                 `;
-            })
-            .catch(error => {
-                console.error("Error fetching product details:", error);
-                document.getElementById("main").innerHTML = "<p>Product details not available.</p>";
-            });
-    } else {
-        console.error("No product ID found in URL.");
-        document.getElementById("main").innerHTML = "<p>No product selected.</p>";
-    }
-});
+                    })
+                    .catch(error => {
+                        console.error("Error fetching product details:", error);
+                        document.getElementById("main").innerHTML = "<p>Product details not available.</p>";
+                    });
+            } else {
+                console.error("No product ID found in URL.");
+                document.getElementById("main").innerHTML = "<p>No product selected.</p>";
+            }
+        });
     </script>
-    
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer__addr">
@@ -275,13 +276,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const fullStars = Math.floor(rating);
             const halfStar = rating % 1 >= 0.5;
 
-            // Generate stars
             let starsHTML = "";
             for (let i = 0; i < fullStars; i++) {
-                starsHTML += "★"; // Full star
+                starsHTML += "★";
             }
             if (halfStar) {
-                starsHTML += "☆"; // Half star
+                starsHTML += "☆";
             }
             starsContainer.innerHTML = starsHTML;
         });

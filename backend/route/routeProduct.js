@@ -1,3 +1,4 @@
+// นำเข้าโมดูลที่จำเป็น
 const express = require('express');
 const db = require('../config/db');
 const multer = require('multer');
@@ -5,23 +6,19 @@ const path = require('path');
 const fs = require('fs');
 const router = express.Router();
 
-
-// Configure multer for file uploads
+// การตั้งค่า multer สำหรับจัดการไฟล์ที่อัปโหลด
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'images/'); // Directory to save uploaded images
+        cb(null, 'images/'); // กำหนดโฟลเดอร์สำหรับจัดเก็บไฟล์ที่อัปโหลด
     },
     filename: (req, file, cb) => {
-        cb(null, `${Date.now()}-${file.originalname}`); // Unique filename
+        cb(null, `${Date.now()}-${file.originalname}`);
     },
 });
-
+// ใช้งาน multer พร้อมการตั้งค่า storage
 const upload = multer({ storage });
 
-
-
-
-// GET All Products
+// GET: ดึงข้อมูลสินค้าทั้งหมด
 router.get('/products/', (req, res) => {
     const sql = `SELECT * FROM Product`;
     db.query(sql, (err, results) => {
@@ -34,7 +31,8 @@ router.get('/products/', (req, res) => {
     });
 });
 
-// GET All Products by ID
+
+// GET: ดึงข้อมูลสินค้าตาม ID
 router.get('/products/:id', (req, res) => {
     const productId = req.params.id;
 
@@ -50,13 +48,13 @@ router.get('/products/:id', (req, res) => {
             return res.status(404).json({ error: 'Product not found' });
         }
 
-        res.json(results[0]); 
+        res.json(results[0]);
     });
 });
 
-// UPDATE Products endpoint
+// PUT: อัปเดตข้อมูลสินค้า
 router.put("/products/:id", upload.single("image"), (req, res) => {
-    const productId = req.params.id; // Extract product ID from URL
+    const productId = req.params.id;
     const {
         product_name,
         category_name,
@@ -72,7 +70,7 @@ router.put("/products/:id", upload.single("image"), (req, res) => {
         brand,
     } = req.body;
 
-    // Query to fetch existing product
+    // ดึงข้อมูลสินค้าปัจจุบันเพื่อตรวจสอบการอัปเดต
     const selectQuery = `SELECT * FROM Product WHERE product_id = ?`;
 
     db.query(selectQuery, [productId], (err, results) => {
@@ -94,7 +92,7 @@ router.put("/products/:id", upload.single("image"), (req, res) => {
         const existingProduct = results[0];
         const newImageUrl = req.file ? `http://localhost:8080/images/${req.file.filename}` : existingProduct.image_url;
 
-        // Delete old image if a new one is uploaded
+        // ลบภาพเก่าหากมีการอัปโหลดภาพใหม่
         if (req.file && existingProduct.image_url) {
             const oldImagePath = path.join(__dirname, existingProduct.image_url);
             fs.unlink(oldImagePath, (err) => {
@@ -106,7 +104,7 @@ router.put("/products/:id", upload.single("image"), (req, res) => {
             });
         }
 
-        // Update product in the database
+        // อัปเดตสินค้าในฐานข้อมูล
         const updateQuery = `
             UPDATE Product
             SET 
@@ -160,11 +158,11 @@ router.put("/products/:id", upload.single("image"), (req, res) => {
     });
 });
 
-// DELETE product endpoint
+// DELETE: ลบสินค้า
 router.delete("/delete-product/:id", (req, res) => {
     const productId = req.params.id;
 
-    // Query to delete the product
+
     const query = "DELETE FROM product WHERE product_id = ?";
 
     db.query(query, [productId], (err, result) => {
@@ -177,14 +175,14 @@ router.delete("/delete-product/:id", (req, res) => {
         }
 
         if (result.affectedRows === 0) {
-            // No product found with the given ID
+
             return res.status(404).json({
                 success: false,
                 message: "Product not found.",
             });
         }
 
-        // Successfully deleted the product
+
         res.status(200).json({
             success: true,
             message: "Product deleted successfully.",
@@ -192,7 +190,7 @@ router.delete("/delete-product/:id", (req, res) => {
     });
 });
 
-// ADD product
+// POST: เพิ่มสินค้าใหม่
 router.post('/add-product', upload.single('image'), (req, res) => {
     const {
         product_id,
@@ -212,7 +210,7 @@ router.post('/add-product', upload.single('image'), (req, res) => {
 
     const imageUrl = req.file ? `http://localhost:8080/images/${req.file.filename}` : null;
 
-    // Validate required fields
+
     if (!product_id || !product_name || !price) {
         console.log('Validation failed: Missing required fields.');
         return res.status(400).json({
@@ -262,8 +260,7 @@ router.post('/add-product', upload.single('image'), (req, res) => {
     });
 });
 
-
-// Show product-detail
+// GET: ดึงรายละเอียดของสินค้าโดยระบุ product_id
 router.get('/product-detail/:id', (req, res) => {
     const productId = req.params.id;
     const sql = `SELECT * FROM Product WHERE product_id = ?`;
@@ -281,19 +278,19 @@ router.get('/product-detail/:id', (req, res) => {
     });
 });
 
-// search
+// POST: ค้นหาสินค้าโดยใช้คำค้น (Query)
 router.post('/search', (req, res) => {
-    console.log('Request received at /api/search'); // ตรวจสอบว่า Route ถูกเรียก
+    console.log('Request received at /api/search');
 
-    const query = req.body.query; // ดึง query จาก req.body
-    console.log('Query received:', query); // Debug query
+    const query = req.body.query;
+    console.log('Query received:', query);
 
     if (!query) {
-        console.log('Query is missing'); // Log กรณีไม่มี query
+        console.log('Query is missing');
         return res.status(400).json({ error: 'Query is required' });
     }
 
-    // SQL สำหรับการค้นหา
+
     const sql = `
         SELECT * FROM Product 
         WHERE product_name LIKE ? 
@@ -303,21 +300,21 @@ router.post('/search', (req, res) => {
     `;
 
     const searchValue = `%${query}%`;
-    console.log('SQL Query:', sql, 'Search Value:', searchValue); // Debug SQL
+    console.log('SQL Query:', sql, 'Search Value:', searchValue);
 
     db.query(sql, [searchValue, searchValue, searchValue, searchValue], (err, results) => {
         if (err) {
-            console.error('Database Error:', err); // Log ข้อผิดพลาดของฐานข้อมูล
+            console.error('Database Error:', err);
             return res.status(500).json({ error: 'Database query failed' });
         }
 
-        console.log('Search Results:', results); // Debug ผลลัพธ์
-        res.setHeader('Content-Type', 'application/json'); // ระบุว่า Response เป็น JSON
-        res.json(results); // ส่งผลลัพธ์
+        console.log('Search Results:', results);
+        res.setHeader('Content-Type', 'application/json');
+        res.json(results);
     });
 });
 
-// search filter
+// POST: ค้นหาสินค้าด้วยตัวกรอง
 router.post('/filter-search', (req, res) => {
     const { brand, category, priceMin, priceMax } = req.body;
 

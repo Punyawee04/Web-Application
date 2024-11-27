@@ -140,6 +140,7 @@
         .product p {
             margin: 5px 0;
         }
+
         body {
             margin: 0;
             padding: 0;
@@ -299,7 +300,7 @@
                 <a href="http://localhost:8081/search-all" id="searchIcon" style="color: black;">
                     <i class="bi bi-ui-checks-grid"></i>
                 </a>
-                
+
 
                 <!-- ฟอร์มค้นหาใหม่ -->
                 <form id="searchForm" style="flex: 1; display: flex; align-items: center; margin-left: 10px;">
@@ -309,7 +310,7 @@
                         <i class="bi bi-search"></i>
                     </button>
                 </form>
-                
+
 
                 <!-- ไอคอนฟิลเตอร์ -->
                 <i class="bi bi-funnel" id="filterIcon" style="margin-left: 10px; cursor: pointer;"></i>
@@ -325,19 +326,19 @@
             <label>Brand</label>
             <input type="text" id="brandInput" placeholder="search by brand">
         </div>
-
+        <!-- ฟิลเตอร์หมวดหมู่ -->
         <div class="filter-group">
             <label>Category</label>
             <div class="category-buttons">
                 <button class="category-button" data-category="Body">Body</button>
-                <button class="category-button "data-category="serum">Serum</button>
-                <button class="category-button"data-category="moisturizer">Moisturizer</button>
-                <button class="category-button"data-category="Sunscreen">Sunscreen</button>
-                <button class="category-button"data-category="Cleanser">Cleanser</button>
-                <button class="category-button"data-category="Mask">Mask</button>
+                <button class="category-button " data-category="serum">Serum</button>
+                <button class="category-button" data-category="moisturizer">Moisturizer</button>
+                <button class="category-button" data-category="Sunscreen">Sunscreen</button>
+                <button class="category-button" data-category="Cleanser">Cleanser</button>
+                <button class="category-button" data-category="Mask">Mask</button>
             </div>
         </div>
-
+        <!-- ฟิลเตอร์ราคา -->
         <div class="filter-group inline">
             <label>Price</label>
             <div class="price-inputs">
@@ -346,15 +347,14 @@
                 <input type="text" id="priceMax" placeholder="Max price ฿">
             </div>
         </div>
-<!-- search filter -->
-        
-    <button id="searchButton">Search</button>
-        
+        <!-- ปุ่มค้นหา -->
+        <button id="searchButton">Search</button>
     </div>
 
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // จัดการเปิด/ปิดส่วนฟิลเตอร์
             const filterIcon = document.getElementById('filterIcon');
             const filterSection = document.getElementById('filterSection');
 
@@ -366,7 +366,7 @@
                 }
             });
 
-            // Add click event listeners to category buttons
+            // เพิ่มคลาส active ให้ปุ่มหมวดหมู่ที่เลือก
             const categoryButtons = document.querySelectorAll('.category-button');
             categoryButtons.forEach(button => {
                 button.addEventListener('click', function () {
@@ -375,36 +375,33 @@
                 });
             });
         });
-        //  search filter --
+        // ฟังก์ชันสำหรับค้นหาผลลัพธ์ตามฟิลเตอร์
         document.getElementById('searchButton').addEventListener('click', async () => {
-    const brand = document.getElementById('brandInput')?.value || '';
-    const priceMin = document.getElementById('priceMin')?.value || '';
-    const priceMax = document.getElementById('priceMax')?.value || '';
-    const selectedCategoryButton = document.querySelector('.category-button.active');
-    const category = selectedCategoryButton ? selectedCategoryButton.dataset.category : '';
+            const brand = document.getElementById('brandInput')?.value || '';
+            const priceMin = document.getElementById('priceMin')?.value || '';
+            const priceMax = document.getElementById('priceMax')?.value || '';
+            const selectedCategoryButton = document.querySelector('.category-button.active');
+            const category = selectedCategoryButton ? selectedCategoryButton.dataset.category : '';
 
-    // Debugging parameters
-    console.log('Brand:', brand);
-    console.log('Category:', category);
-    console.log('Price Min:', priceMin);
-    console.log('Price Max:', priceMax);
+            console.log('Brand:', brand);
+            console.log('Category:', category);
+            console.log('Price Min:', priceMin);
+            console.log('Price Max:', priceMax);
 
-    const searchParams = { brand, category, priceMin, priceMax };
+            const searchParams = { brand, category, priceMin, priceMax };
 
-    try {
-        console.log('Fetching filtered results...');
-        const results = await fetchFilteredResults(searchParams);
+            try {
+                console.log('Fetching filtered results...');
+                const results = await fetchFilteredResults(searchParams);
 
-        // Debugging API response
-        console.log('Search Results:', results);
+                console.log('Search Results:', results);
 
-        // Redirect to the results page
-        window.location.href = '/search-result';
-    } catch (error) {
-        console.error('Error during search:', error);
-    }
-});
-       
+                window.location.href = '/search-result';
+            } catch (error) {
+                console.error('Error during search:', error);
+            }
+        });
+
 
     </script>
 
@@ -415,7 +412,7 @@
             <div style="margin-bottom: 10px;margin-top: 10px;">
                 <h3 class="result-header">Results for Search:</h3>
             </div>
-            
+
         </div>
 
         <!-- Filters -->
@@ -430,7 +427,7 @@
                 document.addEventListener("DOMContentLoaded", function () {
                     const searchResults = JSON.parse(localStorage.getItem('searchResults')) || [];
                     const productContainer = document.getElementById('product-container');
-                    
+
 
                     if (searchResults.length === 0) {
                         productContainer.innerHTML = "<p>No products found.</p>";
@@ -472,7 +469,7 @@
         </div>
         </main>
 
-        <!-- Add more result items as needed -->
+        <!-- เพิ่มรายการผลลัพธ์เพิ่มเติมตามต้องการ -->
     </div>
 
 

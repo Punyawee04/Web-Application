@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
         rel="stylesheet">
     <title>Add Staff Account Popup</title>
 </head>
+
 <body>
     <button onclick="openPopup()" class="open-popup-button">Add Staff Account</button>
 
@@ -17,6 +19,7 @@
             <h2 class="popup-header">Add Staff Account</h2>
             <p class="popup-subheader">Please enter the details for the new staff member:</p>
 
+            <!-- ฟอร์มสำหรับกรอกข้อมูล -->
             <div class="form-row">
                 <div class="input-group">
                     <label for="first-name">First Name</label>
@@ -37,7 +40,7 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" placeholder="Password">
             </div>
-
+            <!-- ปุ่มยกเลิกและสร้างบัญชี -->
             <div class="button-group">
                 <button onclick="closePopup()" class="cancel-button">Cancel</button>
                 <button class="create-button">Create Account</button>
@@ -47,7 +50,6 @@
 
 </body>
 <style>
-
     /* Overlay */
     .overlay {
         width: 100%;
@@ -59,13 +61,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        
+
     }
 
     /* Popup */
     .popup {
-      width: 700px;
-      height: 400px;
+        width: 700px;
+        height: 400px;
         padding: 30px;
         border-radius: 5px;
         border: 0.5px solid #746D6D;
@@ -93,9 +95,10 @@
         display: flex;
         gap: 100px;
         margin-bottom: 8px;
-        
-        
+
+
     }
+
     .input-group {
         width: 100%;
         margin-bottom: 18px;
@@ -124,7 +127,7 @@
         justify-content: flex-end;
         gap: 25px;
         margin-top: 23px;
-        
+
     }
 
     .cancel-button {
@@ -154,24 +157,25 @@
     .create-button:hover {
         background: #d81b60;
     }
-
 </style>
+
 </html>
 
 <script>
-  function openPopup() {
-      document.getElementById("popupOverlay").style.display = "flex";
-      document.addEventListener("keydown", closeOnEscape);
-  }
-
-  function closePopup() {
-      document.getElementById("popupOverlay").style.display = "none";
-      document.removeEventListener("keydown", closeOnEscape);
-  }
-
-  function closeOnEscape(event) {
-      if (event.key === "Escape") {
-          closePopup();
-      }
-  }
+    // ฟังก์ชันเปิด Popup
+    function openPopup() {
+        document.getElementById("popupOverlay").style.display = "flex";
+        document.addEventListener("keydown", closeOnEscape);
+    }
+    // ฟังก์ชันปิด Popup
+    function closePopup() {
+        document.getElementById("popupOverlay").style.display = "none";
+        document.removeEventListener("keydown", closeOnEscape);
+    }
+    // ฟังก์ชันปิด Popup เมื่อกดปุ่ม Escape
+    function closeOnEscape(event) {
+        if (event.key === "Escape") {
+            closePopup();
+        }
+    }
 </script>

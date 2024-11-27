@@ -19,14 +19,12 @@
             cursor: pointer;
             font-size: 14px;
             margin-left: 10px;
-            /* Ensure spacing between delete icon and button */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s ease;
         }
 
         #show-all-button:hover {
             background-color: #838383;
-            /* Optional: darker color on hover */
         }
     </style>
 
@@ -40,17 +38,21 @@
                 <img src="..\src\bloom logo.png" alt="Logo" />
             </div>
         </div>
+        <!-- เมนูการจัดการ -->
         <div id="menu">
             <ul class="menunav">
                 <div class="menu-1">
+                    <!-- ลิงก์สำหรับจัดการบัญชี -->
                     <a href="http://localhost:8081/user-manage" class="list-left"><i
                             class="bi bi-person-circle"></i>Account</a>
+                    <!-- ลิงก์สำหรับจัดการสินค้า -->
                     <a href="http://localhost:8081/product-manage" class="list-left product-management"><i
                             class="bi bi-box-seam"></i>Product
                         Management</a>
                 </div>
                 <div class="menu-2">
                     <a href="#"><i class="bi bi-person-fill"></i></a>
+                    <!-- ปุ่มออกจากระบบ -->
                     <button id="logoutButton"><i class="bi bi-box-arrow-right"></i></button>
                     <script src="/js/logout.js"></script>
 
@@ -64,27 +66,30 @@
         <section class="products-section">
             <div class="products-section1">
                 <span>Products</span>
+                <!-- กล่องค้นหาและปุ่มแสดงสินค้าทั้งหมด -->
                 <div style="display: flex; flex-direction :row ;margin:10px ; padding:10px">
+                    <!-- กล่องค้นหา -->
                     <div class="search-container">
                         <input type="text" placeholder="Search..." class="search-bar">
                         <i class="bi bi-search search-icon"></i>
                     </div>
+                    <!-- ปุ่มแสดงสินค้าทั้งหมด -->
                     <button id="show-all-button" class="show-all-button" style="padding:5px">Show All Products</button>
                 </div>
 
 
             </div>
 
-
-
-            <!-- Remove this second body tag, keep only one -->
+            <!-- ส่วนตารางรายการสินค้า -->
             <div class="container">
                 <div class="header">
                     <h1>Products List</h1>
                     <div class="action">
+                        <!-- ปุ่มเพิ่มสินค้าใหม่ -->
                         <button class="add-button" aria-label="Add New Product" onclick="redirectToAddProduct()">Add
                             Product</button>
                         <script>
+                            // ฟังก์ชันสำหรับเปลี่ยนเส้นทางไปยังหน้าเพิ่มสินค้า
                             function redirectToAddProduct() {
                                 window.location.href = "http://localhost:8081/add-product";
                             }
@@ -93,7 +98,7 @@
 
                 </div>
 
-                <!-- Table content goes here -->
+                <!-- ตารางรายการสินค้า -->
                 <table>
                     <thead>
                         <tr>
@@ -108,7 +113,7 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                        <!-- การโหลดข้อมูลตารางด้วย JavaScript -->
                         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
                         <script src="/js/callProduct.js"></script> <!-- ลิงค์ไฟล์ JavaScript -->

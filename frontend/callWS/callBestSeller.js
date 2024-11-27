@@ -1,18 +1,18 @@
-// Add an event listener for when the DOM content is loaded
+// เพิ่ม Event Listener เพื่อรอจนกว่าคอนเทนต์ของ DOM จะโหลดเสร็จ
 document.addEventListener("DOMContentLoaded", async () => {
     console.log("callProduct.js loaded");
 
-    // Fetch products from the backend
+    // ดึงข้อมูลสินค้า (Products) จาก Backend
     const products = await fetchProducts();
 
-    // Render product cards
+    // แสดงสินค้าผ่าน Product Cards
     renderProductCards(products);
 
-    // Add "Buy Now" functionality to the product cards
+    // เพิ่มฟังก์ชัน "Buy Now" ให้ปุ่มใน Product Cards
     addBuyButtonListeners();
 });
 
-// Function to fetch products from the backend
+// ฟังก์ชันสำหรับดึงข้อมูลสินค้า (Products) จาก Backend
 async function fetchProducts() {
     try {
         const response = await fetch("http://localhost:8080/api/products");
@@ -24,11 +24,11 @@ async function fetchProducts() {
         return products;
     } catch (error) {
         console.error("Error fetching products:", error);
-        return []; // Return an empty array if there's an error
+        return [];
     }
 }
 
-// Function to render product cards
+// ฟังก์ชันสำหรับแสดงสินค้าในรูปแบบ Product Cards
 function renderProductCards(products) {
     const container = document.getElementById("product-container");
 
@@ -40,7 +40,7 @@ function renderProductCards(products) {
     container.innerHTML = ""; // Clear the container before rendering
 
     const limitedProducts = products.slice(0, 4); // Limit to 4 products
-
+    // วนลูปเพื่อสร้าง Card สำหรับสินค้าแต่ละชิ้น
     limitedProducts.forEach((product) => {
         const card = document.createElement("div");
         card.classList.add("product-card");
@@ -54,7 +54,7 @@ function renderProductCards(products) {
     });
 }
 
-// Function to add "Buy Now" event listeners to buttons
+// ฟังก์ชันสำหรับเพิ่ม Event Listener ให้ปุ่ม "Buy Now"
 function addBuyButtonListeners() {
     const buyButtons = document.querySelectorAll(".btn-buy");
 
@@ -64,14 +64,14 @@ function addBuyButtonListeners() {
     }
 
     console.log(`Found ${buyButtons.length} Buy buttons`);
-
+    // เพิ่ม Event Listener ให้แต่ละปุ่ม
     buyButtons.forEach((button) => {
         button.addEventListener("click", () => {
             const productId = button.getAttribute("data-id");
             console.log(`Redirecting to: product-detail?product_id=${productId}`);
 
             if (productId) {
-                // Redirect to product detail page with the product ID in the query string
+                // เปลี่ยนเส้นทางไปยังหน้ารายละเอียดสินค้า พร้อมส่งค่า product_id ใน Query String
                 window.location.href = `/product-detail?product_id=${productId}`;
             } else {
                 console.error("Product ID not found!");

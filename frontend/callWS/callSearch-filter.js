@@ -1,4 +1,4 @@
-// callsearch-filter.js
+// ฟังก์ชันสำหรับดึงข้อมูลผลการค้นหาด้วยตัวกรอง
 function fetchFilteredResults(searchParams) {
     return fetch('http://localhost:8080/api/filter-search', {
         method: 'POST',

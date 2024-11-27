@@ -1,10 +1,13 @@
-
+// นำเข้าโมดูลที่จำเป็น
 const express = require('express');
 const db = require('../config/db');
 const multer = require('multer');
 const path = require('path');
+// ใช้สำหรับการแฮชรหัสผ่าน
 const bcrypt = require('bcryptjs');
+// ใช้สำหรับสร้างและตรวจสอบ JWT
 const jwt = require('jsonwebtoken');
+// ใช้จัดการไฟล์ในระบบไฟล์
 const fs = require('fs');
 
 const router = express.Router();
@@ -12,12 +15,16 @@ const router = express.Router();
 
 
 
+<<<<<<< HEAD
 // Route to fetch data from the LoginDetail table
 
 // Testing: loginDetails
 // method: GET
 // URL: http://localhost:8080/api/loginDetails
 // body:
+=======
+//GET: ดึงข้อมูลจากตาราง LoginDetail
+>>>>>>> ab604aecb57bef8b062e8b03bfe3e5f7e9c194f2
 router.get('/loginDetails', (req, res) => {
     db.query('SELECT * FROM LoginDetail', (err, results) => {
         if (err) {
@@ -27,6 +34,7 @@ router.get('/loginDetails', (req, res) => {
     });
 });
 
+<<<<<<< HEAD
 // Route to insert a new user into the LoginDetail table
 // Testing: addLoginDetail
 // method: POST
@@ -36,15 +44,18 @@ router.get('/loginDetails', (req, res) => {
 //   "username": "admin3",
 //   "password": "3333"
 // }
+=======
+//POST: เพิ่มผู้ใช้ใหม่ในตาราง LoginDetail พร้อมแฮชรหัสผ่าน
+>>>>>>> ab604aecb57bef8b062e8b03bfe3e5f7e9c194f2
 router.post('/addLoginDetail', async (req, res) => {
     const { username, password } = req.body;
-
+    // ตรวจสอบว่ามีการส่งข้อมูลครบถ้วนหรือไม่
     if (!username || !password) {
         return res.status(400).json({ error: 'Username and password are required.' });
     }
 
     try {
-        // Hash the password before storing it
+        // แฮชรหัสผ่านก่อนบันทึก
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const sql = 'INSERT INTO LoginDetail (UserName, Password) VALUES (?, ?)';
@@ -59,11 +70,15 @@ router.post('/addLoginDetail', async (req, res) => {
     }
 });
 
+<<<<<<< HEAD
 // API to fetch Administrator data
 // Testing: /admins
 // method: GET
 // URL: http://localhost:8080/api/admins
 // body:
+=======
+//GET: ดึงข้อมูลจากตาราง Administrator
+>>>>>>> ab604aecb57bef8b062e8b03bfe3e5f7e9c194f2
 router.get('/admins', (req, res) => {
     const query = `
         SELECT 
@@ -87,6 +102,7 @@ router.get('/admins', (req, res) => {
     });
 });
 
+<<<<<<< HEAD
 
 
 // // Register
@@ -124,12 +140,40 @@ router.get('/admins', (req, res) => {
 //   "username": "admin2",
 //   "password": "2222"
 // }
+=======
+//POST: ลงทะเบียนผู้ใช้ใหม่
+router.post('/register', async (req, res) => {
+    const { username, password, email } = req.body;
+    // ตรวจสอบว่ามีข้อมูลครบถ้วนหรือไม่
+    if (!username || !password) {
+        return res.status(400).json({ message: 'Username and password are required.' });
+    }
+
+    try {
+        // แฮชรหัสผ่านก่อนบันทึก
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const sql = 'INSERT INTO LoginDetail (UserName, Password, Email, login_Time, logout_Time, login_Date, Status) VALUES (?, ?, ?, "00:00", "00:00", CURDATE(), "Active")';
+        db.query(sql, [username, hashedPassword, email], (err, result) => {
+            if (err) {
+                console.error('Database Error:', err);
+                return res.status(500).json({ message: 'Database error.' });
+            }
+            res.status(201).json({ message: 'User registered successfully!' });
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Error hashing password.' });
+    }
+});
+
+//POST: เข้าสู่ระบบ
+>>>>>>> ab604aecb57bef8b062e8b03bfe3e5f7e9c194f2
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
 
     console.log('Login Request:', { username, password });
 
-    // Validate that both username and password are provided
+    // ตรวจสอบว่ามีการส่งข้อมูลครบถ้วนหรือไม่
     if (!username || !password) {
         return res.status(400).json({ message: 'Username and password are required.' });
     }
@@ -143,7 +187,7 @@ router.post('/login', (req, res) => {
 
         console.log('Database Results:', results);
 
-        // Check if the user exists
+        // ตรวจสอบว่าพบผู้ใช้หรือไม่
         if (results.length === 0) {
             console.log('User not found:', username);
             return res.status(400).json({ message: 'Invalid username or password.' });
@@ -152,24 +196,23 @@ router.post('/login', (req, res) => {
         const user = results[0];
         console.log('Stored Password:', user.Password);
 
-        // Validate the password
+        // ตรวจสอบรหัสผ่านที่รับมาว่าตรงกับรหัสผ่านที่เก็บในฐานข้อมูลหรือไม่
         if (password !== user.Password) {
             console.log('Passwords do not match!');
             return res.status(400).json({ message: 'Invalid username or password.' });
         }
-
-        // Generate a JWT token (valid for 1 hour)
+        // สร้าง JWT Token เมื่อการตรวจสอบสำเร็จ
         const token = jwt.sign(
             { userId: user.login_id, username: user.UserName },
-            'blommpass', // Replace with `process.env.JWT_SECRET` in production
-            { expiresIn: '1h' } // Token expiration: 1 hour
+            'blommpass',
+            { expiresIn: '1h' }  // Token หมดอายุใน 1 ชั่วโมง
         );
 
-        // Send back the token and success message
+
         res.json({
             message: 'Login successful!',
             token,
-            expiresIn: 3600 // Token lifespan in seconds (1 hour)
+            expiresIn: 3600 // อายุการใช้งานของ Token (หน่วยเป็นวินาที)
         });
     });
 });
