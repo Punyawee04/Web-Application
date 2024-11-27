@@ -20,7 +20,7 @@ const db = mysql.createPool({
     queueLimit: 0,
 });
 
-<<<<<<< HEAD
+
 // Add a new admin
 // Testing: Add a new admin
 // method: POST
@@ -34,9 +34,7 @@ const db = mysql.createPool({
 //     "phone_number": "111-111-1111",
 //     "admin_email": "admin4@gmail.com"
 // }
-=======
 // API สำหรับเพิ่มข้อมูลผู้ดูแลระบบ
->>>>>>> ab604aecb57bef8b062e8b03bfe3e5f7e9c194f2
 router.post('/add-admin', async (req, res) => {
     const {
         username,
@@ -109,15 +107,13 @@ router.post('/add-admin', async (req, res) => {
     }
 });
 
-<<<<<<< HEAD
+
 
 // Testing: delete-admin/:id
 // method: DELETE
 // URL: http://localhost:8080/api/delete-admin/1003
 // body: 
-=======
 //  DELETE สำหรับลบผู้ดูแลระบบ
->>>>>>> ab604aecb57bef8b062e8b03bfe3e5f7e9c194f2
 router.delete('/delete-admin/:id', async (req, res) => {
     const { id } = req.params;
 
@@ -172,8 +168,6 @@ router.delete('/delete-admin/:id', async (req, res) => {
     }
 });
 
-<<<<<<< HEAD
-
 // Testing: update-admin/:id
 // method: PUT
 // URL: http://localhost:8080/api/update-admin/1002
@@ -187,9 +181,7 @@ router.delete('/delete-admin/:id', async (req, res) => {
 //     "phone_number": "0987654321",
 //     "admin_email": "admin2@gmail.com"
 // }
-=======
 // PUT สำหรับแก้ไขข้อมูลผู้ดูแลระบบ
->>>>>>> ab604aecb57bef8b062e8b03bfe3e5f7e9c194f2
 router.put('/update-admin/:id', async (req, res) => {
     const { id } = req.params;
     const {
@@ -271,16 +263,13 @@ router.put('/update-admin/:id', async (req, res) => {
     }
 });
 
-<<<<<<< HEAD
 
 // Get admin details by ID
 // Testing: get-admin/:id
 // method: GET
 // URL: http://localhost:8080/api/get-admin/1001
 // body:
-=======
 // GET สำหรับดึงข้อมูลผู้ดูแลระบบตาม ID
->>>>>>> ab604aecb57bef8b062e8b03bfe3e5f7e9c194f2
 router.get('/get-admin/:id', async (req, res) => {
     const { id } = req.params;
 
@@ -309,16 +298,11 @@ router.get('/get-admin/:id', async (req, res) => {
     }
 });
 
-<<<<<<< HEAD
-
 // Testing: account-details/:username
 // method: GET
 // URL: http://localhost:8080/api/account-details/admin1
 // body:
-
-=======
 // GET สำหรับดึงรายละเอียดบัญชีโดยใช้ชื่อผู้ใช้ (username)
->>>>>>> ab604aecb57bef8b062e8b03bfe3e5f7e9c194f2
 router.get('/account-details/:username', async (req, res) => {
     const { username } = req.params;
 

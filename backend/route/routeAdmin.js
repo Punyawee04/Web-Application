@@ -12,19 +12,12 @@ const fs = require('fs');
 
 const router = express.Router();
 
-
-
-
-<<<<<<< HEAD
 // Route to fetch data from the LoginDetail table
-
 // Testing: loginDetails
 // method: GET
 // URL: http://localhost:8080/api/loginDetails
 // body:
-=======
 //GET: ดึงข้อมูลจากตาราง LoginDetail
->>>>>>> ab604aecb57bef8b062e8b03bfe3e5f7e9c194f2
 router.get('/loginDetails', (req, res) => {
     db.query('SELECT * FROM LoginDetail', (err, results) => {
         if (err) {
@@ -34,7 +27,6 @@ router.get('/loginDetails', (req, res) => {
     });
 });
 
-<<<<<<< HEAD
 // Route to insert a new user into the LoginDetail table
 // Testing: addLoginDetail
 // method: POST
@@ -44,9 +36,7 @@ router.get('/loginDetails', (req, res) => {
 //   "username": "admin3",
 //   "password": "3333"
 // }
-=======
 //POST: เพิ่มผู้ใช้ใหม่ในตาราง LoginDetail พร้อมแฮชรหัสผ่าน
->>>>>>> ab604aecb57bef8b062e8b03bfe3e5f7e9c194f2
 router.post('/addLoginDetail', async (req, res) => {
     const { username, password } = req.body;
     // ตรวจสอบว่ามีการส่งข้อมูลครบถ้วนหรือไม่
@@ -70,15 +60,12 @@ router.post('/addLoginDetail', async (req, res) => {
     }
 });
 
-<<<<<<< HEAD
 // API to fetch Administrator data
 // Testing: /admins
 // method: GET
 // URL: http://localhost:8080/api/admins
 // body:
-=======
 //GET: ดึงข้อมูลจากตาราง Administrator
->>>>>>> ab604aecb57bef8b062e8b03bfe3e5f7e9c194f2
 router.get('/admins', (req, res) => {
     const query = `
         SELECT 
@@ -102,33 +89,6 @@ router.get('/admins', (req, res) => {
     });
 });
 
-<<<<<<< HEAD
-
-
-// // Register
-// router.post('/register', async (req, res) => {
-//     const { username, password, email } = req.body;
-
-//     if (!username || !password) {
-//         return res.status(400).json({ message: 'Username and password are required.' });
-//     }
-
-//     try {
-//         const hashedPassword = await bcrypt.hash(password, 10);
-
-//         const sql = 'INSERT INTO LoginDetail (UserName, Password, Email, login_Time, logout_Time, login_Date, Status) VALUES (?, ?, ?, "00:00", "00:00", CURDATE(), "Active")';
-//         db.query(sql, [username, hashedPassword, email], (err, result) => {
-//             if (err) {
-//                 console.error('Database Error:', err);
-//                 return res.status(500).json({ message: 'Database error.' });
-//             }
-//             res.status(201).json({ message: 'User registered successfully!' });
-//         });
-//     } catch (error) {
-//         res.status(500).json({ message: 'Error hashing password.' });
-//     }
-// });
-
 
 
 // Login endpoint
@@ -140,34 +100,7 @@ router.get('/admins', (req, res) => {
 //   "username": "admin2",
 //   "password": "2222"
 // }
-=======
-//POST: ลงทะเบียนผู้ใช้ใหม่
-router.post('/register', async (req, res) => {
-    const { username, password, email } = req.body;
-    // ตรวจสอบว่ามีข้อมูลครบถ้วนหรือไม่
-    if (!username || !password) {
-        return res.status(400).json({ message: 'Username and password are required.' });
-    }
-
-    try {
-        // แฮชรหัสผ่านก่อนบันทึก
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        const sql = 'INSERT INTO LoginDetail (UserName, Password, Email, login_Time, logout_Time, login_Date, Status) VALUES (?, ?, ?, "00:00", "00:00", CURDATE(), "Active")';
-        db.query(sql, [username, hashedPassword, email], (err, result) => {
-            if (err) {
-                console.error('Database Error:', err);
-                return res.status(500).json({ message: 'Database error.' });
-            }
-            res.status(201).json({ message: 'User registered successfully!' });
-        });
-    } catch (error) {
-        res.status(500).json({ message: 'Error hashing password.' });
-    }
-});
-
 //POST: เข้าสู่ระบบ
->>>>>>> ab604aecb57bef8b062e8b03bfe3e5f7e9c194f2
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
 

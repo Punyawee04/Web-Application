@@ -18,6 +18,10 @@ const storage = multer.diskStorage({
 // ใช้งาน multer พร้อมการตั้งค่า storage
 const upload = multer({ storage });
 
+// Testing: products
+// method: GET
+// URL: http://localhost:8080/api/products
+// body:
 // GET: ดึงข้อมูลสินค้าทั้งหมด
 router.get('/products/', (req, res) => {
     const sql = `SELECT * FROM Product`;
@@ -26,12 +30,15 @@ router.get('/products/', (req, res) => {
             console.error('Error fetching products:', err);
             return res.status(500).json({ error: 'Failed to fetch products' });
         }
-        console.log('Products Fetched:', results); // Debug log
+        console.log('Products Fetched:', results); 
         res.json(results);
     });
 });
 
-
+// Testing: products/:id
+// method: GET
+// URL: http://localhost:8080/api/products/PD1
+// body:
 // GET: ดึงข้อมูลสินค้าตาม ID
 router.get('/products/:id', (req, res) => {
     const productId = req.params.id;
@@ -52,6 +59,25 @@ router.get('/products/:id', (req, res) => {
     });
 });
 
+// Testing: products/:id
+// method: PUT
+// URL: http://localhost:8080/api/products/PD8
+// body: raw JSON
+// {
+//     "product_id": "PD8",
+//     "product_rating": 4.4,
+//     "stock_quantity": 200,
+//     "price": 400,
+//     "description": "Micellar Cleansing Water",
+//     "origin": "France",
+//     "benefit": "Cleansing",
+//     "skin_type": "All",
+//     "quantity": 1,
+//     "ingredients": "Micelles, Glycerin",
+//     "brand": "Garnier",
+//     "product_name": "Garnier SkinActive Micellar Cleansing Water",
+//     "category_name": "Cleanser" 
+// }
 // PUT: อัปเดตข้อมูลสินค้า
 router.put("/products/:id", upload.single("image"), (req, res) => {
     const productId = req.params.id;
@@ -158,11 +184,13 @@ router.put("/products/:id", upload.single("image"), (req, res) => {
     });
 });
 
+// Testing: delete-product/:PD1
+// method: DELETE
+// URL: http://localhost:8080/api/delete-product/PD1
+// body:
 // DELETE: ลบสินค้า
 router.delete("/delete-product/:id", (req, res) => {
     const productId = req.params.id;
-
-
     const query = "DELETE FROM product WHERE product_id = ?";
 
     db.query(query, [productId], (err, result) => {
@@ -190,6 +218,25 @@ router.delete("/delete-product/:id", (req, res) => {
     });
 });
 
+// Testing: add-product
+// method: POST
+// URL: http://localhost:8080/api/add-product
+// body: raw JSON
+// {
+//     "product_id": "PD11",
+//     "product_name": "Neutrogena Hydro Boost Water Gel",
+//     "product_rating": 4.8,
+//     "stock_quantity": 120,
+//     "price": 599,
+//     "description": "Hydrating gel for all skin types",
+//     "origin": "USA",
+//     "benefit": "Hydration",
+//     "skin_type": "All",
+//     "quantity": 1,
+//     "ingredients": "Hyaluronic Acid, Water",
+//     "brand": "Neutrogena",
+//     "category_name": "Moisturizer"
+// }
 // POST: เพิ่มสินค้าใหม่
 router.post('/add-product', upload.single('image'), (req, res) => {
     const {
@@ -260,6 +307,10 @@ router.post('/add-product', upload.single('image'), (req, res) => {
     });
 });
 
+// Testing: product-detail/:id
+// method: GET
+// URL: http://localhost:8080/api/product-detail/PD5
+// body:
 // GET: ดึงรายละเอียดของสินค้าโดยระบุ product_id
 router.get('/product-detail/:id', (req, res) => {
     const productId = req.params.id;
@@ -278,6 +329,13 @@ router.get('/product-detail/:id', (req, res) => {
     });
 });
 
+// Testing: search
+// method: POST
+// URL: http://localhost:8080/api/search
+// body: raw JSON
+// {
+//     "query": "Serum"
+// }
 // POST: ค้นหาสินค้าโดยใช้คำค้น (Query)
 router.post('/search', (req, res) => {
     console.log('Request received at /api/search');
@@ -314,6 +372,16 @@ router.post('/search', (req, res) => {
     });
 });
 
+// Testing: filter-search
+// method: POST
+// URL: http://localhost:8080/api/filter-search
+// body: raw JSON
+// {
+//     "brand": "Innisfree",
+//     "category": "Serum",
+//     "priceMin": 500,
+//     "priceMax": 1000
+// }
 // POST: ค้นหาสินค้าด้วยตัวกรอง
 router.post('/filter-search', (req, res) => {
     const { brand, category, priceMin, priceMax } = req.body;
