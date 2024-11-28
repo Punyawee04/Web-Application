@@ -22,7 +22,7 @@ Bloom is a beautifully designed web application for managing and showcasing skin
 ---
 
 ## **How to Use**
-🔗 For detailed instructions on setting up and running this application, refer to the [🌸 Instructions for Web Application 🌸](./Instructions_for_Web_App.txt).
+🔗 For detailed instructions on setting up and running this application, refer to the [🌸 Instructions for Web Application 🌸](https://github.com/thitiP11222/Project-Web-Phase2/blob/main/README.txt).
 
 ---
 
