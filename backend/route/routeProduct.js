@@ -39,6 +39,11 @@ router.get('/products/', (req, res) => {
 // method: GET
 // URL: http://localhost:8080/api/products/PD1
 // body:
+
+// Testing: products/:id
+// method: GET
+// URL: http://localhost:8080/api/products/PD9
+// body:
 // GET: ดึงข้อมูลสินค้าตาม ID
 router.get('/products/:id', (req, res) => {
     const productId = req.params.id;
@@ -77,6 +82,26 @@ router.get('/products/:id', (req, res) => {
 //     "brand": "Garnier",
 //     "product_name": "Garnier SkinActive Micellar Cleansing Water",
 //     "category_name": "Cleanser" 
+// }
+
+// Testing: products/:id
+// method: PUT
+// URL: http://localhost:8080/api/products/PD7
+// body: raw JSON
+// {
+//     "product_id": "PD7",
+//     "product_rating": 5.0,
+//     "stock_quantity": 100,
+//     "price": 1000,
+//     "description": "Green Tea Seed Serum",
+//     "origin": "South Korea",
+//     "benefit": "Soothing",
+//     "skin_type": "All",
+//     "quantity": 1,
+//     "ingredients": "Green Tea, Betaine",
+//     "brand": "Innisfree",
+//     "product_name": "Innisfree Green Tea Seed Serum",
+//     "category_name": "Serum" 
 // }
 // PUT: อัปเดตข้อมูลสินค้า
 router.put("/products/:id", upload.single("image"), (req, res) => {
@@ -237,6 +262,26 @@ router.delete("/delete-product/:id", (req, res) => {
 //     "brand": "Neutrogena",
 //     "category_name": "Moisturizer"
 // }
+
+// Testing: add-product
+// method: POST
+// URL: http://localhost:8080/api/add-product
+// body: raw JSON
+// {
+//     "product_id": "PD13",
+//     "product_name": "La Roche-Posay Retinol B3 Retinol Serum",
+//     "product_rating": 5.0,
+//     "stock_quantity": 200,
+//     "price": 1600,
+//     "description": "Hyaluronic acid to promote cell turnover",
+//     "origin": "USA",
+//     "benefit": "Retinol, niacinamide",
+//     "skin_type": "All",
+//     "quantity": 1,
+//     "ingredients": "Hyaluronic Acid",
+//     "brand": "La Roche-Posay",
+//     "category_name": "Serum"
+// }
 // POST: เพิ่มสินค้าใหม่
 router.post('/add-product', upload.single('image'), (req, res) => {
     const {
@@ -311,6 +356,11 @@ router.post('/add-product', upload.single('image'), (req, res) => {
 // method: GET
 // URL: http://localhost:8080/api/product-detail/PD5
 // body:
+
+// Testing: product-detail/:id
+// method: GET
+// URL: http://localhost:8080/api/product-detail/PD6
+// body:
 // GET: ดึงรายละเอียดของสินค้าโดยระบุ product_id
 router.get('/product-detail/:id', (req, res) => {
     const productId = req.params.id;
@@ -335,6 +385,14 @@ router.get('/product-detail/:id', (req, res) => {
 // body: raw JSON
 // {
 //     "query": "Serum"
+// }
+
+// Testing: search
+// method: POST
+// URL: http://localhost:8080/api/search
+// body: raw JSON
+// {
+//     "query": "Sunscreen"
 // }
 // POST: ค้นหาสินค้าโดยใช้คำค้น (Query)
 router.post('/search', (req, res) => {
@@ -380,6 +438,17 @@ router.post('/search', (req, res) => {
 //     "brand": "Innisfree",
 //     "category": "Serum",
 //     "priceMin": 500,
+//     "priceMax": 1000
+// }
+
+// Testing: filter-search
+// method: POST
+// URL: http://localhost:8080/api/filter-search
+// body: raw JSON
+// {
+//     "brand": "AmLactin",
+//     "category": "Body",
+//     "priceMin": 200,
 //     "priceMax": 1000
 // }
 // POST: ค้นหาสินค้าด้วยตัวกรอง
