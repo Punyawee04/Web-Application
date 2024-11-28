@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById(popupId).style.display = 'none';
     }
     // เปิดใช้งานฟังก์ชันปิด Popup สำหรับ inline `onclick`
-    window.closePopup = closePopup; // Expose to inline `onclick`
+    window.closePopup = closePopup; 
 
     // การจัดการเมื่อส่งฟอร์ม
     document.getElementById('addAdminForm').addEventListener('submit', async (event) => {

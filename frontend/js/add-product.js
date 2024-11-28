@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const productId = params.get("product_id");
 
     if (productId) {
-        // Fetch and populate product data for editing
         const product = await fetchProduct(productId);
         populateForm(product);
     }
@@ -29,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             await addProduct(formData);
         }
         // เปลี่ยนเส้นทางกลับไปยังหน้ารายการสินค้า
-        window.location.href = "product-manage"; // Redirect back to product list
+        window.location.href = "product-manage"; 
     });
 
     // ฟังก์ชันดึงข้อมูลสินค้า

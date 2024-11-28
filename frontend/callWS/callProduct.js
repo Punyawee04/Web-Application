@@ -1,6 +1,6 @@
 // เพิ่ม Event Listener เพื่อตรวจสอบว่า DOM ถูกโหลดเรียบร้อยแล้ว
 document.addEventListener("DOMContentLoaded", async () => {
-    console.log("callProduct.js loaded"); // Debug log
+    console.log("callProduct.js loaded"); 
 
     // ตรวจสอบว่ามี Container สำหรับแสดง Product Cards หรือไม่
     const container = document.getElementById("product-container");

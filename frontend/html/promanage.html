@@ -31,28 +31,24 @@
 </head>
 
 <body>
-    <!-- Nav for Admin-->
+    <!-- ส่วนของ Navbar -->
     <nav>
         <div id="nav-header">
             <div class="logo">
                 <img src="..\src\bloom logo.png" alt="Logo" />
             </div>
         </div>
-        <!-- เมนูการจัดการ -->
         <div id="menu">
             <ul class="menunav">
                 <div class="menu-1">
-                    <!-- ลิงก์สำหรับจัดการบัญชี -->
                     <a href="http://localhost:8081/user-manage" class="list-left"><i
                             class="bi bi-person-circle"></i>Account</a>
-                    <!-- ลิงก์สำหรับจัดการสินค้า -->
                     <a href="http://localhost:8081/product-manage" class="list-left product-management"><i
                             class="bi bi-box-seam"></i>Product
                         Management</a>
                 </div>
                 <div class="menu-2">
                     <a href="#"><i class="bi bi-person-fill"></i></a>
-                    <!-- ปุ่มออกจากระบบ -->
                     <button id="logoutButton"><i class="bi bi-box-arrow-right"></i></button>
                     <script src="/js/logout.js"></script>
 
@@ -66,30 +62,25 @@
         <section class="products-section">
             <div class="products-section1">
                 <span>Products</span>
-                <!-- กล่องค้นหาและปุ่มแสดงสินค้าทั้งหมด -->
                 <div style="display: flex; flex-direction :row ;margin:10px ; padding:10px">
-                    <!-- กล่องค้นหา -->
                     <div class="search-container">
                         <input type="text" placeholder="Search..." class="search-bar">
                         <i class="bi bi-search search-icon"></i>
                     </div>
-                    <!-- ปุ่มแสดงสินค้าทั้งหมด -->
                     <button id="show-all-button" class="show-all-button" style="padding:5px">Show All Products</button>
                 </div>
 
 
             </div>
 
-            <!-- ส่วนตารางรายการสินค้า -->
+
             <div class="container">
                 <div class="header">
                     <h1>Products List</h1>
                     <div class="action">
-                        <!-- ปุ่มเพิ่มสินค้าใหม่ -->
                         <button class="add-button" aria-label="Add New Product" onclick="redirectToAddProduct()">Add
                             Product</button>
                         <script>
-                            // ฟังก์ชันสำหรับเปลี่ยนเส้นทางไปยังหน้าเพิ่มสินค้า
                             function redirectToAddProduct() {
                                 window.location.href = "http://localhost:8081/add-product";
                             }
@@ -98,7 +89,7 @@
 
                 </div>
 
-                <!-- ตารางรายการสินค้า -->
+                <!-- เนื้อหาตารางอยู่ที่นี่ -->
                 <table>
                     <thead>
                         <tr>
@@ -113,7 +104,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- การโหลดข้อมูลตารางด้วย JavaScript -->
+
                         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
                         <script src="/js/callProduct.js"></script> <!-- ลิงค์ไฟล์ JavaScript -->
@@ -128,5 +119,83 @@
 </body>
 
 </html>
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        const tableBody = document.querySelector("tbody");
+        const searchBar = document.querySelector(".search-bar");
+        const showAllButton = document.getElementById("show-all-button");
+
+        let allProducts = [];
+
+        // ฟังก์ชันดึงข้อมูลสินค้าจาก API
+        async function fetchProducts() {
+            try {
+                const response = await fetch("http://localhost:8080/api/products");
+                if (!response.ok) throw new Error("Failed to fetch products");
+                return await response.json();
+            } catch (error) {
+                console.error(error);
+                return [];
+            }
+        }
+
+        // ฟังก์ชันแสดงรายการสินค้าในตาราง
+        function displayProducts(products) {
+            tableBody.innerHTML = "";
+            products.forEach((product) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td><img src="${product.image_url}" alt="${product.product_name}" style="width: 50px; height: 50px;"></td>
+                    <td>${product.product_id}</td>
+                    <td>${product.product_name}</td>
+                    <td>${product.brand || "-"}</td>
+                    <td>${product.category_name || "Category"}</td>
+                    <td>${product.stock_quantity || 0} in stock</td>
+                    <td>${product.price || "0.00"} บาท</td>
+                    <td>
+                        <button class="edit-button" data-id="${product.product_id}">Edit</button>
+                        <button class="delete-button" data-id="${product.product_id}">Delete</button>
+                    </td>`;
+                tableBody.appendChild(row);
+            });
+            addEventListenersToButtons();
+        }
+        
+        // ฟังก์ชันลบสินค้า
+        async function deleteProduct(productId) {
+            try {
+                const response = await fetch(`http://localhost:8080/api/delete-product/${productId}`, { method: "DELETE" });
+                if (!response.ok) throw new Error("Failed to delete product");
+                alert("Product deleted");
+                allProducts = allProducts.filter((product) => product.product_id !== productId);
+                displayProducts(allProducts);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        // ฟังก์ชันค้นหาสินค้า
+        searchBar.addEventListener("input", () => {
+            const query = searchBar.value.toLowerCase();
+            const filteredProducts = allProducts.filter((product) =>
+                product.product_name.toLowerCase().includes(query) ||
+                product.product_id.toLowerCase().includes(query) ||
+                product.brand?.toLowerCase().includes(query)
+            );
+            displayProducts(filteredProducts);
+        });
+
+        // ฟังก์ชันแสดงสินค้าทั้งหมดเมื่อกดปุ่ม Show All
+        showAllButton.addEventListener("click", () => {
+            searchBar.value = "";
+            displayProducts(allProducts);
+        });
+
+        allProducts = await fetchProducts();
+        displayProducts(allProducts);
+    });
+    
+    
+</script>
 
 <script src="/js/update-product.js"></script>

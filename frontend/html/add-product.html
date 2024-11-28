@@ -13,28 +13,26 @@
 
 <body>
     <div class="container">
-        <!-- ส่วน Navbar -->
+        <!-- ส่วนของ Navbar -->
         <div id="nav-header">
             <div class="logo">
-                <!-- แสดงโลโก้ -->
                 <img src="..\src\bloom logo.png" alt="Logo" />
             </div>
         </div>
 
         <section>
-            <!-- ส่วนหัว (Header) -->
+            <!-- ส่วนของ Header -->
             <div class="header">
-                <!-- ปุ่มกลับไปยังหน้า Product Management -->
                 <a href="http://localhost:8081/product-manage" class="back-button">
                     <i class="bi bi-arrow-left-square"></i>
                 </a>
                 <h1>Add Products</h1>
             </div>
 
-            <!-- ส่วนฟอร์มสำหรับเพิ่มสินค้า -->
+            <!-- ส่วนของ Form -->
             <form id="addProductForm">
                 <div class="form">
-                    <!-- ฟิลด์ด้านซ้าย -->
+                    <!-- ช่องแบบฟอร์มด้านซ้าย -->
                     <div class="form-left">
                         <div class="form-group">
                             <label for="product_id">Product ID</label>
@@ -47,8 +45,6 @@
                         </div>
                         <div class="form-group">
                             <label for="category_name">Category Name</label>
-
-                            <!-- ฟิลด์เลือกหมวดหมู่สินค้า -->
                             <select id="category_name" name="category_name">
                                 <option value="Default">Default</option>
                                 <option value="Body">Body</option>
@@ -64,6 +60,8 @@
                             <textarea id="description" placeholder="Enter product description here..."></textarea>
                         </div>
 
+
+
                         <div class="form-group">
                             <label for="price">Price</label>
                             <input type="number" id="price" step="0.01" placeholder="e.g., 299.99">
@@ -75,7 +73,6 @@
                         </div>
                         <div class="form-group">
                             <label for="imageUpload">Upload Image</label>
-                            <!-- ฟิลด์สำหรับอัปโหลดรูป -->
                             <input type="file" id="imageUpload" accept="image/*">
                             <img id="imagePreview" src="" alt="Image Preview"
                                 style="display: none; width: 200px; height: auto; margin-top: 10px;">
@@ -83,7 +80,7 @@
                         </div>
                     </div>
 
-                    <!-- ฟิลด์ด้านขวา -->
+                    <!-- ช่องแบบฟอร์มด้านขวา -->
                     <div class="form-right">
                         <div class="form-group">
                             <label for="stock_quantity">Stock Quantity</label>
@@ -122,11 +119,9 @@
                     </div>
                 </div>
 
-                <!-- ปุ่มบันทึก -->
-                <div class="button-group" style="margin-bottom: 30px;">
+                <div class="button-group">
                     <button type="submit" class="save" id="saveButton">Save</button>
                 </div>
-
             </form>
         </section>
     </div>
@@ -137,7 +132,7 @@
 </html>
 
 <script>
-    // ฟังก์ชันสำหรับแสดงตัวอย่างรูปภาพเมื่อผู้ใช้อัปโหลด
+    // ฟังก์ชันแสดงตัวอย่างรูปภาพที่อัพโหลด
     document.getElementById('imageUpload').addEventListener('change', function (event) {
         const file = event.target.files[0];
         if (file) {
@@ -150,7 +145,48 @@
             reader.readAsDataURL(file);
         }
     });
+    // ฟังก์ชันจัดการการส่งฟอร์มข้อมูลสินค้า
+    document.getElementById('addProductForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
 
+        const formData = new FormData();
+        // เก็บค่าจากฟอร์มในรูปแบบ key-value
+        formData.append('product_id', document.getElementById('product_id').value);
+        formData.append('product_name', document.getElementById('product_name').value);
+        formData.append('category_name', document.getElementById('category_name').value);
+        formData.append('price', document.getElementById('price').value);
+        formData.append('description', document.getElementById('description').value);
+        formData.append('product_rating', document.getElementById('product_rating').value);
+        formData.append('stock_quantity', document.getElementById('stock_quantity').value);
+        formData.append('origin', document.getElementById('origin').value);
+        formData.append('benefit', document.getElementById('benefit').value);
+        formData.append('skin_type', document.getElementById('skin_type').value);
+        formData.append('quantity', document.getElementById('quantity').value);
+        formData.append('ingredients', document.getElementById('ingredients').value);
+        formData.append('brand', document.getElementById('brand').value);
+        // ตรวจสอบว่ามีการอัพโหลดรูปภาพหรือไม่
+        const fileInput = document.getElementById('imageUpload');
+        if (fileInput.files[0]) {
+            formData.append('image', fileInput.files[0]);
+        }
+
+        try {
+            const response = await fetch('http://localhost:8080/api/add-product', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert(data.message);
+            } else {
+                alert(`Error: ${data.message}`);
+            }
+        } catch (err) {
+            console.error('Error:', err);
+            alert('Add product is in process . . .');
+        }
+    });
 
 </script>
 <script src="/js/callProduct.js"></script>

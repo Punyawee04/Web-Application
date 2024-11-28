@@ -268,7 +268,7 @@ router.delete("/delete-product/:id", (req, res) => {
 // URL: http://localhost:8080/api/add-product
 // body: raw JSON
 // {
-//     "product_id": "PD13",
+//     "product_id": "PD12",
 //     "product_name": "La Roche-Posay Retinol B3 Retinol Serum",
 //     "product_rating": 5.0,
 //     "stock_quantity": 200,
@@ -298,9 +298,10 @@ router.post('/add-product', upload.single('image'), (req, res) => {
         quantity,
         ingredients,
         brand,
+        image_url
     } = req.body;
 
-    const imageUrl = req.file ? `http://localhost:8080/images/${req.file.filename}` : null;
+    const imageUrl = req.file ? `http://localhost:8080/images/${req.file.filename}` : image_url || null;
 
 
     if (!product_id || !product_name || !price) {
