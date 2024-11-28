@@ -1,5 +1,4 @@
-# Create a .txt file with the formatted content
-content = """
+
 ขั้นตอนการใช้งาน Web Application
 
 1. Clone Repository
@@ -23,14 +22,8 @@ cd frontend
   npm install express nodemon mysql2 dotenv axios
 
 4. เชื่อมต่อกับฐานข้อมูล MySQL
-- เปิด MySQL Workbench หรือ CLI แล้วสร้างฐานข้อมูลด้วยคำสั่ง:
-  CREATE DATABASE <database_name>;
-- ตั้งค่าไฟล์ .env ในโฟลเดอร์ backend:
-  DB_HOST=localhost
-  DB_USER=root
-  DB_PASSWORD=<your-password>
-  DB_NAME=<database_name>
-  DB_PORT=3306
+- เปิด MySQL Workbench แล้วสร้างฐานข้อมูล
+จากไฟล์ bloom_dbที่เตรียมให้
 
 5. รัน Backend และ Frontend Servers
 รันเซิร์ฟเวอร์ทั้งสองส่วน:
