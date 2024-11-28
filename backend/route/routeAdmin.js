@@ -12,19 +12,25 @@ const fs = require('fs');
 
 const router = express.Router();
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> efe8b7a392f12da33002e0dcbf4c29ef6e692ae4
 // Route to fetch data from the LoginDetail table
-
 // Testing: loginDetails
 // method: GET
 // URL: http://localhost:8080/api/loginDetails
 // body:
+<<<<<<< HEAD
 
 //GET: ดึงข้อมูลจากตาราง LoginDetail
 
+=======
+//GET: ดึงข้อมูลจากตาราง LoginDetail
+>>>>>>> efe8b7a392f12da33002e0dcbf4c29ef6e692ae4
 router.get('/loginDetails', (req, res) => {
     db.query('SELECT * FROM LoginDetail', (err, results) => {
         if (err) {
@@ -34,7 +40,10 @@ router.get('/loginDetails', (req, res) => {
     });
 });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> efe8b7a392f12da33002e0dcbf4c29ef6e692ae4
 // Route to insert a new user into the LoginDetail table
 // Testing1: addLoginDetail
 // method: POST
@@ -44,6 +53,7 @@ router.get('/loginDetails', (req, res) => {
 //   "username": "admin3",
 //   "password": "3333"
 // }
+<<<<<<< HEAD
 
 // Testing2: addLoginDetail
 // method: POST
@@ -57,6 +67,9 @@ router.get('/loginDetails', (req, res) => {
 
 //POST: เพิ่มผู้ใช้ใหม่ในตาราง LoginDetail พร้อมแฮชรหัสผ่าน
 
+=======
+//POST: เพิ่มผู้ใช้ใหม่ในตาราง LoginDetail พร้อมแฮชรหัสผ่าน
+>>>>>>> efe8b7a392f12da33002e0dcbf4c29ef6e692ae4
 router.post('/addLoginDetail', async (req, res) => {
     const { username, password } = req.body;
     // ตรวจสอบว่ามีการส่งข้อมูลครบถ้วนหรือไม่
@@ -80,15 +93,22 @@ router.post('/addLoginDetail', async (req, res) => {
     }
 });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> efe8b7a392f12da33002e0dcbf4c29ef6e692ae4
 // API to fetch Administrator data
 // Testing: /admins
 // method: GET
 // URL: http://localhost:8080/api/admins
 // body:
+<<<<<<< HEAD
 
 //GET: ดึงข้อมูลจากตาราง Administrator
 
+=======
+//GET: ดึงข้อมูลจากตาราง Administrator
+>>>>>>> efe8b7a392f12da33002e0dcbf4c29ef6e692ae4
 router.get('/admins', (req, res) => {
     const query = `
         SELECT 
@@ -112,6 +132,7 @@ router.get('/admins', (req, res) => {
     });
 });
 
+<<<<<<< HEAD
 
 
 
@@ -188,6 +209,20 @@ router.post('/register', async (req, res) => {
 //   "password": "3333"
 // }
 
+=======
+
+
+// Login endpoint
+// Testing: /login
+// method: POST
+// URL: http://localhost:8080/api/login
+// body: raw JSON
+// {
+//   "username": "admin2",
+//   "password": "2222"
+// }
+//POST: เข้าสู่ระบบ
+>>>>>>> efe8b7a392f12da33002e0dcbf4c29ef6e692ae4
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
 
