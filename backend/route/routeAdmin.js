@@ -28,13 +28,22 @@ router.get('/loginDetails', (req, res) => {
 });
 
 // Route to insert a new user into the LoginDetail table
-// Testing: addLoginDetail
+// Testing1: addLoginDetail
 // method: POST
 // URL: http://localhost:8080/api/addLoginDetail
 // body: raw JSON
 // {
 //   "username": "admin3",
 //   "password": "3333"
+// }
+
+// Testing2: addLoginDetail
+// method: POST
+// URL: http://localhost:8080/api/addLoginDetail
+// body:
+// {
+//   "username": "admin4",
+//   "password": "4444"
 // }
 //POST: เพิ่มผู้ใช้ใหม่ในตาราง LoginDetail พร้อมแฮชรหัสผ่าน
 router.post('/addLoginDetail', async (req, res) => {
@@ -89,16 +98,23 @@ router.get('/admins', (req, res) => {
     });
 });
 
-
-
 // Login endpoint
-// Testing: /login
+// Testing1: /login
 // method: POST
 // URL: http://localhost:8080/api/login
 // body: raw JSON
 // {
 //   "username": "admin2",
 //   "password": "2222"
+// }
+
+// Testing2: /login
+// method: POST
+// URL: http://localhost:8080/api/login
+// body:
+// {
+//   "username": "admin3",
+//   "password": "3333"
 // }
 //POST: เข้าสู่ระบบ
 router.post('/login', (req, res) => {

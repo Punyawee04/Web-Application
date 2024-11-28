@@ -22,7 +22,7 @@ const db = mysql.createPool({
 
 
 // Add a new admin
-// Testing: Add a new admin
+// Testing1: Add a new admin
 // method: POST
 // URL: http://localhost:8080/api/add-admin
 // body: raw JSON
@@ -32,6 +32,19 @@ const db = mysql.createPool({
 //     "email": "admin4@gmail.com",
 //     "admin_name": "Test Admin",
 //     "phone_number": "111-111-1111",
+//     "admin_email": "admin4@gmail.com"
+// }
+
+// Testing2: Add a new admin
+// method: POST
+// URL: http://localhost:8080/api/add-admin
+// body: raw JSON
+// {
+//     "username": "admin4",
+//     "password": "4444",
+//     "email": "admin4@gmail.com",
+//     "admin_name": "Victor",
+//     "phone_number": "444-444-4444",
 //     "admin_email": "admin4@gmail.com"
 // }
 // API สำหรับเพิ่มข้อมูลผู้ดูแลระบบ
@@ -107,11 +120,14 @@ router.post('/add-admin', async (req, res) => {
     }
 });
 
-
-
-// Testing: delete-admin/:id
+// Testing1: delete-admin/:id
 // method: DELETE
 // URL: http://localhost:8080/api/delete-admin/1003
+// body: 
+
+// Testing2: delete-admin/:id
+// method: DELETE
+// URL: http://localhost:8080/api/delete-admin/1004
 // body: 
 //  DELETE สำหรับลบผู้ดูแลระบบ
 router.delete('/delete-admin/:id', async (req, res) => {
@@ -168,6 +184,8 @@ router.delete('/delete-admin/:id', async (req, res) => {
     }
 });
 
+
+// Testing1: update-admin/:id
 // Testing: update-admin/:id
 // method: PUT
 // URL: http://localhost:8080/api/update-admin/1002
@@ -180,6 +198,20 @@ router.delete('/delete-admin/:id', async (req, res) => {
 //     "admin_name": "Bob Smith",
 //     "phone_number": "0987654321",
 //     "admin_email": "admin2@gmail.com"
+// }
+
+// Testing2: update-admin/:id
+// method: PUT
+// URL: http://localhost:8080/api/update-admin/1003
+// body: raw JSON
+// {
+//     "username": "Admin3",
+//     "password": "3333",
+//     "email": "admin3@gmail.com",
+//     "status": "Active",
+//     "admin_name": "Janet Smith",
+//     "phone_number": "0987654321",
+//     "admin_email": "admin3@gmail.com"
 // }
 // PUT สำหรับแก้ไขข้อมูลผู้ดูแลระบบ
 router.put('/update-admin/:id', async (req, res) => {
@@ -265,10 +297,15 @@ router.put('/update-admin/:id', async (req, res) => {
 
 
 // Get admin details by ID
-// Testing: get-admin/:id
+// Testing1: get-admin/:id
 // method: GET
 // URL: http://localhost:8080/api/get-admin/1001
 // body:
+
+// Testing2: get-admin/:id
+// method: GET
+// URL: http://localhost:8080/api/get-admin/1002
+// body: 
 // GET สำหรับดึงข้อมูลผู้ดูแลระบบตาม ID
 router.get('/get-admin/:id', async (req, res) => {
     const { id } = req.params;
@@ -298,9 +335,14 @@ router.get('/get-admin/:id', async (req, res) => {
     }
 });
 
-// Testing: account-details/:username
+// Testing1: account-details/:username
 // method: GET
 // URL: http://localhost:8080/api/account-details/admin1
+// body:
+
+// Testing2: account-details/:username
+// method: GET
+// URL: http://localhost:8080/api/account-details/admin2
 // body:
 // GET สำหรับดึงรายละเอียดบัญชีโดยใช้ชื่อผู้ใช้ (username)
 router.get('/account-details/:username', async (req, res) => {

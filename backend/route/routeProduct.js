@@ -35,12 +35,12 @@ router.get('/products/', (req, res) => {
     });
 });
 
-// Testing: products/:id
+// Testing1: products/:id
 // method: GET
 // URL: http://localhost:8080/api/products/PD1
 // body:
 
-// Testing: products/:id
+// Testing2: products/:id
 // method: GET
 // URL: http://localhost:8080/api/products/PD9
 // body:
@@ -64,7 +64,7 @@ router.get('/products/:id', (req, res) => {
     });
 });
 
-// Testing: products/:id
+// Testing1: products/:id
 // method: PUT
 // URL: http://localhost:8080/api/products/PD8
 // body: raw JSON
@@ -84,7 +84,7 @@ router.get('/products/:id', (req, res) => {
 //     "category_name": "Cleanser" 
 // }
 
-// Testing: products/:id
+// Testing2: products/:id
 // method: PUT
 // URL: http://localhost:8080/api/products/PD7
 // body: raw JSON
@@ -243,7 +243,7 @@ router.delete("/delete-product/:id", (req, res) => {
     });
 });
 
-// Testing: add-product
+// Testing1: add-product
 // method: POST
 // URL: http://localhost:8080/api/add-product
 // body: raw JSON
@@ -263,7 +263,7 @@ router.delete("/delete-product/:id", (req, res) => {
 //     "category_name": "Moisturizer"
 // }
 
-// Testing: add-product
+// Testing2: add-product
 // method: POST
 // URL: http://localhost:8080/api/add-product
 // body: raw JSON
@@ -352,12 +352,12 @@ router.post('/add-product', upload.single('image'), (req, res) => {
     });
 });
 
-// Testing: product-detail/:id
+// Testing1: product-detail/:id
 // method: GET
 // URL: http://localhost:8080/api/product-detail/PD5
 // body:
 
-// Testing: product-detail/:id
+// Testing2: product-detail/:id
 // method: GET
 // URL: http://localhost:8080/api/product-detail/PD6
 // body:
@@ -379,7 +379,7 @@ router.get('/product-detail/:id', (req, res) => {
     });
 });
 
-// Testing: search
+// Testing1: search
 // method: POST
 // URL: http://localhost:8080/api/search
 // body: raw JSON
@@ -387,7 +387,7 @@ router.get('/product-detail/:id', (req, res) => {
 //     "query": "Serum"
 // }
 
-// Testing: search
+// Testing2: search
 // method: POST
 // URL: http://localhost:8080/api/search
 // body: raw JSON
@@ -430,7 +430,7 @@ router.post('/search', (req, res) => {
     });
 });
 
-// Testing: filter-search
+// Testing1: filter-search
 // method: POST
 // URL: http://localhost:8080/api/filter-search
 // body: raw JSON
@@ -441,7 +441,7 @@ router.post('/search', (req, res) => {
 //     "priceMax": 1000
 // }
 
-// Testing: filter-search
+// Testing2: filter-search
 // method: POST
 // URL: http://localhost:8080/api/filter-search
 // body: raw JSON
