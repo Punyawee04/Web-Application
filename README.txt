@@ -93,14 +93,3 @@ Product Management Page
   - Search: ค้นหาสินค้า
   - Show All Products: แสดงสินค้าทั้งหมด
 
-สรุป
-- ทำตามขั้นตอนนี้เพื่อรันและใช้งาน Web Application ได้อย่างสมบูรณ์
-- หากมีปัญหาในขั้นตอนใด สามารถแจ้งเพื่อขอคำแนะนำเพิ่มเติมได้! 😊
-"""
-
-file_path = "/README.txt"
-
-with open(file_path, "w", encoding="utf-8") as file:
-    file.write(content)
-
-file_path
