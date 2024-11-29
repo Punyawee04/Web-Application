@@ -8,9 +8,7 @@ cd <repository-folder>
 
 2. เข้าไปในโฟลเดอร์ Backend และ Frontend
 โครงสร้างของโปรเจกต์จะแบ่งออกเป็น backend และ frontend ดังนั้นต้องติดตั้ง dependencies ในแต่ละส่วนแยกกัน:
-cd backend
-หรือ
-cd frontend
+cd backend และ cd frontend
 
 3. ติดตั้ง Dependencies
 รันคำสั่งนี้ในโฟลเดอร์ backend และ frontend เพื่อดาวน์โหลด dependencies ที่จำเป็น:
@@ -23,7 +21,13 @@ cd frontend
 
 4. เชื่อมต่อกับฐานข้อมูล MySQL
 - เปิด MySQL Workbench แล้วสร้างฐานข้อมูล
-จากไฟล์ bloom_dbที่เตรียมให้
+จากไฟล์ bloom_db ที่เตรียมให้
+ซึ่งกำหนดการตั้งค่า .env ดังนี้
+PORT=8080
+DB_NAME=Bloom_db
+DB_HOST=localhost
+DB_PASS=ict555
+DB_USER=bloom
 
 5. รัน Backend และ Frontend Servers
 รันเซิร์ฟเวอร์ทั้งสองส่วน:
@@ -47,7 +51,7 @@ Homepage (Landing Page)
   - Login: เข้าสู่ระบบ
 
 Contact Us Page
-- เข้าถึงได้ที่ http://localhost:8081/.
+- เข้าถึงได้ที่ http://localhost:8081/team
 - หน้านี้แสดงข้อมูลผู้จัดทำเว็บไซต์ เช่น:
   - รูปโปรไฟล์
   - ชื่อ
