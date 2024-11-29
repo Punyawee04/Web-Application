@@ -3,7 +3,7 @@
 </div>
 
 ## **How to Use**
-🔗 For detailed instructions on setting up and running this application, refer to the [🌸 Instructions for Web Application 🌸](https://github.com/thitiP11222/Project-Web-Phase2/blob/main/README.txt).
+🔗 For detailed instructions on setting up and running this application, refer to the <br> [🌸 Instructions for Web Application 🌸](https://github.com/thitiP11222/Project-Web-Phase2/blob/main/README.txt).
 
 ---
 
