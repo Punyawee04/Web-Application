@@ -8,7 +8,7 @@
 ---
 
 ## **Technologies Used**
-🎨 **Frontend**: HTML, CSS, JavaScript 
+🎨 **Frontend**: HTML, CSS, JavaScript <br>
 🖥️ **Backend**: Node.js, Express.js, MySQL  
 📦 **Dependencies**: bcryptjs, cors, crypto-js, dotenv, jsonwebtoken, multer  
 
