@@ -2,8 +2,8 @@ create database Bloom_db;
 use Bloom_db;
 
 -- Create a new user 'new_user' with a password
-CREATE USER 'bloom'@'localhost' IDENTIFIED BY 'ict555';
-GRANT ALL PRIVILEGES ON Bloom_db.* TO 'bloom'@'localhost';
+-- CREATE USER 'bloom'@'localhost' IDENTIFIED BY 'ict555';
+-- GRANT ALL PRIVILEGES ON Bloom_db.* TO 'bloom'@'localhost';
 
 -- Table: LoginDetail
 CREATE TABLE LoginDetail (
@@ -63,7 +63,6 @@ CREATE TABLE Product (
 -- ----------------------------------------------------------------------------------------------------------------
 -- INSERT ------------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------------------
-
 
 -- Insert data into LoginDetail table
 INSERT INTO LoginDetail (UserName, Password, Email, login_Time, logout_Time, login_Date, Status)
@@ -144,15 +143,5 @@ WHERE product_id = 'PD9';
 UPDATE Product 
 SET image_url = 'http://localhost:8080/images/product10.jpg' 
 WHERE product_id = 'PD10';
-
-
-
-
--- select * from Administrator;
--- select * from LoginDetail;
-
-
--- drop table LoginDetail, Administrator, Administrator_phonenum,Email;
-
 
 
