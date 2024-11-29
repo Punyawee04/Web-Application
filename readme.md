@@ -7,13 +7,6 @@
 
 ---
 
-## **Documentation**
-📖 **User Guide**: Learn how to navigate and make the most of our application.  
-🛠️ **Developer Guide**: Detailed technical documentation, including API endpoints, data structures, and application workflows.  
-🔗 Access the full documentation here: [🌸 Bloom Skincare Documentation 🌸](https://github.com/thitiP11222/Project-Web-Phase2/wiki)
-
----
-
 ## **Technologies Used**
 🎨 **Frontend**: HTML, CSS, JavaScript <br>
 🖥️ **Backend**: Node.js, Express.js, MySQL  
